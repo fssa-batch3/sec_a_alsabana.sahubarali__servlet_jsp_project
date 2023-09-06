@@ -67,17 +67,13 @@ public class EditProductServlet extends HttpServlet {
 			ProductService productService = new ProductService();
 			productService.updateProduct(product1);
 
-			List<Product> productList = ProductService.getAllProduct();
-			request.setAttribute("productList", productList);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("account.jsp");
-			dispatcher.forward(request, response);
+			response.sendRedirect("ListProductServlet");
 
 		} catch (ServiceException e) {
 			String[] strArr = e.getMessage().split(":");
 			String msg = strArr[strArr.length - 1];
 			// Set the error message as a request attribute
 			request.setAttribute("errorMessage", msg);
-
 			RequestDispatcher dispatcher = request.getRequestDispatcher("updateProduct.jsp");
 			dispatcher.forward(request, response);
 		}

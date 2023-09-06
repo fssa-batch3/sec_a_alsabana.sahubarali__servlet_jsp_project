@@ -84,7 +84,9 @@ img {
 	<div class="parent_div">
 		<%
 		for (Product product : productList) {
+			if (user.getUserId() == product.getCreatedUser().getUserId()) {
 		%>
+
 		<div class="card">
 			<a href="ProductDetailServlet?productId=<%=product.getProductId()%>">
 				<img src="<%=product.getProductImg()%>"
@@ -122,14 +124,14 @@ img {
 					<button>Delete</button>
 				</a>
 			</p>
+
 			<%
 			}
 			%>
 
-
-
 		</div>
 		<%
+		}
 		}
 		%>
 

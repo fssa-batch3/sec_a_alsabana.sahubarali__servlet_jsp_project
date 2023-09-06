@@ -76,8 +76,7 @@
 						href="createProduct.jsp">Add Products</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="ListProductServlet">Products</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="ListUserServlet">Userlist</a></li>
+					
 					<%
 					}
 					%>

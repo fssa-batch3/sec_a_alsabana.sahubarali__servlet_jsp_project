@@ -345,7 +345,7 @@ body {
 						width="600" height="400" alt="image" />
 				</div>
 			</div>
-			<div class="four">
+			<!--  <div class="four">
 				<div>
 					<img
 						src="https://cdn.shopify.com/s/files/1/0562/8759/2623/products/6_5e982e3a-62fd-4123-a507-7c987fe265d1_x614@2x.jpg?v=1642163660"
@@ -361,14 +361,16 @@ body {
 						src="https://cdn11.bigcommerce.com/s-5h8rqg02f8/images/stencil/650w/products/784/4280/2_3__69657.1660128828.jpg"
 						height="300" width="285" alt="image" />
 				</div>
-			</div>
+			</div> 
 			<div class="five">
 				<h2>We promise that every product is made from natural
 					ingredients to address all your hair care needs.</h2>
 			</div>
 			<div class="six">
 				<div>
-					<img src="./assets/images/3 gif.webp" width="1470" alt="image" />
+					<img
+						src="https://cdn.shopify.com/s/files/1/0562/8759/2623/products/6_5e982e3a-62fd-4123-a507-7c987fe265d1_x614@2x.jpg?v=1642163660"
+						width="1470" height="1000px" alt="image" />
 				</div>
 			</div>
 			<div class="seven">
@@ -403,7 +405,7 @@ body {
 					<p>Effective in the treatment of parasitic hair and scalp
 						infection</p>
 				</div>
-			</div>
+			</div> -->
 			<div class="eight">
 				<h2>Testimonials</h2>
 			</div>

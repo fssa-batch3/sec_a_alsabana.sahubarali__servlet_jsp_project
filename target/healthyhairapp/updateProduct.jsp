@@ -89,27 +89,20 @@ p {
 				action="EditProductServlet?productId=<%=product.getProductId()%>"
 				method="post">
 				<input type="text" style="display: none"
-					value=<%=product.getProductId()%> name="productId" required /> 
-					
-					<label>Product
-					name : </label> 
-					
-					<input type="textarea" id="pName" name="productName"
-					value=<%=product.getProductName()%> required
-					title="Please enter product name" /> 
-					
-					
-					<label>Product price : </label>
-					
-					<input type="number" id="pPrice" value=<%=product.getCost()%>
-					name="productCost" required title="Enter price of the product" />
-					
-					
-				 <label>Image :<input type="text" id="pImage"
-					value=<%=product.getProductImg()%> name="productURL" required
-					title="please paste your product url" /></label> <label>product_details
-					: <textarea type="text" id="product_detail"
-						title="Please enter more detail about product"
+					value=<%=product.getProductId()%> name="productId" required /> <label>Product
+					name : </label>
+
+				<textarea type="text" id="pName" name="productName" required
+					title="Please enter product name">	<%=product.getProductName()%> </textarea>
+
+				<label>Product price : </label> <input type="number" id="pPrice"
+					value=<%=product.getCost()%> name="productCost" required
+					title="Enter price of the product" /> <label>Image :<input
+					type="text" id="pImage" value=<%=product.getProductImg()%>
+					name="productURL" required title="please paste your product url" /></label>
+
+				<label>product_details: <textarea type="text"
+						id="product_detail" title="Please enter more detail about product"
 						name="productDetail" required><%=product.getProductDetail()%></textarea>
 				</label> <label>Category : <select id="product_type" name="category">
 						<option value="Ayurvedic Range">Ayurvedic Range</option>
