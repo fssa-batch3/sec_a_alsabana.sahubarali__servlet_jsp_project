@@ -16,7 +16,7 @@
 	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
 	crossorigin="anonymous"></script>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>List Product</title>
 </head>
 <style>
 .card {
@@ -85,6 +85,7 @@ img {
 		<%
 		for (Product product : productList) {
 		%>
+
 		<div class="card">
 			<a href="ProductDetailServlet?productId=<%=product.getProductId()%>">
 				<img src="<%=product.getProductImg()%>"
@@ -122,11 +123,10 @@ img {
 					<button>Delete</button>
 				</a>
 			</p>
+
 			<%
 			}
 			%>
-
-
 
 		</div>
 		<%

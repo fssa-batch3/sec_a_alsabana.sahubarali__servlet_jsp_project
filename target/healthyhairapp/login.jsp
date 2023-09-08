@@ -56,6 +56,11 @@ input[type="submit"] {
 	cursor: pointer;
 }
 
+p {
+	color: red;
+	text-align: center;
+}
+
 .forgot-password {
 	display: block;
 	margin-top: 10px;

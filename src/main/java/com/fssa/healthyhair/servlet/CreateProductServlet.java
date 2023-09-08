@@ -23,31 +23,30 @@ public class CreateProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
+ 
 		ProductService productservice = new ProductService();
-		 // Get parameters from the request
+		// Get parameters from the request
 		String productName = request.getParameter("productName");
 		String productPrice = request.getParameter("productCost");
 		int productCost = Integer.parseInt(productPrice);
 		String productImage = request.getParameter("productURL");
 		String productDetail = request.getParameter("productDetail");
 		String category = request.getParameter("category");
-		
+
 		User user = (User) request.getSession(false).getAttribute("User");
-         
+
 		// Create a new Product instance
-		Product product1 = new Product(productName, productCost, productImage, productDetail, category,user);
+		Product product1 = new Product(productName, productCost, productImage, productDetail, category, user);
 
 		try {
 			productservice.createProduct(product1);
-			out.println("Succesfully created");
 			response.sendRedirect("ListProductServlet");
 		} catch (ServiceException e) {
 			String[] strArr = e.getMessage().split(":");
 			String msg = strArr[strArr.length - 1];
-			RequestDispatcher patcher = request.getRequestDispatcher("createProduct.jsp?errorMessage=" +msg);
+			RequestDispatcher patcher = request.getRequestDispatcher("createProduct.jsp?errorMessage=" + msg);
 			patcher.forward(request, response);
 		}
 

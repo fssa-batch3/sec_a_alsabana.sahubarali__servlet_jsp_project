@@ -16,7 +16,7 @@
 	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
 	crossorigin="anonymous"></script>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>List Product</title>
 </head>
 <style>
 .card {
@@ -31,7 +31,7 @@
 
 img {
 	width: 350px;
-	height: 250px;
+	height: 280px;
 }
 
 .parent_div {
@@ -84,7 +84,6 @@ img {
 	<div class="parent_div">
 		<%
 		for (Product product : productList) {
-			if (user.getUserId() == product.getCreatedUser().getUserId()) {
 		%>
 
 		<div class="card">
@@ -115,9 +114,11 @@ img {
 				<button>Sample</button>
 			</p>
 			<%
-			} else if ("seller".equals(user.getType())) {
+			} else if ("seller".equalsIgnoreCase(user.getType())) {
 			%>
-
+			<%
+			if (product.getCreatedUser().getUserId() == user.getUserId()) {
+			%>
 			<p>
 				<a href="EditProductServlet?productId=<%=product.getProductId()%>"><button>Edit</button></a>
 				<a href="DeleteProductServlet?productId=<%=product.getProductId()%>">
@@ -127,11 +128,11 @@ img {
 
 			<%
 			}
+			}
 			%>
 
 		</div>
 		<%
-		}
 		}
 		%>
 

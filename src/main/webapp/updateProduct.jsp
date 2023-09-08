@@ -112,7 +112,7 @@ p {
 						<option value="Capsules">Hair serum and capsules</option>
 				</select>
 				</label>
-				<button type="submit">Update</button>
+				<button type="submit">SAVE</button>
 
 			</form>
 		</div>

@@ -5,7 +5,7 @@
 <head>
 
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Product details</title>
 </head>
 <style>
 .card {
@@ -77,12 +77,10 @@
 }
 </style>
 <body>
-	
+
 	<div class="card">
 		<div class="left">
-			<img src=${sessionScope.product.productImg }
-				id="imgs"
-				alt="image" />
+			<img src=${sessionScope.product.productImg } id="imgs" alt="image" />
 		</div>
 		<div class="right">
 			<h3 id="range">${sessionScope.product.category}product</h3>
@@ -101,8 +99,7 @@
 			<p>: Partner OfferSign up for healthy hair Pay Later and get
 				Healthy hair Gift Card worth up to ₹1000*</p>
 			<p>: Bank Offer5% Cashback on healthy hair Axis Bank</p>
-			<a href="../Pages/delivery.html" type="click" id="buy"><button>Buy
-					Now</button></a>
+			<a href="#" type="click" id="buy"><button>Buy Now</button></a>
 		</div>
 	</div>
 </body>

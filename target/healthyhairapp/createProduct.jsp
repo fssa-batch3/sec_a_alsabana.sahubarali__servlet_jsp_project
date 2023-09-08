@@ -85,15 +85,24 @@ p {
 
 			<form id="update-form" action="CreateProductServlet">
 				<label>Product name : <input type="text" id="pName"
-					name="productName" required title="Please enter product name" /></label> <label>Product
-					price :<input type="number" id="pPrice" name="productCost" required
-					title="Enter price of the product" />
-				</label> <label>Image :<input type="text" id="pImage"
+					name="productName" required title="Please enter product name" /></label> 
+					
+					<label>Product price :<input type="number" id="pPrice" name="productCost" required
+				 	title="Enter price of the product" />
+				   </label> 
+				
+				
+				<label>Image :<input type="text" id="pImage"
 					name="productURL" required title="please paste your product url" /></label>
+					
+					
 				<label>product_details : <textarea type="text"
 						id="product_detail" title="Please enter more detail about product"
 						name="productDetail" required></textarea>
-				</label> <label>Category : <select id="product_type" name="category">
+						
+				</label>
+				
+				 <label>Category : <select id="product_type" name="category">
 						<option value="Ayurvedic Range">Ayurvedic Range</option>
 						<option value="Caffeine Range">Caffeine Range</option>
 						<option value="Samples">Our Samples</option>
