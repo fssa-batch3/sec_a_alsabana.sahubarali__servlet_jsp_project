@@ -23,7 +23,7 @@
 
 .image-2 {
 	border-radius: 50%;
-}
+}=
 
 .heroImage {
 	width: 100%;

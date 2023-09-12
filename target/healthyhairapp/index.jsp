@@ -326,7 +326,7 @@ body {
 					<h2>Shop Our Range of Clean, Effective, and Natural Products</h2>
 				</div>
 				<div class="two-2">
-					<h3>Good Hair is proven in providing products with haircare
+					<h3>Healthy Hair is proven in providing products with haircare
 						solutions for various hair concerns like growth, dandruff, hair
 						fall, dryness, frizz, thin, weak, and damaged hair.</h3>
 				</div>
@@ -451,11 +451,12 @@ body {
 						problems.</p>
 				</div>
 				<div class="thirdeen">
-					<div>
+					<!--	<div>
 						<img class="thirdeen-1"
 							src="./assets/images/philosophy images.gif" height="350"
 							alt="image" width="350" />
 					</div>
+					-->
 					<div>
 						<p>
 							<strong>Our philosophy</strong> towards haircare is focused

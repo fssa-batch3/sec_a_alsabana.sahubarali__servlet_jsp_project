@@ -31,7 +31,7 @@
 
 img {
 	width: 350px;
-	height: 250px;
+	height: 280px;
 }
 
 .parent_div {
@@ -114,9 +114,11 @@ img {
 				<button>Sample</button>
 			</p>
 			<%
-			} else if ("seller".equals(user.getType())) {
+			} else if ("seller".equalsIgnoreCase(user.getType())) {
 			%>
-
+			<%
+			if (product.getCreatedUser().getUserId() == user.getUserId()) {
+			%>
 			<p>
 				<a href="EditProductServlet?productId=<%=product.getProductId()%>"><button>Edit</button></a>
 				<a href="DeleteProductServlet?productId=<%=product.getProductId()%>">
@@ -125,6 +127,7 @@ img {
 			</p>
 
 			<%
+			}
 			}
 			%>
 

@@ -113,7 +113,7 @@ h6 {
 			<label><b>Mobile No:</b></label> <input type="text"
 				value="<%=user1.getNumber()%>" placeholder="Mobile no" name="number"
 				required>
-			<button type="submit" class="registerbtn">update</button>
+			<button type="submit" class="registerbtn">SAVE</button>
 		</div>
 	</form>
 
