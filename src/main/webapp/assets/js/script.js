@@ -58,29 +58,11 @@ document.querySelector(".navbar-btn").onclick = function () {
   document.querySelector(".navbar-item").classList.toggle("hide");
 };
 
-// for pop
-let popup = document.getElementById("pop");
-function openpopup() {
-  popup.classList.add("open-popup");
-}
-function exit_pop() {
-  popup.classList.remove("open-popup");
-}
-//login button
 
-let pop_up = document.querySelector(".signup-pop");
-
-function open_pop() {
-  pop_up.classList.add("sign-block");
-  popup.classList.remove("open-popup");
-}
-function exit_popup() {
-  pop_up.classList.remove("sign-block");
-}
 ///my signup
 let check = false;
 const signup = document.getElementById("signUp");
-signup?.addEventListener("submit", function (event) {
+signup.addEventListener("submit", function (event) {
   event.preventDefault();
   if (localStorage.getItem("userData") != null) {
     let arrayOfUserDetails = JSON.parse(localStorage.getItem("userData"));
@@ -178,14 +160,14 @@ function checkUser(phn, email) {
 }
 // MY LOGIN
 let loginForm = document.getElementById("login_form");
-loginForm?.addEventListener("submit", function (event) {
+loginForm.addEventListener("submit", function (event) {
   event.preventDefault();
   let email = document.getElementById("loginEmail").value;
   let password = document.getElementById("loginPassword").value;
   let isExist = false;
   let find_customer = JSON.parse(localStorage.getItem("userData"));
   let find_seller = JSON.parse(localStorage.getItem("seller"));
-  find_customer?.find(function (user) {
+  find_customer.find(function (user) {
     if (email === user["email"]) {
       isExist = true;
       if (password === user["password"]) {
@@ -201,7 +183,7 @@ loginForm?.addEventListener("submit", function (event) {
     return isExist;
   });
   if (isExist == false) {
-    find_seller?.find(function (user) {
+    find_seller.find(function (user) {
       if (email === user["email"]) {
         isExist = true;
         if (password === user["password"]) {

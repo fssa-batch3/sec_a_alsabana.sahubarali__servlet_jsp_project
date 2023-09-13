@@ -1,5 +1,5 @@
 let pay = document.getElementById("number");
-pay?.addEventListener("keyup", function (e) {
+pay.addEventListener("keyup", function (e) {
   console.log(e.pay);
   if (e.pay !== 8) {
     if (
@@ -13,7 +13,7 @@ pay?.addEventListener("keyup", function (e) {
 });
 
 let payment_form = document.getElementById("pay_form");
-payment_form?.addEventListener("submit", function (event) {
+payment_form.addEventListener("submit", function (event) {
   event.preventDefault();
 
   let order = JSON.parse(localStorage.getItem("order_id"));

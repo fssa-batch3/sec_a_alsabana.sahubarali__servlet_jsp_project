@@ -86,7 +86,7 @@ logout.addEventListener("click", function (e) {
 
 let login_acc = JSON.parse(localStorage.getItem("login"));
 let order_details = JSON.parse(localStorage.getItem("details"));
-let find_orders = order_details?.filter(
+let find_orders = order_details.filter(
   (logid) => login_acc == logid["login_id"]
 );
 
@@ -94,7 +94,7 @@ let no_order = document.querySelector(".no-order");
 if (find_orders.length === 0) {
   no_order.style.display = "block";
 }
-for (let i = 0; i < find_orders?.length; i++) {
+for (let i = 0; i < find_orders.length; i++) {
   let div_card = document.createElement("div");
   div_card.setAttribute("class", "order-container");
   let div_card1 = document.createElement("div");

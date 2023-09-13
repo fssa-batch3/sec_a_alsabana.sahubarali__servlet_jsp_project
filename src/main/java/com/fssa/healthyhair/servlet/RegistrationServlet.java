@@ -9,7 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.fssa.healthyhair.dao.UserDAO;
 import com.fssa.healthyhair.model.User;
 import com.fssa.healthyhair.service.UserService;
 import com.fssa.healthyhair.service.exception.ServiceException;
@@ -58,15 +60,30 @@ public class RegistrationServlet extends HttpServlet {
 
 		UserService userservice = new UserService();
 		User user1 = new User(email, username, password, type, number);
-
+        
 		try {
 			userservice.registerUser(user1);
 			out.println("Successfully registered " + user1.getUsername());
-			response.sendRedirect("login.jsp");
+			HttpSession session = request.getSession();
+
+			User user = UserService.findingUserByEmail(email);
+			session.setAttribute("User", user);
+
+			response.sendRedirect("ListProductServlet");
 		} catch (ServiceException e) {
 			String[] strArr = e.getMessage().split(":");
 			String msg = strArr[strArr.length - 1];
-			RequestDispatcher patcher = request.getRequestDispatcher("register.jsp?errorMessage="+msg);
+			
+			request.setAttribute("username",username);
+			request.setAttribute("email",email);
+			request.setAttribute("password",password);
+			request.setAttribute("number",number);
+			request.setAttribute("type",type);
+			
+			
+			
+			
+			RequestDispatcher patcher = request.getRequestDispatcher("index.jsp?registerError="+msg);
 			patcher.forward(request, response);
 
 		}

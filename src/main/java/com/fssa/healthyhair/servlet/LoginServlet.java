@@ -48,25 +48,24 @@ public class LoginServlet extends HttpServlet {
 
 		try {
 			userService.loginWithEmail(email, password);
-			UserDAO userDAO = new UserDAO();
 			HttpSession session = request.getSession();
 
-			User user = userDAO.findUserByEmail(email);
+			User user = UserService.findingUserByEmail(email);
 			session.setAttribute("User", user);
 
 			if (user.getType().equals("buyer")) {
-
 				response.sendRedirect("account.jsp");
-
 			} else {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("account.jsp");
-
 				dispatcher.forward(request, response);
-
 			}
 
-		} catch (DAOException | ServiceException e) {
-			RequestDispatcher patcher = request.getRequestDispatcher("login.jsp?errorMessage=Invalid Credential");
+		} catch ( ServiceException e) {
+			String[] strArr = e.getMessage().split(":");
+			String msg = strArr[strArr.length - 1];
+			request.setAttribute("email", email);
+			request.setAttribute("password",password);
+			RequestDispatcher patcher = request.getRequestDispatcher("index.jsp?loginError="+msg);
 			patcher.forward(request, response);
 		}
 

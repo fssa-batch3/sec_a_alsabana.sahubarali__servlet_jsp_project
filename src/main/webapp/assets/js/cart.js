@@ -44,7 +44,7 @@ function removeItem() {
     quantity: 1,
   };
   let checkQty = JSON.parse(localStorage.getItem("items"));
-  for (let i = 0; i < checkQty?.length; i++) {
+  for (let i = 0; i < checkQty.length; i++) {
     let key = checkQty[i];
     if (key.title == items.title) {
       checkQty.splice(i, 1);
@@ -80,7 +80,7 @@ function addCart() {
       product_id: login_uid,
     };
     let checkQty = JSON.parse(localStorage.getItem("items"));
-    for (let i = 0; i < checkQty?.length; i++) {
+    for (let i = 0; i < checkQty.length; i++) {
       let key = checkQty[i];
       haveTitle = true;
       if (key.title == items.title) {
@@ -109,7 +109,7 @@ function addCart() {
 
 let getCartItems = JSON.parse(localStorage.getItem("items"));
 let matched_products;
-let finded_product = getCartItems?.find(function (user) {
+let finded_product = getCartItems.find(function (user) {
   let product_id = user["product_id"];
   if (login_uid == product_id) {
     matched_products = getCartItems.filter(
@@ -118,7 +118,7 @@ let finded_product = getCartItems?.find(function (user) {
   }
 });
 
-for (let i = 0; i < matched_products?.length; i++) {
+for (let i = 0; i < matched_products.length; i++) {
   let div_card = document.createElement("div");
   div_card.setAttribute("class", "cart-box");
   let card_img = document.createElement("img");
@@ -160,7 +160,7 @@ for (let i = 0; i < matched_products?.length; i++) {
 }
 
 let add = 0;
-for (let i = 0; i < matched_products?.length; i++) {
+for (let i = 0; i < matched_products.length; i++) {
   let split = matched_products[i].price;
   let result = split.split(".");
   add += parseInt(result[1] * matched_products[i].quantity);

@@ -77,7 +77,7 @@
 }
 </style>
 <body>
-
+     	<jsp:include page="navbar.jsp"></jsp:include>
 	<div class="card">
 		<div class="left">
 			<img src=${sessionScope.product.productImg } id="imgs" alt="image" />

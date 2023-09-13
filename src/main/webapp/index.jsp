@@ -1,496 +1,368 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-	crossorigin="anonymous"></script>
-<meta charset="ISO-8859-1">
-<title>Healthy hair</title>
-</head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="./assets/CSS/style.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<title>Home</title>
 <style>
-.image-1 {
-	margin-top: -12px;
-	border-radius: 50%;
-}
+error{
+	color:red;
+	margin-left:30%;
+	margin-top:-50%;
+}</style>
+</head>
+<body class="container">
+	<jsp:include page="navbar.jsp"></jsp:include>
+	<!-- sign up -->
+       	<div class="signup-pop" id="popup">
+		<div class="top">
+			<h4 class="title">Sign Up</h4>
+		</div>
+		<div class="exit">
+			<img id="closeSign" src="./assets/images/exits image.png" width="35"
+				height="35" />
+		</div>
+		<div class="form" id="pop_up">
+		   <%
+				String error = request.getParameter("registerError");   
+				if (error != null){
+					out.println("<error>" + error + "</error>");
+				%>
+				<script> 
+				const divElement = document.querySelector('.signup-pop');
+				divElement.classList.add('sign-block');
+				</script>
+				<% }%>
+			<form id="signUp" action="RegistrationServlet" method="post">
+				<div class="form-input">
+					<input type="text" name="name" id="username" autocomplete="off"
+						pattern="[A-Za-z]{4,30}" title="Username cannot contains spaces"
+						placeholder="Username" value="${username}" required="true" />
+				</div>
+				<div class="form-input">
+					<input type="email" id="email" name="email" placeholder="Email" value="${email}"
+						 required />
+				</div>
+				<div class="form-input">
+					<input type="text" id="phone-no" name="number" value="${number}"
+						placeholder="Phone No" pattern="[0-9]{1,10}" required />
+				</div>
+				<div class="form-input">
+					<input type="password" value="${password}" id="password" placeholder="Password"
+						required />
+				</div>
+				<div class="form-input">
+					<input type="password" name="password" id="confirm-password"
+					value="${password}"
+						placeholder="Confirm Password" required />
+				</div>
+				<select class="form-input" value="${type}"name="type" id="input_type">
+					<option value="">CHOOSE</option>
+					<option value="customer">Customer</option>
+					<option value="seller">Seller</option>
+				</select>
+				<div class="form-input">
+					<button type="submit" onclick="sign()">Sign In</button>
+				</div>
+			</form>
 
-.image-2 {
-	border-radius: 50%;
-}=
+		</div>
+	</div>
+	<!-- login page -->
+	<div class="overall" id="pop">
 
-.heroImage {
-	width: 100%;
-	height: 600px;
-	margin-top: -50px;
-}
-
-.two {
-	display: flex;
-	margin-left: 50px;
-	font-size: 15px;
-	padding: 25px;
-}
-
-.two-2 h3 {
-	width: 850px;
-	border-left: 5px solid rgb(24, 24, 24);
-	border-left-style: double;
-	padding-left: 15px;
-	font-size: 17px;
-}
-
-.three {
-	display: flex;
-	margin-left: 200px;
-	font-family: "Poppins", sans-serif;
-}
-
-.three-1 {
-	padding: 40px;
-	font-size: 25px;
-	margin-right: 100px;
-	margin-bottom: 250px;
-}
-
-.three-1 button {
-	width: 150px;
-	height: 50px;
-	background-color: black;
-	color: white;
-	border-radius: 10px;
-	margin-bottom: 10px;
-}
-
-.three-2 {
-	border-radius: 20px;
-}
-
-.four {
-	display: flex;
-	margin-top: -300px;
-	margin-left: 15px;
-}
-
-.five h2 {
-	padding: 30px;
-	width: 800px;
-	margin-left: 300px;
-	text-align: center;
-	font-size: clamp(15px, 5vw, 30px);
-	font-family: "Poppins", sans-serif;
-}
-
-.seven {
-	display: flex;
-	background-color: #f5ebe0;
-	font-size: 15px;
-	font-family: "Poppins", sans-serif;
-	font-weight: bold;
-	color: rgba(148, 108, 56, 0.664);
-	width: 1390px;
-	margin-top: 20px;
-	margin-left: 30px;
-	margin-right: 10px;
-	height: 300px;
-	border-radius: 40px;
-	border-style: double;
-}
-
-.seven div {
-	padding: 50px;
-}
-
-.eight {
-	font-size: 20px;
-	font-family: "Poppins", sans-serif;
-	padding: 10px;
-	margin-left: 10px;
-}
-
-.nine {
-	display: flex;
-	margin-left: 10px;
-	margin-right: 10px;
-}
-
-.nine div {
-	padding: 15px;
-	font-size: 15px;
-	font-family: "Poppins", sans-serif;
-	font-weight: bold;
-	border-left: 2px solid rgb(57, 56, 56);
-	border-left-style: double;
-	background-color: #faf4ef;
-	box-shadow: 20px 20px 15px gray;
-}
-
-.nine h5 {
-	text-align: end;
-	margin-right: 50px;
-}
-
-.ten {
-	padding: 10px;
-	margin-left: 30px;
-}
-
-.ten button {
-	width: 150px;
-	height: 50px;
-	background-color: black;
-	color: white;
-	font-size: 20px;
-	border-radius: 20px;
-}
-
-.about {
-	font-size: 20px;
-	font-family: "Poppins", sans-serif;
-}
-
-.eleven {
-	text-align: center;
-	font-family: "Poppins", sans-serif;
-}
-
-.twelve {
-	text-align: center;
-	margin-left: 400px;
-	font-size: 20px;
-	font-family: "Poppins", sans-serif;
-	border-bottom-style: dotted;
-	border-bottom-width: 600;
-	margin-right: 400px;
-}
-
-.twelve p {
-	width: 600px;
-}
-
-.box {
-	font-size: 25px;
-}
-
-.overall {
-	width: 450px;
-	margin: 0 auto;
-	padding: 30px 0;
-	margin-bottom: 13%;
-	height: 500px;
-	position: absolute;
-	top: 0;
-	right: 5%;
-	left: 50%;
-	z-index: 20;
-	visibility: hidden;
-	transform: translate(-50%, -50%) scale(0.1);
-	transition: transform 0.4s, top 0.4s;
-	cursor: pointer;
-}
-
-.open-popup {
-	visibility: visible;
-	top: 7%;
-	margin-left: 30%;
-	transform: translate(-50%, -50%) scale(1);
-}
-
-.form {
-	color: #434343;
-	border-radius: 1px;
-	margin-bottom: 15px;
-	background: #fff;
-	border: 1px solid #f3f3f3;
-	box-shadow: 0px 2px 2px rgb(0 0 0/ 30%);
-	padding: 30px;
-}
-
-.circle {
-	color: #fff;
-	margin: 0 auto;
-	width: 100px;
-	height: 100px;
-	border-radius: 50%;
-	background-color: white;
-	padding: 10px;
-	box-shadow: 0px 2px 2px rgb(0 0 0/ 10%);
-}
-
-.image {
-	border-radius: 50%;
-	margin-right: 10px;
-}
-
-.title {
-	text-align: center;
-	font-size: 20px;
-}
-
-.form-input input {
-	min-height: 40px;
-	border-radius: 2px;
-	width: 100%;
-	font-size: 1rem;
-	border: 1px solid #ced4da;
-	margin-bottom: 20px;
-	padding: 5px;
-}
-
-button {
-	background-color: #000;
-	border: none;
-	min-height: 40px;
-	border-radius: 2px;
-	padding: 0.5rem 1rem;
-	font-size: 20px;
-	text-align: center;
-	color: #fff;
-	width: 100%;
-	box-shadow: 0px 2px 2px rgb(0 0 0/ 10%);
-}
-
-.signup {
-	font-size: 18px;
-	color: #000;
-	text-align: center;
-}
-
-.signup a {
-	text-decoration: none;
-	color: #f278a0;
-}
-
-a {
-	text-decoration: none;
-}
-
-.shopNow_btn {
-	position: absolute;
-	margin-left: 63%;
-	margin-top: -14%;
-}
-
-.shopNow_btn a {
-	color: white;
-}
-
-.shopNow_btn button {
-	width: 235px;
-	height: 73px;
-	border-radius: 15px;
-	font-weight: bold;
-	font-size: 24px;
-	letter-spacing: 2px;
-	font-family: Arial, Helvetica, sans-serif;
-}
-
-body {
-	font-family: "Poppins", sans-serif;
-	overflow-x: hidden;
-	margin: 0;
-	padding: 0;
-	user-select: none;
-}
-
-.show {
-	display: flex;
-	flex-direction: column;
-	width: 30%;
-	font-size: 22px;
-	position: absolute;
-	top: 115%;
-	right: 20%;
-	background-color: #fefefe;
-}
-</style>
-<body>
-<body>
-	<jsp:include page="header.jsp"></jsp:include>
-
-	<div class="p-5 mb-4 bg-body-tertiary rounded-3">
-		<div class="container-fluid py-5">
-			<div class="one">
-				<img
-					src="https://www.keralaayurveda.biz/images/revampimages/KA-Banner.jpg"
-					alt="image" width="1500" class="heroImage" />
+		<div class="form">
+			<div>
+				<img id="close" src="./assets/images/exits image.png" width="40"
+					height="40" />
 			</div>
-			<div class="two">
-				<div>
-					<h2>Shop Our Range of Clean, Effective, and Natural Products</h2>
-				</div>
-				<div class="two-2">
-					<h3>Healthy Hair is proven in providing products with haircare
-						solutions for various hair concerns like growth, dandruff, hair
-						fall, dryness, frizz, thin, weak, and damaged hair.</h3>
-				</div>
+
+			<div class="circle">
+				<img class="image" src="./assets/images/new logo.png " width="100"
+					height="100" />
 			</div>
-			<div class="three">
-				<div class="three-1">
-					<h2>Effective & Natural Remedy</h2>
-					<p>We use no mineral-oil, silicones, parabens, or sulphates in
-						our products.</p>
-					<a href="./Pages/Product.html" class="btn"><button>SHOP
-							NOW</button></a>
+			<h4 class="title">Login to Your Account</h4>
+				<%
+				String error1 = request.getParameter("loginError");
+				if (error1 != null){
+					out.println("<error>" + error1 + "</error>");
+				%>
+				<script> 
+				const signElement = document.querySelector('.overall');
+				signElement.classList.add('open-popup');
+				</script>
+				<%} %>
+			<form id="login_form" action="LoginServlet" method="post">
+			
+				<div class="form-input">
+					<input type="email" name="email" id="loginEmail" value="${email}"
+						placeholder="Email" required />
 				</div>
-				<div>
-					<img class="three-2"
-						src="https://india.indewild.com/cdn/shop/files/CopyofIW_Webcontent_3.0_Product_MSS_03_700x700_2c3baf92-4ca8-4ca2-878d-95d21173e711.jpg?v=1692786669"
-						width="600" height="400" alt="image" />
+				<div class="form-input">
+					<input type="password" id="loginPassword" name="password" value="${password}"
+						placeholder="Password" required />
 				</div>
-			</div>
-			<!--  <div class="four">
-				<div>
-					<img
-						src="https://cdn.shopify.com/s/files/1/0562/8759/2623/products/6_5e982e3a-62fd-4123-a507-7c987fe265d1_x614@2x.jpg?v=1642163660"
-						height="300" alt="image" width="285" />
+				<div class="form-input">
+					<button type="submit" onclick="login()">Login</button>
 				</div>
-				<div>
-					<img
-						src="https://cdn11.bigcommerce.com/s-5h8rqg02f8/images/stencil/original/products/530/3806/ECOM_Hair_Care_Juice_1_1_11zon__74516.1663840956.jpg"
-						height="300" alt="image" width="285" />
-				</div>
-				<div>
-					<img
-						src="https://cdn11.bigcommerce.com/s-5h8rqg02f8/images/stencil/650w/products/784/4280/2_3__69657.1660128828.jpg"
-						height="300" width="285" alt="image" />
-				</div>
-			</div> 
-			<div class="five">
-				<h2>We promise that every product is made from natural
-					ingredients to address all your hair care needs.</h2>
-			</div>
-			<div class="six">
-				<div>
-					<img
-						src="https://cdn.shopify.com/s/files/1/0562/8759/2623/products/6_5e982e3a-62fd-4123-a507-7c987fe265d1_x614@2x.jpg?v=1642163660"
-						width="1470" height="1000px" alt="image" />
-				</div>
-			</div>
-			<div class="seven">
-				<div>
-					<img src="./assets/images/reduces.avif" height="130 " width="130"
-						alt="image" />
-					<p>Reduces premature pigment loss or greying of hair</p>
-				</div>
-				<div>
-					<img src="./assets/images/Stimulates.avif" height="130" alt="image"
-						width="130" />
-					<p>Stimulate hair growth</p>
-				</div>
-				<div>
-					<img src="./assets/images/reduces hair loss.avif" height="130"
-						alt="image" width="130" />
-					<p>Reduces hair loss and increases hair shine</p>
-				</div>
-				<div>
-					<img src="./assets/images/natural therapy.avif" height="130"
-						width="130" alt="image" />
-					<p>Natural therapy for dandruff & dry scalp</p>
-				</div>
-				<div>
-					<img src="./assets/images/Prevents_split-end.avif" height="130"
-						alt="image" width="130" />
-					<p>Prevents split ends</p>
-				</div>
-				<div>
-					<img src="./assets/images/Effective.avif" height="130" alt="image"
-						width="130" />
-					<p>Effective in the treatment of parasitic hair and scalp
-						infection</p>
-				</div>
-			</div> -->
-			<div class="eight">
-				<h2>Testimonials</h2>
-			</div>
-			<div class="nine">
-				<div>
-					<p>This product comes in an attractive packaging. The price is
-						very reasonable for a chemical free herbal ayurvedic blend. Has a
-						very nice aroma. Best thing is it's non greasy. A scalp massage
-						with this oil after a strenuous day's work is very soothing. I
-						felt relief in itchiness and hair fall too. Highly recommend Good
-						Hair Ayurvedic Oil.</p>
-					<h5>-Prabha</h5>
-				</div>
-				<div>
-					<p>Due to weather change I start having huge hair fall, which
-						made my hair very thin. I could not do any hairstyle and would
-						keep my hair tied up all the time. I started using Good Hair
-						Ayurvedic Hair Oil and I must say that my hair fall has reduced by
-						60% within 10 days of regular use. I can see a volume in my hairs,
-						will continue using it. Highly recommended!</p>
-					<h5>-Kiruba</h5>
-				</div>
-				<div>
-					<p>Best products of hair problems. It's been a week since i am
-						using Good Hair Ayurvedic hair oil and shampoo and my hair fall
-						has reduced drastically. Have never a product work so quickly for
-						me, i am their customer for life. Thank you for giving me the
-						perfect solution. Thank you Good Hair!</p>
-					<h5>-Sabin</h5>
-				</div>
-			</div>
-			<div class="about">
-				<div class="ten">
-					<h2>About Us:</h2>
-				</div>
-				<div class="eleven">
-					<h2>Transforming Passion To Perfection</h2>
-				</div>
-				<div class="twelve">
-					<p>Our company Culture Health LTD. came into existence out of
-						our passion for creating safe and effective products that are
-						scientifically proven to provide solutions for all common hair
-						problems.</p>
-				</div>
-				<div class="thirdeen">
-					<!--	<div>
-						<img class="thirdeen-1"
-							src="./assets/images/philosophy images.gif" height="350"
-							alt="image" width="350" />
-					</div>
-					-->
-					<div>
-						<p>
-							<strong>Our philosophy</strong> towards haircare is focused
-							around using all-natural solutions and traditional ways to combat
-							the modern lifestyle issues like unhealthy food habits, exposure
-							to pollution and use of harsh products.
-						</p>
-						<p>With consumers becoming highly conscious about ingredients,
-							we have ensured that we do not use any mineral-oil, silicones,
-							parabens, or sulphates in our hair care products making them 100%
-							safe for usage to all age groups.</p>
-					</div>
-				</div>
-				<div class="fourteen">
-					<h1 class="fourteen-1">Our Promises</h1>
-				</div>
-				<div class="fifteen">
-					<p>At Healthy Hair, our vision is to produce, manufacture and
-						sell effective, honest, affordable, and safe products. We have
-						amalgamated the Ancient Ayurveda Methods & Natural Ingredients for
-						deriving our intended goal. We are committed to develop wide range
-						of chemical free products that are suitable for all hair types and
-						age groups. Our proficiency lies in inventing new and powerful
-						formulas that enable us to introduce innovative mixtures of herbs
-						and oils that are not found in any of the products available in
-						the market.</p>
-				</div>
+			</form>
+			<div class="signup">
+				Don't have an account? <a id="signupOp">Sign up</a>
 			</div>
 		</div>
 	</div>
+
+
+	<div class="one">
+		<img src="./assets/images/Screenshot 2022-12-02 140508.png"
+			alt="image" width="1500" />
+	</div>
+	<div class="two">
+		<div>
+			<h2>Shop Our Range of Clean, Effective, and Natural Products</h2>
+		</div>
+		<div class="two-2">
+			<h3>Good Hair is proven in providing products with haircare
+				solutions for various hair concerns like growth, dandruff, hair
+				fall, dryness, frizz, thin, weak, and damaged hair.</h3>
+		</div>
+	</div>
+	<div class="three">
+		<div class="three-1">
+			<h2>Effective & Natural Remedy</h2>
+			<p>We use no mineral-oil, silicones, parabens, or sulphates in
+				our products.</p>
+			<a href="./Pages/Product.html" class="btn"><button>SHOP
+					NOW</button></a>
+		</div>
+		<div>
+			<img class="three-2" src="./assets/images/image.png" width="600"
+				height="700" alt="image" />
+		</div>
+	</div>
+	<div class="four">
+		<div>
+			<img src="./assets/images/image1.png" height="300" alt="image"
+				width="285" />
+		</div>
+		<div>
+			<img src="./assets/images/image3.png" height="300" alt="image"
+				width="285" />
+		</div>
+		<div>
+			<img src="./assets/images/image2.png" height="300" width="285"
+				alt="image" />
+		</div>
+	</div>
+	<div class="five">
+		<h2>We promise that every product is made from natural
+			ingredients to address all your hair care needs.</h2>
+	</div>
+	<div class="six">
+		<div>
+			<img src="./assets/images/3 gif.webp" width="1470" alt="image" />
+		</div>
+	</div>
+	<div class="seven">
+		<div>
+			<img src="./assets/images/reduces.avif" height="130 " width="130"
+				alt="image" />
+			<p>Reduces premature pigment loss or greying of hair</p>
+		</div>
+		<div>
+			<img src="./assets/images/Stimulates.avif" height="130" alt="image"
+				width="130" />
+			<p>Stimulate hair growth</p>
+		</div>
+		<div>
+			<img src="./assets/images/reduces hair loss.avif" height="130"
+				alt="image" width="130" />
+			<p>Reduces hair loss and increases hair shine</p>
+		</div>
+		<div>
+			<img src="./assets/images/natural therapy.avif" height="130"
+				width="130" alt="image" />
+			<p>Natural therapy for dandruff & dry scalp</p>
+		</div>
+		<div>
+			<img src="./assets/images/Prevents_split-end.avif" height="130"
+				alt="image" width="130" />
+			<p>Prevents split ends</p>
+		</div>
+		<div>
+			<img src="./assets/images/Effective.avif" height="130" alt="image"
+				width="130" />
+			<p>Effective in the treatment of parasitic hair and scalp
+				infection</p>
+		</div>
+	</div>
+	<div class="eight">
+		<h2>Testimonials</h2>
+	</div>
+	<div class="nine">
+		<div>
+			<p>This product comes in an attractive packaging. The price is
+				very reasonable for a chemical free herbal ayurvedic blend. Has a
+				very nice aroma. Best thing is it's non greasy. A scalp massage with
+				this oil after a strenuous day's work is very soothing. I felt
+				relief in itchiness and hair fall too. Highly recommend Good Hair
+				Ayurvedic Oil.</p>
+			<h5>-Prabha</h5>
+		</div>
+		<div>
+			<p>Due to weather change I start having huge hair fall, which
+				made my hair very thin. I could not do any hairstyle and would keep
+				my hair tied up all the time. I started using Good Hair Ayurvedic
+				Hair Oil and I must say that my hair fall has reduced by 60% within
+				10 days of regular use. I can see a volume in my hairs, will
+				continue using it. Highly recommended!</p>
+			<h5>-Kiruba</h5>
+		</div>
+		<div>
+			<p>Best products of hair problems. It's been a week since i am
+				using Good Hair ayurvedic hair oil and shampoo and my hair fall has
+				reduced drastically. Have never a product work so quickly for me, i
+				am their customer for life. Thank you for giving me the perfect
+				solution. Thank you Good Hair!</p>
+			<h5>-Sabin</h5>
+		</div>
+	</div>
+	<div class="about">
+		<div class="ten">
+			<h2>
+				<button>About Us:</button>
+			</h2>
+		</div>
+		<div class="eleven">
+			<h2>Transforming Passion To Perfection</h2>
+		</div>
+		<div class="twelve">
+			<p>Our company Pharma Culture Healths Ltd. came into existence
+				out of our passion for creating safe and effective products that are
+				scientifically proven to provide solutions for all common hair
+				problems.</p>
+		</div>
+		<div class="thirdeen">
+			<div>
+				<img class="thirdeen-1" src="./assets/images/philosophy images.gif"
+					height="350" alt="image" width="350" />
+			</div>
+			<div>
+				<p>
+					<strong>Our philosophy</strong> towards haircare is focused around
+					using all-natural solutions and traditional ways to combat the
+					modern lifestyle issues like unhealthy food habits, exposure to
+					pollution and use of harsh products.
+				</p>
+				<p>With consumers becoming highly conscious about ingredients,
+					we have ensured that we do not use any mineral-oil, silicones,
+					parabens, or sulphates in our hair care products making them 100%
+					safe for usage to all age groups.</p>
+			</div>
+		</div>
+		<div class="fourteen">
+			<h1 class="fourteen-1">Our Promises</h1>
+		</div>
+		<div class="fifteen">
+			<p>At Healthy Hair, our vision is to produce, manufacture and
+				sell effective, honest, affordable, and safe products. We have
+				amalgamated the Ancient Ayurveda Methods & Natural Ingredients for
+				deriving our intended goal. We are committed to develop wide range
+				of chemical free products that are suitable for all hair types and
+				age groups. Our proficiency lies in inventing new and powerful
+				formulas that enable us to introduce innovative mixtures of herbs
+				and oils that are not found in any of the products available in the
+				market.</p>
+		</div>
+	</div>
+	<div class="delivery">
+		<div class="deli">
+			<img src="assets/images/24 image.png" alt="image" />
+			<h3>Shipping within 24 Hrs</h3>
+		</div>
+		<div class="deli">
+			<img src="assets/images/free-delivery-1.png" alt="image" />
+			<h3>Free delivery</h3>
+		</div>
+
+		<div class="deli">
+			<img src="assets/images/sanitized-1.png" alt="image" />
+			<h3>Sanitised Products</h3>
+		</div>
+	</div>
+
+	<footer>
+		<div class="fif">
+			<div class="fifteen-1">
+				<h2>Follow us</h2>
+			</div>
+			<div class="sixteen">
+				<div>
+					<a href="#"><img src="assets/images/new insta logo.gif"
+						alt="image" height="60" width="60" /></a>
+				</div>
+				<div>
+					<img src="assets/images/facebook new.gif" alt="image" height="60"
+						width="60" />
+				</div>
+				<div>
+					<img src="assets/images/youtube new.gif" alt="image" height="60"
+						width="60" />
+				</div>
+			</div>
+		</div>
+		<div class="seventeen">
+			<h2>Also Available On</h2>
+		</div>
+
+		<div class="eighteen">
+			<div>
+				<img src="assets/images/amazon new1.jpg" alt="image" width="60"
+					height="60" />
+				<p>Amazon</p>
+			</div>
+			<div>
+				<img class="flip" src="assets/images/new flip.gif" width="60"
+					height="60" alt="image" />
+				<p>Flipkart</p>
+			</div>
+			<div>
+				<img src="./assets/images/shopify new.gif" alt="image" width="60"
+					height="60" />
+				<p>Shopify</p>
+			</div>
+		</div>
+		<div class="fif">
+			<div class="nineteen">
+				<h2>Certification</h2>
+			</div>
+			<div class="twenty">
+				<div>
+					<img src="assets/images/certi2.jpg" alt="image" height="50"
+						width="50" />
+				</div>
+				<div>
+					<img src="./assets/images/certi3.webp" alt="image" height="50"
+						width="50" />
+				</div>
+			</div>
+		</div>
+		<div class="twentyone">
+			<h3>Healthy hair 2022 © All rights reserved</h3>
+		</div>
+	</footer>
+
+
+	<script src="./assets/js/login.js"></script>
+
 </body>
-
-
-
-</body>
-
 </html>

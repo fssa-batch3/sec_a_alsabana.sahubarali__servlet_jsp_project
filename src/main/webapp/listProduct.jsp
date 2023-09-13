@@ -20,7 +20,7 @@
 	height: 420px;
 }
 
-img {
+.parent_div img {
 	width: 350px;
 	height: 280px;
 }
@@ -101,8 +101,8 @@ img {
 			%>
 			<p>
 
-				<button>Buy Now</button>
-				<button>Sample</button>
+				<button>Add to cart</button>
+				
 			</p>
 			<%
 			} else if ("seller".equalsIgnoreCase(user.getType())) {

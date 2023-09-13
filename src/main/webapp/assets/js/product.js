@@ -49,7 +49,7 @@ function productDiv(products, id) {
     div2.append(button_tag);
     //append
     let insert_div = document.querySelector(id);
-    insert_div?.append(div_card);
+    insert_div.append(div_card);
   }
 }
 productDiv(Samples, ".products");

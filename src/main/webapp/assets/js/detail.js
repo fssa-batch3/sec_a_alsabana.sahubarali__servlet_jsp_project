@@ -1,5 +1,5 @@
 let buy_btn = document.getElementById("buy");
-buy_btn?.addEventListener("click", function () {
+buy_btn.addEventListener("click", function () {
   let user_login = JSON.parse(localStorage.getItem("login"));
 
   if (user_login == null) {
@@ -52,7 +52,7 @@ postBtn.addEventListener("submit", function (e) {
     let id_product = product_params.get("id");
     let login_acc = JSON.parse(localStorage.getItem("login"));
     let userData = JSON.parse(localStorage.getItem("userData"));
-    let find_user = userData?.find(function (login) {
+    let find_user = userData.find(function (login) {
       if (login_acc == login["user_id"]) {
         return true;
       }
@@ -91,7 +91,7 @@ let reviews = JSON.parse(localStorage.getItem("reviews"));
 let products_id = window.location.search;
 let parameter = new URLSearchParams(products_id);
 let search_id = product_params.get("id");
-let cus_reviews = reviews?.filter((id) => search_id == id["id_product"]);
+let cus_reviews = reviews.filter((id) => search_id == id["id_product"]);
 let no_reviews = document.querySelector(".no_reviews");
 if (cus_reviews.length === 0) {
   no_reviews.style.display = "block";
