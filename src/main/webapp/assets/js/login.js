@@ -1,7 +1,7 @@
 
 let loginPop = document.getElementById("login_btn");
 loginPop.addEventListener("click", (event) => {
-   // Your code here
+   
    event.preventDefault();
    let loginpop = document.getElementById("pop");
    loginpop.classList.add("open-popup");
@@ -12,7 +12,7 @@ loginPop.addEventListener("click", (event) => {
  let closepop = document.getElementById("close");
   let loginpop2 = document.getElementById("pop");
 closepop.addEventListener("click", (event) => {
-   // Your code here
+  
    event.preventDefault();
   
   loginpop2.classList.remove("open-popup");

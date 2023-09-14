@@ -67,7 +67,7 @@ error{
 				</div>
 				<select class="form-input" value="${type}"name="type" id="input_type">
 					<option value="">CHOOSE</option>
-					<option value="customer">Customer</option>
+					<option value="buyer">Buyer</option>
 					<option value="seller">Seller</option>
 				</select>
 				<div class="form-input">

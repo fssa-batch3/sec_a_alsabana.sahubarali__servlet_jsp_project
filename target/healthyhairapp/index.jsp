@@ -13,19 +13,17 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 <title>Home</title>
-
+<style>
+error{
+	color:red;
+	margin-left:30%;
+	margin-top:-50%;
+}</style>
 </head>
 <body class="container">
 	<jsp:include page="navbar.jsp"></jsp:include>
-
-
-	<%
-	String error = request.getParameter("errorMessage");
-	if (error != null)
-		out.println("<h6>" + error + "</h6>");
-	%>
 	<!-- sign up -->
-	<div class="signup-pop" id="popup">
+       	<div class="signup-pop" id="popup">
 		<div class="top">
 			<h4 class="title">Sign Up</h4>
 		</div>
@@ -33,34 +31,43 @@
 			<img id="closeSign" src="./assets/images/exits image.png" width="35"
 				height="35" />
 		</div>
-
 		<div class="form" id="pop_up">
+		   <%
+				String error = request.getParameter("registerError");   
+				if (error != null){
+					out.println("<error>" + error + "</error>");
+				%>
+				<script> 
+				const divElement = document.querySelector('.signup-pop');
+				divElement.classList.add('sign-block');
+				</script>
+				<% }%>
 			<form id="signUp" action="RegistrationServlet" method="post">
 				<div class="form-input">
 					<input type="text" name="name" id="username" autocomplete="off"
 						pattern="[A-Za-z]{4,30}" title="Username cannot contains spaces"
-						placeholder="Username" required="true" />
+						placeholder="Username" value="${username}" required="true" />
 				</div>
 				<div class="form-input">
-					<input type="email" id="email" name="email" placeholder="Email"
-						required />
+					<input type="email" id="email" name="email" placeholder="Email" value="${email}"
+						 required />
 				</div>
 				<div class="form-input">
-					<input type="text" id="phone-no" name="number"
+					<input type="text" id="phone-no" name="number" value="${number}"
 						placeholder="Phone No" pattern="[0-9]{1,10}" required />
 				</div>
 				<div class="form-input">
-					<input type="password" id="password" 
-						placeholder="Password" required />
+					<input type="password" value="${password}" id="password" placeholder="Password"
+						required />
 				</div>
 				<div class="form-input">
 					<input type="password" name="password" id="confirm-password"
-						 placeholder="Confirm Password"
-						required />
+					value="${password}"
+						placeholder="Confirm Password" required />
 				</div>
-				<select class="form-input" name="type" id="input_type">
+				<select class="form-input" value="${type}"name="type" id="input_type">
 					<option value="">CHOOSE</option>
-					<option value="customer">Customer</option>
+					<option value="buyer">Buyer</option>
 					<option value="seller">Seller</option>
 				</select>
 				<div class="form-input">
@@ -70,26 +77,38 @@
 
 		</div>
 	</div>
-
 	<!-- login page -->
 	<div class="overall" id="pop">
+
 		<div class="form">
 			<div>
 				<img id="close" src="./assets/images/exits image.png" width="40"
 					height="40" />
 			</div>
+
 			<div class="circle">
 				<img class="image" src="./assets/images/new logo.png " width="100"
 					height="100" />
 			</div>
 			<h4 class="title">Login to Your Account</h4>
+				<%
+				String error1 = request.getParameter("loginError");
+				if (error1 != null){
+					out.println("<error>" + error1 + "</error>");
+				%>
+				<script> 
+				const signElement = document.querySelector('.overall');
+				signElement.classList.add('open-popup');
+				</script>
+				<%} %>
 			<form id="login_form" action="LoginServlet" method="post">
+			
 				<div class="form-input">
-					<input type="email" name="email" id="loginEmail"
+					<input type="email" name="email" id="loginEmail" value="${email}"
 						placeholder="Email" required />
 				</div>
 				<div class="form-input">
-					<input type="password" id="loginPassword" name="password"
+					<input type="password" id="loginPassword" name="password" value="${password}"
 						placeholder="Password" required />
 				</div>
 				<div class="form-input">
@@ -288,9 +307,8 @@
 			</div>
 			<div class="sixteen">
 				<div>
-					<a href="#"><img
-						src="assets/images/new insta logo.gif" alt="image" height="60"
-						width="60" /></a>
+					<a href="#"><img src="assets/images/new insta logo.gif"
+						alt="image" height="60" width="60" /></a>
 				</div>
 				<div>
 					<img src="assets/images/facebook new.gif" alt="image" height="60"

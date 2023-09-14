@@ -7,111 +7,116 @@
 <title>Create Product</title>
 </head>
 <style>
-body {
-	font-size: 23px;
-	font-family: "Poppins", sans-serif;
-	background-color: rgb(41, 37, 37);
-	color: white;
-}
+ <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #f4f4f4;
+        }
 
-.parent-div {
-	justify-content: center;
-	display: flex;
-	font-size: larger;
-}
+        .container {
+            position:absolute;
+            width: 700px;
+            margin-left: 35%;
+            margin-top:90px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-.parent {
-	margin-top: 20px;
-	padding: 10%;
-	border-radius: 5px;
-	justify-content: center;
-}
+        .form-heading {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
 
-.whole {
-	display: flex;
-	justify-content: center;
-	font-size: 20px;
-}
+        .form-group {
+            margin-bottom: 20px;
+        }
 
-form {
-	margin-top: 50px;
-}
+        label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
 
-form input, textarea {
-	width: 450px;
-	height: 30px;
-	display: flex;
-	padding: 10px;
-	flex-direction: column;
-	border-radius: 10px;
-}
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-select {
-	width: 470px;
-	height: 50px;
-	display: flex;
-	padding: 10px;
-	flex-direction: column;
-	border-radius: 10px;
-	margin-top: 10px;
-}
+        select {
+            height: 40px;
+        }
 
-button {
-	width: 250px;
-	height: 50px;
-	margin-top: 30px;
-	margin-left: 25%;
-	border-radius: 20px;
+        button[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: grey;
+        }
 
-}
+        button[type="submit"]:hover {
+            background-color: black;
+            color:white;
+        }
 
-p {
-	text-align: center;
-	color: red;
-}
-</style>
+        .error-message {
+            color: red;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
 <body>
-
-	<%
-	String errorMessage = (String) request.getParameter("errorMessage");
-	%>
-	<div class="parent">
-		<%
-		if (errorMessage != null)
-			out.println("<p>" + errorMessage + "</p>");
-		%>
-		<div class="parent-div">ADD A NEW PRODUCT</div>
-		<div class="whole">
-
-			<form id="update-form" action="CreateProductServlet" method="post">
-				<label>Product name : <input type="text" id="pName"
-					name="productName" required title="Please enter product name" /></label> 
-					
-				<label>Product
-					price :<input type="number" min=1 id="pPrice" name="productCost"
-					required title="Enter price of the product" />
-				</label> 
-				
-				<label>Image :<input type="text" id="pImage"
-					name="productURL" required title="please paste your product url" /></label>
-
-
-				<label>product_details : <textarea type="text"
-						id="product_detail" title="Please enter more detail about product"
-						name="productDetail" required></textarea>
-
-				</label> <label>Category : <select id="product_type" name="category">
-						<option value="Ayurvedic Range">Ayurvedic Range</option>
-						<option value="Caffeine Range">Caffeine Range</option>
-						<option value="Samples">Our Samples</option>
-						<option value="Avocado Range">Avocado, Biotin Range</option>
-						<option value="Capsules">Hair serum and capsules</option>
-				</select>
-				</label>
-				<button type="submit">ADD</button>
-
-			</form>
-		</div>
-	</div>
+     <div class="container">
+        <jsp:include page="sellerNav.jsp"></jsp:include>
+        <%
+        String errorMessage = (String) request.getParameter("errorMessage");
+        %>
+        <div class="form-heading">ADD A NEW PRODUCT</div>
+        <form id="update-form" action="CreateProductServlet" method="post">
+            <div class="form-group">
+                <label for="pName">Product name:</label>
+                <input type="text" id="pName" name="productName" required placeholder="Enter product name" />
+            </div>
+            <div class="form-group">
+                <label for="pPrice">Product price:</label>
+                <input type="number" min="1" id="pPrice" name="productCost" required placeholder="Enter price of the product" />
+            </div>
+            <div class="form-group">
+                <label for="pImage">Image URL:</label>
+                <input type="text" id="pImage" name="productURL" required placeholder="Paste your product URL" />
+            </div>
+            <div class="form-group">
+                <label for="product_detail">Product Details:</label>
+                <textarea id="product_detail" name="productDetail" required placeholder="Enter more details about the product"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="product_type">Category:</label>
+                <select id="product_type" name="category">
+                    <option value="Ayurvedic Range">Ayurvedic Range</option>
+                    <option value="Caffeine Range">Caffeine Range</option>
+                    <option value="Samples">Our Samples</option>
+                    <option value="Avocado Range">Avocado, Biotin Range</option>
+                    <option value="Capsules">Hair serum and capsules</option>
+                </select>
+            </div>
+            <button type="submit">ADD PRODUCT</button>
+            <% if (errorMessage != null) { %>
+                <div class="error-message"><%= errorMessage %></div>
+            <% } %>
+        </form>
+    </div>
 </body>
 </html>

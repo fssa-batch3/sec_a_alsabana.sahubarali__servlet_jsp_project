@@ -39,9 +39,8 @@ public class DeleteUserAccountServlet extends HttpServlet {
 			throws ServletException, IOException {
 		int userId = Integer.parseInt(request.getParameter("userId"));
 
-		UserService userService = new UserService();
-		
 		try {
+			UserService userService = new UserService();
 			userService.deleteUser(userId);
 			HttpSession session = request.getSession(false);
 			session.invalidate();
@@ -49,7 +48,7 @@ public class DeleteUserAccountServlet extends HttpServlet {
 		} catch (ServiceException e) {
 			String[] strArr = e.getMessage().split(":");
 			String msg = strArr[strArr.length - 1];
-			RequestDispatcher dispatcher = request.getRequestDispatcher("account.jsp?errorMessage=" + msg);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("sellerAccount.jsp?errorMessage=" + msg);
 			dispatcher.forward(request, response);
 
 		}

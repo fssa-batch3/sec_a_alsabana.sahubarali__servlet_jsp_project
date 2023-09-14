@@ -24,14 +24,6 @@ public class DeleteProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public DeleteProductServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -50,10 +42,10 @@ public class DeleteProductServlet extends HttpServlet {
 			product = ProductService.getAllProduct();
 			HttpSession session = request.getSession(false);
 			session.setAttribute("products", product);
-			response.sendRedirect("ListProductServlet");
+			response.sendRedirect("SellerProductList");
 		} catch (ServiceException e) {
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("listProduct.jsp?errorMessage=" + e.getMessage());
+					.getRequestDispatcher("SellerProductList.jsp?errorMessage=" + e.getMessage());
 			dispatcher.forward(request, response);
 
 		}

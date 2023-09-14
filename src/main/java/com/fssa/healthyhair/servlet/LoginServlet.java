@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
 			if (user.getType().equals("buyer")) {
 				response.sendRedirect("account.jsp");
 			} else {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("account.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("sellerAccount.jsp");
 				dispatcher.forward(request, response);
 			}
 

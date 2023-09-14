@@ -42,11 +42,11 @@ public class EditUserServlet extends HttpServlet {
 
 			userService.updateUser(user1);
 
-			User updatedUser = userService.findingUserByEmail(email);
+			User updatedUser = UserService.findingUserByEmail(email);
 
 			HttpSession session = request.getSession(false);
 			session.setAttribute("User", updatedUser);
-			patcher = request.getRequestDispatcher("account.jsp");
+			patcher = request.getRequestDispatcher("sellerAccount.jsp");
 			patcher.forward(request, response);
 		} catch (ServiceException e) {
 			String[] strArr = e.getMessage().split(":");

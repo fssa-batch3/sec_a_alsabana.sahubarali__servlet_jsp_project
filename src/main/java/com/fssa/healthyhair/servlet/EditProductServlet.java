@@ -67,7 +67,7 @@ public class EditProductServlet extends HttpServlet {
 			ProductService productService = new ProductService();
 			productService.updateProduct(product1);
 
-			response.sendRedirect("ListProductServlet");
+			response.sendRedirect("SellerProductList");
 
 		} catch (ServiceException e) {
 			String[] strArr = e.getMessage().split(":");
