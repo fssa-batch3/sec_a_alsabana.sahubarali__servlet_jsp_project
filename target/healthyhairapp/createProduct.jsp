@@ -6,7 +6,7 @@
 <meta charset="ISO-8859-1">
 <title>Create Product</title>
 </head>
-<style>
+
  <style>
         body {
             font-family: "Poppins", sans-serif;
@@ -84,6 +84,7 @@
         <%
         String errorMessage = (String) request.getParameter("errorMessage");
         %>
+   
         <div class="form-heading">ADD A NEW PRODUCT</div>
         <form id="update-form" action="CreateProductServlet" method="post">
             <div class="form-group">

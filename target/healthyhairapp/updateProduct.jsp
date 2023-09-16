@@ -9,113 +9,140 @@
 </head>
 <style>
 body {
-	font-size: 23px;
 	font-family: "Poppins", sans-serif;
-	background-color: rgb(41, 37, 37);
-	color: white;
+	background-color: #f4f4f4;
 }
 
-.parent-div {
-	justify-content: center;
-	display: flex;
-	font-size: larger;
-}
-
-.parent {
-	margin-top: 20px;
-	padding: 10%;
+.container {
+	position: absolute;
+	width: 700px;
+	margin-left: 35%;
+	margin-top: 90px;
+	padding: 20px;
+	background-color: #fff;
 	border-radius: 5px;
-	justify-content: center;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.whole {
-	display: flex;
-	justify-content: center;
-	font-size: 20px;
+.form-heading {
+	text-align: center;
+	font-size: 28px;
+	margin-bottom: 20px;
 }
 
-form {
-	margin-top: 50px;
+.form-group {
+	margin-bottom: 20px;
 }
 
-form input, textarea {
-	width: 450px;
-	height: 30px;
-	display: flex;
+label {
+	display: block;
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+
+input[type="text"], input[type="number"], textarea, select {
+	width: 100%;
 	padding: 10px;
-	flex-direction: column;
-	border-radius: 10px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
 }
 
 select {
-	width: 470px;
-	height: 50px;
-	display: flex;
-	padding: 10px;
-	flex-direction: column;
-	border-radius: 10px;
-	margin-top: 10px;
+	height: 40px;
 }
 
-button {
-	width: 250px;
-	height: 50px;
-	margin-top: 30px;
-	margin-left: 25%;
-	border-radius: 20px;
-	/* background-color: black;
-  color: white; */
+button[type="submit"] {
+	width: 100%;
+	padding: 15px;
+	font-size: 18px;
+	color: black;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	background-color: grey;
 }
 
-p {
-	text-align: center;
+button[type="submit"]:hover {
+	background-color: black;
+	color: white;
+}
+
+error {
 	color: red;
+	font-size: 16px;
+	margin-top: 10px;
 }
 </style>
 <body>
+	<jsp:include page="sellerNav.jsp"></jsp:include>
 	<%
 	String errorMessage = (String) request.getAttribute("errorMessage");
 	Product product = (Product) request.getAttribute("updateProduct");
 	%>
-	<div class="parent">
 
-		<div class="parent-div">UPDATE PRODUCT</div>
-		<%
-		if (errorMessage != null)
-			out.println("<p>" + errorMessage + "</p>");
-		%>
-		<div class="whole">
-			<form id="update-form"
-				action="EditProductServlet?productId=<%=product.getProductId()%>"
-				method="post">
-				<input type="text" style="display: none"
-					value=<%=product.getProductId()%> name="productId" required /> <label>Product
-					name : </label>
+	<div class="container">
 
-				<textarea type="text" id="pName" name="productName" required
-					title="Please enter product name">	<%=product.getProductName()%> </textarea>
-
-				<label>Product price : </label> <input type="number" id="pPrice"
-					value=<%=product.getCost()%> name="productCost" required
-					title="Enter price of the product" /> <label>Image :<input
-					type="text" id="pImage" value=<%=product.getProductImg()%>
-					name="productURL" required title="please paste your product url" /></label>
-
-				<label>product_details: <textarea type="text"
-						id="product_detail" title="Please enter more detail about product"
-						name="productDetail" required><%=product.getProductDetail()%></textarea>
-				</label> <label>Category : <select id="product_type" name="category">
-						<option value="Ayurvedic Range">Ayurvedic Range</option>
-						<option value="Caffeine Range">Caffeine Range</option>
-						<option value="Samples">Our Samples</option>
-						<option value="Avocado Range">Avocado, Biotin Range</option>
-						<option value="Capsules">Hair serum and capsules</option>
-				</select>
-				</label>
-				<button type="submit">SAVE</button>
-
-			</form>
+		<div class="exit">
+			<img id="closeSign" src="./assets/images/exits image.png" width="35"
+				height="35" />
 		</div>
+		<div class="form-heading">Update Product</div>
+		<%
+		if (errorMessage != null) {
+		%>
+		<error><%=errorMessage%></error>
+
+		<%
+		}
+		if (product != null) {
+		%>
+		<form id="update-form" action="EditProductServlet" method="post">
+			<div>
+				<input type="text" style="display: none"
+					value=<%=product.getProductId()%> name="productId" />
+			</div>
+			<div class="form-group">
+				<label for="pName">Product name:</label>
+				<textarea id="pName" name="productName" required
+					placeholder="Enter product name"><%=product.getProductName()%></textarea>
+			</div>
+			<div class="form-group">
+				<label for="pPrice">Product price:</label> <input type="number"
+					min="1" id="pPrice" name="productCost" value=<%=product.getCost()%>
+					required placeholder="Enter price of the product" />
+			</div>
+			<div class="form-group">
+				<label for="pImage">Image URL:</label> <input type="text"
+					id="pImage" name="productURL" value=<%=product.getProductImg()%>
+					required placeholder="Paste your product URL" />
+			</div>
+			<div class="form-group">
+				<label for="product_detail">Product Details:</label>
+				<textarea id="product_detail" name="productDetail" required
+					placeholder="Enter more details about the product"><%=product.getProductDetail()%></textarea>
+			</div>
+			<div class="form-group">
+				<label for="product_type">Category:</label> <select
+					id="product_type" name="category">
+					<option value="Ayurvedic Range">Ayurvedic Range</option>
+					<option value="Caffeine Range">Caffeine Range</option>
+					<option value="Samples">Our Samples</option>
+					<option value="Avocado Range">Avocado, Biotin Range</option>
+					<option value="Capsules">Hair serum and capsules</option>
+				</select>
+			</div>
+			<button type="submit">SAVE</button>
+
+		</form>
+
+
+
+		<%
+		}
+		%>
+
+
 	</div>
 </body>
 </html>

@@ -28,19 +28,19 @@ public class EditUserServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		int id = Integer.parseInt(request.getParameter("userId"));
-
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String number = request.getParameter("number");
-		User user1 = new User(email, name, number, id);
+		String companyName = request.getParameter("companyName");
+		String licenseImage = request.getParameter("licenseImage");
+		String companyAddress = request.getParameter("companyAddress");
+		User user1 = new User(email, name, number, companyName, companyAddress, licenseImage, id);
 
 		RequestDispatcher patcher = null;
 
-		UserService userService = new UserService();
-
 		try {
 
-			userService.updateUser(user1);
+			UserService.updateUser(user1);
 
 			User updatedUser = UserService.findingUserByEmail(email);
 
@@ -51,7 +51,7 @@ public class EditUserServlet extends HttpServlet {
 		} catch (ServiceException e) {
 			String[] strArr = e.getMessage().split(":");
 			String msg = strArr[strArr.length - 1];
-			 patcher = request.getRequestDispatcher("updateUser.jsp?errorMessage=" + msg);
+			patcher = request.getRequestDispatcher("sellerAccount.jsp?errorMessage=" + msg);
 			patcher.forward(request, response);
 
 		}

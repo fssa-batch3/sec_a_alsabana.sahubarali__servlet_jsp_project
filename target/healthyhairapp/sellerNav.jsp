@@ -20,14 +20,14 @@
           <img src="./assets/images/new logo.png" class="logo-img" />
         </a>
         <ul class="nav-links">
-          <li>
+          <li >
             <a href="#">
               <i class="fa-solid fa-house-user"></i>
               <p>Dashboard</p>
             </a>
           </li>
           <li>
-            <a href="ListProductServlet">
+            <a href="SellerProductList">
               <i class="fa-solid fa-box"></i>
               <p>Products</p>
             </a>
@@ -45,7 +45,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="contactUs.jsp">
               <i class="fa-solid fa-phone-alt"></i>
               <p>Contact us</p>
             </a>

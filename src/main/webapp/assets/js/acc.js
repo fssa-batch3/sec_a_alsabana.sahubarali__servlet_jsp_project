@@ -1,4 +1,4 @@
-///profile
+/** 
 const logEmail = JSON.parse(localStorage.getItem("login"));
 const userData = JSON.parse(localStorage.getItem("userData"));
 
@@ -84,6 +84,7 @@ logout.addEventListener("click", function (e) {
   window.open("/index.html");
 });
 
+/*
 let login_acc = JSON.parse(localStorage.getItem("login"));
 let order_details = JSON.parse(localStorage.getItem("details"));
 let find_orders = order_details.filter(
@@ -138,6 +139,7 @@ for (let i = 0; i < find_orders.length; i++) {
   let insert_div = document.querySelector(".scnd-container");
   insert_div.append(div_card);
 }
+*/
 function change() {
   let cus_details = document.querySelector(".customer_details");
   let form_Detail = document.getElementById("proform");
@@ -145,7 +147,7 @@ function change() {
   form_Detail.style.display = "block";
 }
 
-function deleteOrder(Orderid) {
+/**function deleteOrder(Orderid) {
   let order_history = JSON.parse(localStorage.getItem("details"));
   let find_order = order_history.find(function (order) {
     let orderId = order["order_id"];
@@ -165,3 +167,4 @@ function deleteOrder(Orderid) {
     location.reload();
   }
 }
+*/

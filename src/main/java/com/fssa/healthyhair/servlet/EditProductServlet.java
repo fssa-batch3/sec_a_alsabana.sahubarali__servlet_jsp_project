@@ -31,17 +31,21 @@ public class EditProductServlet extends HttpServlet {
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		int productId = Integer.parseInt(request.getParameter("productId"));
-		RequestDispatcher patcher = null;
+		RequestDispatcher patcher = request.getRequestDispatcher("updateProduct.jsp");
 		try {
 			Product product = ProductService.findProductById(productId);
 
 			request.setAttribute("updateProduct", product);
 
-			patcher = request.getRequestDispatcher("updateProduct.jsp");
 			patcher.forward(request, response);
 
 		} catch (ServiceException e) {
-			out.print(e.getMessage());
+			String[] strArr = e.getMessage().split(":");
+			String msg = strArr[strArr.length - 1];
+			// Set the error message as a request attribute
+			//request.setAttribute("errorMessage", msg);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("sellerListProduct.jsp?errorMessage="+msg);
+			dispatcher.forward(request, response);
 		}
 
 	}
@@ -55,7 +59,7 @@ public class EditProductServlet extends HttpServlet {
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		int id = Integer.parseInt(request.getParameter("productId"));
-
+        
 		String productName = request.getParameter("productName");
 		int cost = Integer.parseInt(request.getParameter("productCost"));
 		String imageURL = request.getParameter("productURL");
@@ -65,7 +69,9 @@ public class EditProductServlet extends HttpServlet {
 		try {
 			Product product1 = new Product(id, productName, cost, imageURL, productDetail, category);
 			ProductService productService = new ProductService();
+			request.setAttribute("updateProduct", product1);
 			productService.updateProduct(product1);
+			
 
 			response.sendRedirect("SellerProductList");
 

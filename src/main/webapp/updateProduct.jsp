@@ -68,7 +68,7 @@ button[type="submit"]:hover {
 	color: white;
 }
 
-.error-message {
+error {
 	color: red;
 	font-size: 16px;
 	margin-top: 10px;
@@ -82,18 +82,22 @@ button[type="submit"]:hover {
 	%>
 
 	<div class="container">
-         <div class="exit">
+
+		<div class="exit">
 			<img id="closeSign" src="./assets/images/exits image.png" width="35"
 				height="35" />
 		</div>
 		<div class="form-heading">Update Product</div>
 		<%
-		if (errorMessage != null)
-			out.println("<p>" + errorMessage + "</p>");
+		if (errorMessage != null) {
 		%>
-		<form id="update-form"
-			action="EditProductServlet?productId=<%=product.getProductId()%>"
-			method="post">
+		<error><%=errorMessage%></error>
+
+		<%
+		}
+		if (product != null) {
+		%>
+		<form id="update-form" action="EditProductServlet" method="post">
 			<div>
 				<input type="text" style="display: none"
 					value=<%=product.getProductId()%> name="productId" />
@@ -131,6 +135,14 @@ button[type="submit"]:hover {
 			<button type="submit">SAVE</button>
 
 		</form>
+
+
+
+		<%
+		}
+		%>
+
+
 	</div>
 </body>
 </html>

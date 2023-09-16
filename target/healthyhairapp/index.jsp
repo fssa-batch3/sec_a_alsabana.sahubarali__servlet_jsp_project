@@ -28,8 +28,7 @@ error{
 			<h4 class="title">Sign Up</h4>
 		</div>
 		<div class="exit">
-			<img id="closeSign" src="./assets/images/exits image.png" width="35"
-				height="35" />
+			<img id="closeSign" src="./assets/images/exits image.png" width="35" height="35" />
 		</div>
 		<div class="form" id="pop_up">
 		   <%
