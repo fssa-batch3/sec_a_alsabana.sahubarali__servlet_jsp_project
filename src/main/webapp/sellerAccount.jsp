@@ -201,10 +201,7 @@ font-size:23px;
 		</div>
 	</section>
 	<div class="container">
-		<div class="exit">
-			<img id="closeSign" src="./assets/images/exits image.png" width="35"
-				height="35" />
-		</div>
+		
 		<div class="form-heading">Edit Account</div>
 		<%
 		if (errorMessage != null) {

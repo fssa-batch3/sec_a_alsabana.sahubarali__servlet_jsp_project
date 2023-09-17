@@ -99,7 +99,7 @@
 			<p>: Partner OfferSign up for healthy hair Pay Later and get
 				Healthy hair Gift Card worth up to ₹1000*</p>
 			<p>: Bank Offer5% Cashback on healthy hair Axis Bank</p>
-			<a href="#" type="click" id="buy"><button>Buy Now</button></a>
+			<a href="orderDetails.jsp?productId=${sessionScope.product.productId }" type="click" id="buy"><button>Buy Now</button></a>
 		</div>
 	</div>
 </body>
