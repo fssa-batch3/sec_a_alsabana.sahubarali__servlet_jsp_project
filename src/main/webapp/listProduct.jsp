@@ -32,7 +32,7 @@
 }
 
 .price {
-	color: grey;
+	color: black;
 	font-size: 22px;
 }
 
@@ -49,18 +49,19 @@
 	background-color: #000;
 	text-align: center;
 	cursor: pointer;
+	height:50px;
 }
 
 .product_list {
 	text-align: center;
+	margin-top:10%;
 }
 
-.card button:hover {
-	opacity: 0.7;
-}
+
 </style>
 <body>
 	<jsp:include page="navbar.jsp"></jsp:include>
+	
 	<%
 	@SuppressWarnings("unchecked")
 
@@ -83,45 +84,13 @@
 				alt="<%=product.getProductName()%>">
 			</a>
 
-			<h5><%=product.getProductName()%></h5>
+			<h3><%=product.getProductName()%></h3>
 			<p class="price">
 				RS.
 				<%=product.getCost()%></p>
-
-			<%
-			if (user == null) {
-			%>
-
 			<p>
-				<button>Buy Now</button>
-				<button>Sample</button>
+				<button> <i class="fas fa-shopping-cart"></i> Add to cart</button>
 			</p>
-			<%
-			} else if ("buyer".equals(user.getType())) {
-			%>
-			<p>
-
-				<button>Add to cart</button>
-				
-			</p>
-			<%
-			} else if ("seller".equalsIgnoreCase(user.getType())) {
-			%>
-			<%
-			if (product.getCreatedUser().getUserId() == user.getUserId()) {
-			%>
-			<p>
-				<a href="EditProductServlet?productId=<%=product.getProductId()%>"><button>Edit</button></a>
-				<a href="DeleteProductServlet?productId=<%=product.getProductId()%>">
-					<button>Delete</button>
-				</a>
-			</p>
-
-			<%
-			}
-			}
-			%>
-
 		</div>
 		<%
 		}
