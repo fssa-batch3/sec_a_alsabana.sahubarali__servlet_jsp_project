@@ -151,6 +151,8 @@ font-size:23px;
 	<%
 	User user = (User) session.getAttribute("User");
 	String errorMessage = (String) request.getParameter("errorMessage");
+	User updatedUser =(User) session.getAttribute("updatedUser");
+	
 	%>
 	<jsp:include page="sellerNav.jsp"></jsp:include>
 	<section class="seller-profile">
@@ -182,10 +184,10 @@ font-size:23px;
 						<%=user.getNumber()%></p>
 				</div>
 				<div>
-					<p>Company Name:</p>
+					<p>Company Name: <%= user.getCompanyName() %></p>
 				</div>
 				<div>
-					<p>Company Address:</p>
+					<p>Company Address: <%= user.getCompanyAddress() %></p>
 				</div>
 				<%
 				String error = request.getParameter("errorMessage");
@@ -238,7 +240,7 @@ font-size:23px;
 			<div class="form-group">
 				<label for="sellerCompany">Company Name<span
 					class="required">*</span>:
-				</label> <input type="text" id="sellerCompany" name="companyName" required
+				</label> <input type="text" id="sellerCompany" value=<%= user.getCompanyName() %> name="companyName" required
 					placeholder="Enter company name" />
 			</div>
 			<div class="form-group">
@@ -246,12 +248,12 @@ font-size:23px;
 					class="required">*</span>:
 				</label>
 				<textarea id="sellerAddress" name="companyAddress" required
-					placeholder="Enter company address"><%=user.getAddress()%></textarea>
+					placeholder="Enter company address"><%= user.getCompanyAddress() %></textarea>
 			</div>
 			<div class="form-group">
 				<label for="licenseImage">Company License Image<span
 					class="required">*</span>:
-				</label> <input type="text" id="licenseImage" name="licenseImage"
+				</label> <input type="text" id="licenseImage" name="licenseImage" value=<%= user.getCompanylicense() %>
 					accept="image/*" placeholder="Enter your licence url" required />
 			</div>
 

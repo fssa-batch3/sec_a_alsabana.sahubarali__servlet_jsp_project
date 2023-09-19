@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import="java.sql.Timestamp"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="com.fssa.healthyhair.model.Order"%>
+<%@ page import="com.fssa.healthyhair.model.Product"%>
+<%@ page import="java.util.Calendar"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,9 +19,8 @@
 
 </head>
 <style>
- 
 .continue_shopping {
-  margin-right: 23%;
+	margin-right: 23%;
 	margin-left: 25%;
 }
 
@@ -29,15 +33,29 @@
 }
 
 .card-stepper {
-      z-index: 0;
-     background-color: #f3fefc;
-    }
+	z-index: 0;
+	background-color: #f3fefc;
+}
 </style>
 <body>
 
 	<jsp:include page="navbar.jsp"></jsp:include>
 	<br>
 	<br>
+	<br>
+	<%
+	Order order = (Order) session.getAttribute("order");
+	Product orderProduct = (Product) session.getAttribute("orderProduct");
+	Timestamp orderDate = new Timestamp(System.currentTimeMillis());
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	String formattedDate = dateFormat.format(orderDate);
+
+	Calendar calendar = Calendar.getInstance();
+	calendar.add(Calendar.DAY_OF_MONTH, 7);
+
+	String after7 = dateFormat.format(calendar.getTime());
+	%>
+
 	<section class="vh-100 gradient-custom-2">
 		<div class="container py-5 h-100">
 			<div
@@ -55,8 +73,7 @@
 						</div>
 						<div class="text-center">
 							<h1>Thank You !</h1>
-							<p>Your details has been successfully submitted.Thanks!
-							</p>
+							<p>Your details has been successfully submitted.Thanks!</p>
 						</div>
 						<div class="card-header p-4">
 
@@ -64,16 +81,15 @@
 
 								<div>
 									<p class="text-muted mb-2">
-										Order ID <span class="fw-bold text-body">1222528743</span>
+										Order ID : <span class="fw-bold text-body">6543</span>
 									</p>
 									<p class="text-muted mb-0">
-										Place On <span class="fw-bold text-body">12,March 2019</span>
+										Place On : <span class="fw-bold text-body"><%=formattedDate%></span>
 									</p>
 								</div>
 								<div class="text-muted mb-0">
 									<p>
-										Delivered by <span class="fw-bold text-body">12,March
-											2019</span>
+										Delivered by : <span class="fw-bold text-body"><%=after7%></span>
 									</p>
 								</div>
 							</div>
@@ -81,37 +97,42 @@
 						<div class="card-body p-4">
 							<div class="d-flex flex-row mb-4 pb-2">
 								<div class="flex-fill">
-									<h5 class="bold">Headphones Bose 35 II</h5>
-									<p class="text-muted">Qt: 1 item</p>
-									<h4 class="mb-3">Rs. 299</h4>
+									<h5 class="bold"><%=orderProduct.getProductName()%></h5>
+									<p class="text-muted">
+										Quantity&nbsp;:&nbsp;<%=order.getQuantity()%>&nbsp;item
+									</p>
+									<h4 class="mb-3">
+										Rs.<%=orderProduct.getCost()%>
+									</h4>
 									<div>
 										<h4 class="bold">Order Details</h4>
 										<p class="text-muted mb-0">
 											Name :<span class="fw-bold text-body">alsabana</span>
 										</p>
 										<p class="text-muted mb-0">
-											Mobile no: <span class="fw-bold text-body">8015059760</span>
+											Mobile no: <span class="fw-bold text-body"><%=order.getNumber()%></span>
 										</p>
 										<p class="text-muted mb-0">
-											Address:<span class="fw-bold text-body">chennai,12/3
-												chinmayanagar,623525</span>
+											Address:<span class="fw-bold text-body"><%=order.getAddress()%>,<%=order.getCity()%>,<br>
+												<%=order.getPincode()%>.</span>
 										</p>
 									</div>
 								</div>
 								<div>
 									<img class="align-self-center img-fluid"
-										src="./assets/images/caffeine2.webp" width="250" />
+										src=<%=orderProduct.getProductImg()%> width="250" />
 								</div>
 							</div>
 							<div class="continue_shopping">
-								<button>Continue shopping&#128525;</button>
+								<a href="ListProductServlet"><button>Continue
+										shopping&#128525;</button></a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		</div>
 	</section>
+
 </body>
 </html>

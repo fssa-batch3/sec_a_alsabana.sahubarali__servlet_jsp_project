@@ -5,150 +5,234 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Order Form</title>
+<link rel="stylesheet" href="../assets/CSS/ts.scss" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+	integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+	crossorigin="anonymous" />
+<title>Document</title>
+</head>
 <style>
-/* Basic CSS for styling the form */
+@import url("https://fonts.googleapis.com/css?family=Arimo");
+
 body {
-	font-family: Arial, sans-serif;
-	background-color: #f2f2f2;
+	display: flex;
+	justify-content: center;
+}
+
+.wrapper {
+	margin-top: 10%;
+	width: 60%;
+	display: flex;
+	justify-content: center;
+	font-family: "Arimo";
+	background-color: #9a9594;
+	-webkit-box-shadow: 9px 13px 25px 0px rgba(0, 0, 0, 0.18);
+	-moz-box-shadow: 9px 13px 25px 0px rgba(0, 0, 0, 0.18);
+	box-shadow: 9px 13px 25px 0px rgba(0, 0, 0, 0.18);
+	animation: slideUp 2000ms ease;
 }
 
 .container {
-	max-width: 600px;
-	padding: 20px;
-	background-color: #ffffff;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	margin-top: 150px;
-	margin-left: 30%;
+	width: 65%;
+	padding: 5% 10%;
 }
 
-.form-group {
-	margin-bottom: 20px;
+h1 {
+	align-self: center;
 }
 
-label {
-	display: block;
-	font-weight: bold;
+form input {
+	width: 100%;
+	min-height: 35px;
+	border: 0;
+	font-size: 1rem;
+	letter-spacing: 0.15rem;
+	font-family: "Arimo";
+	margin-top: 5px;
+	border-radius: 4px; label { text-transform : uppercase;
+	font-size: 12px;
+	letter-spacing: 2px;
 }
 
-input[type="text"], input[type="email"], input[type="number"], select {
-	width: 95%;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
+}
+.name {
+	justify-content: space-between;
+	display: flex;
+	width: 100%;
+	height: 40%;
 }
 
-.btn-submit {
-	background-color: #101010;
-	color: #fff;
-	padding: 10px 20px;
+.address-info {
+	display: flex;
+	justify-content: space-between;
+}
+
+.cc-info {
+	display: flex;
+	justify-content: space-between;
+}
+
+.btns button {
+	width: 200px;
+	height: 40px;
+	margin-top: 20px;
+	font-size: 18px;
+	background-color: #161616;
+	color: white;
+	padding: 5px;
 	border: none;
 	border-radius: 4px;
 	cursor: pointer;
 }
 
-.payment, .quantity {
+.radio-group label {
 	display: flex;
-}
-
-.price {
-	margin-left: 50px;
+	align-items: center;
+	cursor: pointer;
 	margin-top: 5px;
+	font-size: 20px;
+	color: #161616;
 }
 
-.details {
-	text-align: center;
+.radio-group i {
+	margin-right: 0px;
+}
+
+.radio-group input[type="radio"] {
+	width: 30px;
 }
 
 #card_detail {
 	display: none;
 }
 
+.price {
+	text-align: end;
+	font-size: 23px;
+}
 </style>
-</head>
 <body>
 	<jsp:include page="navbar.jsp"></jsp:include>
-	<div class="container">
-		<img id="closeSign" src="./assets/images/exits image.png" width="35"
-			height="35" />
-		<h2 class="details">Order Details</h2>
-		<form action="createOrder" method="POST">
+	<div class="wrapper">
+		<div class="container">
+			<form action="createOrderServlet" method="POST">
+				<h1>
+					<i class="fas fa-shipping-fast"></i> Shipping Details
+				</h1>
+				<div class="form-group" style="display: none">
+					<label for="id">id:</label> <input type="number"
+						value="${sessionScope.product.productId}" min="1" name="productId"
+						required />
+				</div>
+				<div class="name">
+					<div>
+						<label for="f-name">Name:</label> <input type="text" name="name"
+							placeholder="Enter your name" required />
+					</div>
+					<div>
+						<label>Quantity:</label> <input type="number" id="quantityInput"
+							min="1" value="1" name="quantity" required />
+					</div>
+				</div>
+				<div class="street">
+					<label for="name">Street :</label> <input type="text"
+						name="address" placeholder="Enter your delivered Street" required />
+				</div>
+				<div class="address-info">
+					<div>
+						<label for="city">City :</label> <input type="text"
+							placeholder="Enter your city" name="city" required />
+					</div>
 
-			<!-- Order Details -->
-			<div class="quantity">
-				<div class="form-group">
-					<label for="quantity">Quantity:</label> <input type="number"
-						id="quantity" min="1" name="quantity" onKeyUp="multiply()" required />
+					<div>
+						<label for="zip">Pincode:</label> <input type="text"
+							name="pincode" placeholder="Enter your pincode" required />
+					</div>
+				</div>
+				<div>
+					<label>Mobile number:</label> <input type="number"
+						placeholder="Enter your number" name="mobile" required />
+				</div>
+				<!-- Payment Method -->
+				<div class="payment-method">
+					<h1>
+						<i class="far fa-credit-card"></i> Payment Method
+					</h1>
+					<div class="radio-group">
+						<label id="cash_on_delivery" for="cash-on-delivery"> <input
+							type="radio"  id="cash-on-delivery" value="cash" />
+							<i class="fas fa-money-bill"></i> Cash on Delivery
+						</label> <label id="click_payment" for="online-payment"> <input
+							type="radio" name="payment" id="online-payment" value="true" />
+							<i class="fas fa-credit-card"></i> Online Payment
+						</label>
+					</div>
+				</div>
+				<div id="card_detail">
+					<h1>
+						<i class="far fa-credit-card"></i> Payment Information
+					</h1>
+					<div class="cc-num">
+						<label for="card-num">Card Number:</label> <input placeholder="Enter your Credit\Debit card number"
+							type="text" name="card-num" />
+					</div>
+					<div class="cc-info">
+						<div>
+							<label for="card-num">Expired Date :</label> <input type="text" placeholder="MM/YY"
+								name="expire" />
+						</div>
+						<div>
+							<label for="card-num">CVV :</label> <input type="password" placeholder="Enter your cvv"
+								name="security" />
+						</div>
+					</div>
 				</div>
 				<div class="price">
-					<p>Total Amount : Rs.<span id="amount">${sessionScope.product.cost}</span></p>
+					<p>
+						Total Amount : Rs.<span id="amount">${sessionScope.product.cost}</span>
+					</p>
 				</div>
-			</div>
-			<!-- Address Details -->
-			<div class="form-group">
-				<label for="address">Address:</label> <input type="text"
-					id="address" name="address" required />
-			</div>
-			<div class="form-group">
-				<label for="address">Pincode:</label> <input type="text"
-					id="address" name="pincode" required />
-			</div>
-			<div class="form-group">
-				<label for="city">City:</label> <input type="text" id="city"
-					name="city" required />
-			</div>
-			<div class="form-group">
-				<label for="zipcode">Mobile number:</label> <input type="text"
-					id="zipcode" name="mobile" required />
-			</div>
-
-			<!-- Payment Details -->
-			<div class="payment">
-				<div>
-					<label id="cash_on_delivery"> <input type="radio"
-						name="payment" value="cash-on-delivery" /> Cash on Delivery
-					</label><br />
+				<div class="btns">
+					<button type="submit" class="btn-submit">Submit Order</button>
 				</div>
-				<div>
-					<label id="click_payment"> <input type="radio"
-						name="payment" value="online-payment" /> Online Payment
-					</label><br />
-				</div>
-			</div>
-			<div id="card_detail">
-				<div class="form-group">
-					<label for="cardnumber">Credit Card Number:</label> <input
-						type="text" id="cardnumber" name="cardnumber" required />
-				</div>
-				<div class="form-group">
-					<label for="expiration">Expiration Date:</label> <input type="text"
-						id="expiration" name="expiration" placeholder="MM/YY" required />
-				</div>
-			</div>
-
-			<button type="submit" class="btn-submit">Submit Order</button>
-		</form>
+			</form>
+		</div>
 	</div>
-	<script>
 
-	const click_payment = document.getElementById("click_payment");
-	const payment = document.getElementById("card_detail");
-	const cash_on_delivery = document.getElementById("cash_on_delivery");
-	click_payment.addEventListener("click", (event) => {
-			payment.style.display="block";
-		
-		 });
-	cash_on_delivery.addEventListener("click", (event) => {
-		   payment.style.display="none";
-		 });
-	
-	function multiply(){
-		let qty = Number(document.getElementById("quantity").value);
-		let amt = Number(document.getElementById("amount").value);
-		
-		const total = qty*amt;
-		 document.getElementById('amount').value=total;
-	}
-	</script>
+	<script>
+      const click_payment = document.getElementById("click_payment");
+      const payment = document.getElementById("card_detail");
+      const cash_on_delivery = document.getElementById("cash_on_delivery");
+      click_payment.addEventListener("click", (event) => {
+        payment.style.display = "block";
+      });
+      cash_on_delivery.addEventListener("click", (event) => {
+        payment.style.display = "none";
+      });
+
+    
+     
+      const quantityInput = document.getElementById('quantityInput');
+      const amountSpan = document.getElementById('amount');
+
+      const initialProductCost = parseFloat("${sessionScope.product.cost}");
+
+    
+      function updateTotalAmount() {
+   
+        const quantity = parseInt(quantityInput.value);
+
+      
+        const totalAmount = initialProductCost * quantity;
+
+     
+        amountSpan.textContent = totalAmount.toFixed(2); 
+      }
+
+      quantityInput.addEventListener('input', updateTotalAmount);
+
+      updateTotalAmount();
+    </script>
 </body>
 </html>

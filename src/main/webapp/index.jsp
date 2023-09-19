@@ -45,7 +45,7 @@ error{
 				<div class="form-input">
 					<input type="text" name="name" id="username" autocomplete="off"
 						pattern="[A-Za-z]{4,30}" title="Username cannot contains spaces"
-						placeholder="Username" value="${username}" required="true" />
+						placeholder="Username" value="${username}" required />
 				</div>
 				<div class="form-input">
 					<input type="email" id="email" name="email" placeholder="Email" value="${email}"

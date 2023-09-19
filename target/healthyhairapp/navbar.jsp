@@ -22,7 +22,7 @@
 <title>Nav bar</title>
 </head>
 <body>
-	<div class="navbar">
+	<div class="navbar" >
 		<img class="image-1" src="./assets/images/new logo.png" width="100"
 			height="100" alt="image" />
 		<button class="navbar-btn">
@@ -60,6 +60,7 @@
 	<%} %>
 
 	</div>
+
 	 <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script src="assets/js/loginPop.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/suryaumapathy2812/notify__js/notify.js"></script>

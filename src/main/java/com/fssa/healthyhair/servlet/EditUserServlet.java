@@ -35,18 +35,15 @@ public class EditUserServlet extends HttpServlet {
 		String licenseImage = request.getParameter("licenseImage");
 		String companyAddress = request.getParameter("companyAddress");
 		User user1 = new User(email, name, number, companyName, companyAddress, licenseImage, id);
-
 		RequestDispatcher patcher = null;
 
 		try {
 
 			UserService.updateUser(user1);
-
 			User updatedUser = UserService.findingUserByEmail(email);
-
 			HttpSession session = request.getSession(false);
 			session.setAttribute("User", updatedUser);
-			patcher = request.getRequestDispatcher("sellerAccount.jsp");
+			patcher = request.getRequestDispatcher("sellerAccount.jsp"); 
 			patcher.forward(request, response);
 		} catch (ServiceException e) {
 			String[] strArr = e.getMessage().split(":");
