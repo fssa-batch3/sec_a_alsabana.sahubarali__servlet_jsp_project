@@ -77,7 +77,10 @@
 }
 </style>
 <body>
-     	<jsp:include page="navbar.jsp"></jsp:include>
+	<%
+	String sellerId = request.getParameter("sellerId");
+	%>
+	<jsp:include page="navbar.jsp"></jsp:include>
 	<div class="card">
 		<div class="left">
 			<img src=${sessionScope.product.productImg } id="imgs" alt="image" />
@@ -91,6 +94,7 @@
 				class="fa-solid fa-star-half-stroke"></i>
 			<h3>Product Description :</h3>
 			<p id="description">${sessionScope.product.productDetail}</p>
+
 			<h4>Available Offer's</h4>
 			<p>: Special PriceGet extra 11% off (price inclusive of
 				cashback/coupon)</p>
@@ -99,7 +103,12 @@
 			<p>: Partner OfferSign up for healthy hair Pay Later and get
 				Healthy hair Gift Card worth up to ₹1000*</p>
 			<p>: Bank Offer5% Cashback on healthy hair Axis Bank</p>
-			<a href="orderDetails.jsp?productId=${sessionScope.product.productId }" type="click" id="buy"><button>Buy Now</button></a>
+			<a
+				href="orderDetails.jsp?productId=${sessionScope.product.productId}&sellerId=<%=sellerId %>"
+				id="buy">
+				<button>Buy Now</button>
+			</a>
+
 		</div>
 	</div>
 </body>

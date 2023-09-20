@@ -49,19 +49,17 @@
 	background-color: #000;
 	text-align: center;
 	cursor: pointer;
-	height:50px;
+	height: 50px;
 }
 
 .product_list {
 	text-align: center;
-	margin-top:10%;
+	margin-top: 10%;
 }
-
-
 </style>
 <body>
 	<jsp:include page="navbar.jsp"></jsp:include>
-	
+
 	<%
 	@SuppressWarnings("unchecked")
 
@@ -77,9 +75,9 @@
 		<%
 		for (Product product : productList) {
 		%>
-
 		<div class="card">
-			<a href="ProductDetailServlet?productId=<%=product.getProductId()%>">
+			<a
+				href="ProductDetailServlet?productId=<%=product.getProductId()%>&sellerId=<%=product.getCreatedUser().getUserId()%>">
 				<img src="<%=product.getProductImg()%>"
 				alt="<%=product.getProductName()%>">
 			</a>
@@ -89,7 +87,9 @@
 				RS.
 				<%=product.getCost()%></p>
 			<p>
-				<button> <i class="fas fa-shopping-cart"></i> Add to cart</button>
+				<button>
+					<i class="fas fa-shopping-cart"></i> Add to cart
+				</button>
 			</p>
 		</div>
 		<%

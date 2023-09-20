@@ -102,7 +102,7 @@
 										Quantity&nbsp;:&nbsp;<%=order.getQuantity()%>&nbsp;item
 									</p>
 									<h4 class="mb-3">
-										Rs.<%=orderProduct.getCost()%>
+										Rs.<%=orderProduct.getCost()*order.getQuantity()%>
 									</h4>
 									<div>
 										<h4 class="bold">Order Details</h4>

@@ -111,8 +111,18 @@ form input {
 	text-align: end;
 	font-size: 23px;
 }
+
+.error p {
+	color: brown;
+	font-size: 23px;
+	text-align: center;
+}
 </style>
 <body>
+	<%
+	String error = request.getParameter("errorMessage");
+	String sellerId = request.getParameter("sellerId");
+	%>
 	<jsp:include page="navbar.jsp"></jsp:include>
 	<div class="wrapper">
 		<div class="container">
@@ -125,10 +135,26 @@ form input {
 						value="${sessionScope.product.productId}" min="1" name="productId"
 						required />
 				</div>
+				<div class="form-group" style="display: none">
+					<label for="id">id:</label> <input type="number"
+						value="<%= sellerId %>" min="1" name="sellerId"
+						required />
+				</div>
+				<%
+				if (error != null) {
+				%>
+				<div class="error">
+					<p><%=error%></p>
+				</div>
+				<%
+				}
+				%>
+
 				<div class="name">
+					
 					<div>
 						<label for="f-name">Name:</label> <input type="text" name="name"
-							placeholder="Enter your name" required />
+							placeholder="Enter your name" value="${name}" required />
 					</div>
 					<div>
 						<label>Quantity:</label> <input type="number" id="quantityInput"
@@ -137,22 +163,26 @@ form input {
 				</div>
 				<div class="street">
 					<label for="name">Street :</label> <input type="text"
-						name="address" placeholder="Enter your delivered Street" required />
+						name="address" value="${address}"
+						placeholder="Enter your delivered Street" required />
 				</div>
 				<div class="address-info">
 					<div>
 						<label for="city">City :</label> <input type="text"
-							placeholder="Enter your city" name="city" required />
+							placeholder="Enter your city" value="${city}" name="city"
+							required />
 					</div>
 
 					<div>
 						<label for="zip">Pincode:</label> <input type="text"
-							name="pincode" placeholder="Enter your pincode" required />
+							value="${pincode}" name="pincode"
+							placeholder="Enter your pincode" required />
 					</div>
 				</div>
 				<div>
 					<label>Mobile number:</label> <input type="number"
-						placeholder="Enter your number" name="mobile" required />
+						value="${number}" placeholder="Enter your number" name="mobile"
+						required />
 				</div>
 				<!-- Payment Method -->
 				<div class="payment-method">
@@ -161,8 +191,8 @@ form input {
 					</h1>
 					<div class="radio-group">
 						<label id="cash_on_delivery" for="cash-on-delivery"> <input
-							type="radio"  id="cash-on-delivery" value="cash" />
-							<i class="fas fa-money-bill"></i> Cash on Delivery
+							type="radio" id="cash-on-delivery" value="cash" /> <i
+							class="fas fa-money-bill"></i> Cash on Delivery
 						</label> <label id="click_payment" for="online-payment"> <input
 							type="radio" name="payment" id="online-payment" value="true" />
 							<i class="fas fa-credit-card"></i> Online Payment
@@ -174,17 +204,18 @@ form input {
 						<i class="far fa-credit-card"></i> Payment Information
 					</h1>
 					<div class="cc-num">
-						<label for="card-num">Card Number:</label> <input placeholder="Enter your Credit\Debit card number"
-							type="text" name="card-num" />
+						<label for="card-num">Card Number:</label> <input
+							placeholder="Enter your Credit\Debit card number" type="text"
+							name="card-num" />
 					</div>
 					<div class="cc-info">
 						<div>
-							<label for="card-num">Expired Date :</label> <input type="text" placeholder="MM/YY"
-								name="expire" />
+							<label for="card-num">Expired Date :</label> <input type="text"
+								placeholder="MM/YY" name="expire" />
 						</div>
 						<div>
-							<label for="card-num">CVV :</label> <input type="password" placeholder="Enter your cvv"
-								name="security" />
+							<label for="card-num">CVV :</label> <input type="password"
+								placeholder="Enter your cvv" name="security" />
 						</div>
 					</div>
 				</div>

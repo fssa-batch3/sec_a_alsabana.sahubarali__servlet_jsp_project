@@ -16,6 +16,7 @@ import com.fssa.healthyhair.model.Order;
 import com.fssa.healthyhair.model.Product;
 import com.fssa.healthyhair.model.User;
 import com.fssa.healthyhair.service.OrderService;
+import com.fssa.healthyhair.service.ProductService;
 import com.fssa.healthyhair.service.exception.ServiceException;
 
 /**
@@ -29,7 +30,7 @@ public class createOrderServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		
+
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		String address = request.getParameter("address");
 		String city = request.getParameter("city");
@@ -37,15 +38,21 @@ public class createOrderServlet extends HttpServlet {
 		User user = (User) request.getSession(false).getAttribute("User");
 		int buyerId = user.getUserId();
 		int productId = Integer.parseInt(request.getParameter("productId"));
+		int sellerId = Integer.parseInt(request.getParameter("sellerId"));
 		String pincode = request.getParameter("pincode");
 		boolean payment = Boolean.parseBoolean(request.getParameter("payment"));
 		String name = request.getParameter("name");
 		Product product = new Product();
 		product.setProductId(productId);
+
+		User createUser = new User();
+		createUser.setUserId(sellerId);
+		product.setCreatedUser(createUser);
 		User user1 = new User();
 		user1.setUserId(buyerId);
+
 		Order order = new Order(product, quantity, user1, address, city, number, payment, pincode, name);
-	
+
 		try {
 
 			OrderService.createOrder(order);
@@ -54,18 +61,20 @@ public class createOrderServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("OrderSuccessServlet");
 			dispatcher.forward(request, response);
 		} catch (ServiceException e) {
-			
-			String[] strArr = e.getMessage().split(":");
-			String msg = strArr[strArr.length - 1];
-			
-			request.setAttribute("name", name);
-			request.setAttribute("number", number);
-			request.setAttribute("address", address);
-			request.setAttribute("city", city);
-			request.setAttribute("pincode", pincode);
-			
-			RequestDispatcher	patcher = request.getRequestDispatcher("orderDetails.jsp?errorMessage=" + msg);
-			patcher.forward(request, response);
+//			
+//			String[] strArr = e.getMessage().split(":");
+//			String msg = strArr[strArr.length - 1];
+//			
+//			request.setAttribute("name", name);
+//			request.setAttribute("number", number);
+//			request.setAttribute("address", address);
+//			request.setAttribute("city", city);
+//			request.setAttribute("pincode", pincode);
+
+//			RequestDispatcher	patcher = request.getRequestDispatcher("orderDetails.jsp?errorMessage=" + msg);
+//			patcher.forward(request, response);
+
+			out.println(e.getMessage());	
 		}
 	}
 

@@ -53,7 +53,7 @@
 				<li class="dropdown"><a href="ListProductServlet">Products</a></li>
 				<li class="box count"><span
 					class="bi bi-cart4"></span>Cart</li>
-				<li><a href="account.jsp" class="bi bi-person-circle">
+				<li><a href="ListOrderServlet" class="bi bi-person-circle">
 						Account </a></li>
 			</ul>
 	</nav>

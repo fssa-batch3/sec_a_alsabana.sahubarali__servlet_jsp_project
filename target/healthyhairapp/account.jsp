@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="com.fssa.healthyhair.model.User"%>
+<%@ page import="com.fssa.healthyhair.model.Order"%>
+<%@  page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +16,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 <script src="https://kit.fontawesome.com/bba3432f3f.js"
 	crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
@@ -22,6 +25,7 @@
 	<jsp:include page="navbar.jsp"></jsp:include>
 	<%
 	User user = (User) session.getAttribute("User");
+	List<Order> order = (List<Order>) session.getAttribute("order");
 	%>
 
 	<div class="whole">
@@ -84,36 +88,113 @@
 
 
 
-
+				<%
+				if (order != null) {
+				%>
 
 				<div class="scnd-container">
 					<div>
-						<h3> <i class="fa fa-list"></i> Your Order Details</h3>
+						<h3>
+							<i class="fa fa-list"></i> Your Order Details
+						</h3>
 					</div>
 
-					<!-- Order Card -->
+					<%
+					for (Order i : order) {
+					%>
 					<div class="order-card">
-						<img src="./assets/images/Almond-2.png" alt="Product Image"
-							class="product-image" />
+						<img src=<%=i.getOrderedProduct().getProductImg()%>
+							alt="Product Image" class="product-image" height=200px; />
 						<div class="order-details">
-							<h2 class="product-name">Product Name</h2>
-							<p class="order-id">Order ID: 12345</p>
-							<p class="order-date">Order Date: September 15, 2023</p>
-							<p class="order-total">Total: Rs. 999.99</p>
-							<button class="cancel-button">Cancel Order</button>
+							<h2 class="product-name"><%=i.getOrderedProduct().getProductName()%></h2>
+							<p>
+								Rs.<%=i.getOrderedProduct().getCost()%></p>
+							<p>
+								Qty :
+								<%=i.getQuantity()%></p>
+							<p class="order-date">
+								Order Date :
+								<%=i.getDate()%></p>
+
+						</div>
+						<div class="details">
+							<p>
+								Expected delivery :
+								<%=i.getDeliveryDate()%></p>
+							<p><%=i.getAddress()%>,<%=i.getCity()%>
+							</p>
+							<p><%=i.getNumber()%></p>
+							<p class="order-total">
+								Total: Rs.
+								<%=i.getOrderedProduct().getCost() * i.getQuantity()%></p>
+							<a id="cancelLink" href="CancelOrderServlet?orderId=<%=i.getOrderId()%><% session.setAttribute("orderId", i.getOrderId());%>"><button
+									id="cancel" class="cancel-button">Cancel Order</button></a>
 						</div>
 					</div>
+					<%
+					}
+					%>
 
-					<!--  
-					<div class="no-order">
-						<h3>You haven't ordered yet</h3>
-						<button>Explore now!</button>
-					</div>
-					-->
 				</div>
+				<%
+				} else {
+				%>
+				<div class="no-order">
+					<h3>You haven't ordered yet</h3>
+					<button>Purchase now!</button>
+				</div>
+
+				<%
+				}
+				%>
 			</div>
 		</div>
 	</div>
+	<script>
+	// your-script.js
+
+	// your-script.js
+
+
+  const cancelLink = document.getElementById("cancelLink");
+
+  cancelLink.addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent the default link behavior
+
+    swal({
+      title: "Are you sure?",
+      text: "Do you want to cancel the order?",
+      icon: "warning",
+      buttons: ["No", "Yes"],
+    }).then((confirm) => {
+      if (confirm) {
+      
+        fetch(`/healthyhairapp/CancelOrderServlet`, {
+          method: "GET",
+        })
+          .then((response) => {
+            if (response.ok) {
+              swal("Order cancelled!", { icon: "success" });
+             setTimeout(() => {
+            	 location.reload();
+			}, 700); 
+            } else {
+           
+              swal("Error cancelling order", { icon: "error" });
+            }
+          })
+          .catch((error) => {
+            // Handle network errors here
+            swal("Network error", { icon: "error" });
+          });
+      } else {
+        // User clicked "No," do nothing or handle accordingly
+      }
+    });
+  });
+
+	</script>
+
 </body>
 
 <script src="assets/js/payment.js"></script>
