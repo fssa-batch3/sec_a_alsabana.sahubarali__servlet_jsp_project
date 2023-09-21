@@ -27,16 +27,13 @@
 		if (user == null) {
 		%>
 		<nav class="navbar-item hide">
-			<ul>
+			<ul class="menu-items">
 				<li><a href="index.jsp">Home</a></li>
+				<li><a href="ListProductServlet">Product</a></li>
+				<li><a href="#"><i class="fas fa-shopping-cart"
+						style="font-size: 20px"></i>Cart </a></li>
+				<li id="login_btn"><a href="#">Login </a></li>
 
-				<li class="box" id="product_drop" onclick="dropdown()"><a
-					href="ListProductServlet">Products</a></li>
-				<li class="box count"><span class="bi bi-cart4"></span>Cart</li>
-				<li id="login_btn"><a href="">Login</a></li>
-				<li class="profile"><a href="./Pages/acc.html"> <img
-						src="./assets/images/account profile.jpg" id="show_profile"
-						class="pro_img" width="40" height="40" alt="account logo" /></a></li>
 			</ul>
 		</nav>
 		<%
@@ -44,13 +41,15 @@
 		%>
 
 		<nav class="navbar-item hide">
-			<ul>
+			<ul class="menu-items">
 				<li><a href="index.jsp">Home</a></li>
+				<li><a href="ListProductServlet">Product</a></li>
+				<li><a href="#"><i class="fas fa-shopping-cart"
+						style="font-size: 20px;"></i>Cart </a></li>
+				<li><a href="ListOrderServlet"> <i class="fas fa-user"
+						style="font-size: 22px;"></i> Account
+				</a></li>
 
-				<li class="dropdown"><a href="ListProductServlet">Products</a></li>
-				<li class="box count"><span class="bi bi-cart4"></span>Cart</li>
-				<li><a href="ListOrderServlet" class="bi bi-person-circle">
-						Account </a></li>
 			</ul>
 		</nav>
 		<%

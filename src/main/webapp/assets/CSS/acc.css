@@ -72,15 +72,11 @@
     display: flex;
     flex-direction: column;
     max-width: 300px; 
-    display:none;
+ 
   
 }
 
 /* Label styles */
-label {
-    margin-bottom: 10px;
-    font-weight: bold;
-}
 
 /* Input field styles */
 input[type="text"] {
@@ -183,6 +179,9 @@ input {
 .whole {
 	display: flex;
     justify-content: space-around;
-    margin-top: 5%;
+    margin-top: 10%;
 	
+}
+.scnd-container{
+	margin-left:-10px;
 }

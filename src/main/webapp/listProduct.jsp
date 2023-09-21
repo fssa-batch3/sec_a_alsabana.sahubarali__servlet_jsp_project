@@ -56,7 +56,7 @@
 
 .product_list {
 	text-align: center;
-	margin-top: 3%;
+	margin-top: 10%;
 }
 </style>
 <body>

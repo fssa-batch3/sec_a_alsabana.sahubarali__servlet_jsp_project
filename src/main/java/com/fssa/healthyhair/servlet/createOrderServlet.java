@@ -61,20 +61,20 @@ public class createOrderServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("OrderSuccessServlet");
 			dispatcher.forward(request, response);
 		} catch (ServiceException e) {
-//			
-//			String[] strArr = e.getMessage().split(":");
-//			String msg = strArr[strArr.length - 1];
-//			
-//			request.setAttribute("name", name);
-//			request.setAttribute("number", number);
-//			request.setAttribute("address", address);
-//			request.setAttribute("city", city);
-//			request.setAttribute("pincode", pincode);
+			
+			String[] strArr = e.getMessage().split(":");
+			String msg = strArr[strArr.length - 1];
+		
+			request.setAttribute("name", name);
+			request.setAttribute("number", number);
+			request.setAttribute("address", address);
+			request.setAttribute("city", city);
+			request.setAttribute("pincode", pincode);
 
-//			RequestDispatcher	patcher = request.getRequestDispatcher("orderDetails.jsp?errorMessage=" + msg);
-//			patcher.forward(request, response);
+			RequestDispatcher	patcher = request.getRequestDispatcher("orderDetails.jsp?errorMessage=" + msg);
+			patcher.forward(request, response);
 
-			out.println(e.getMessage());	
+				
 		}
 	}
 

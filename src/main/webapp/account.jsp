@@ -20,7 +20,11 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-
+<style>
+error {
+	color: red;
+}
+</style>
 <body>
 	<jsp:include page="navbar.jsp"></jsp:include>
 	<%
@@ -30,16 +34,29 @@
 
 	<div class="whole">
 		<div class="container">
+			<h3>My Account</h3>
 			<div class="row gutters">
 				<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
 					<div class="card h-100">
 						<div class="card-body">
 							<div class="account-settings">
 								<div class="user-profile">
+									<%
+									if (user.getProfileUrl() == null) {
+									%>
 									<div class="user-avatar">
 										<img src="https://bootdey.com/img/Content/avatar/avatar7.png"
 											alt="Maxwell Admin">
 									</div>
+									<%
+									} else {
+									%>
+									<div class="user-avatar">
+										<img src=<%=user.getProfileUrl()%> alt="Maxwell Admin">
+									</div>
+									<%
+									}
+									%>
 									<h5 class="user-name">
 										Hello!<%=user.getUsername()%></h5>
 
@@ -55,9 +72,7 @@
 									<h6 class="user-email">
 										<span>Number : </span><%=user.getNumber()%>
 									</h6>
-									<h6 class="user-email">
-										<span>Address : </span><%=user.getAddress()%>
-									</h6>
+
 
 									<div class="edit-btns">
 										<div>
@@ -77,43 +92,55 @@
 									<br>
 
 									<div class="form">
-										<h5 class="user-name">
-											<i class="fa-regular fa-pen-to-square"></i> Edit your account
-										</h5>
-										<div class="form-group">
-											<label for="username">Profile:</label> <input type="text"
-												id="username">
-										</div>
-										<div class="form-group">
-											<label for="username">Username:</label> <input type="text"
-												id="username">
-										</div>
-										<div class="form-group">
-											<label for="email">Email:</label> <input type="text"
-												id="email">
-										</div>
-										<div class="form-group">
-											<label for="number">Number:</label> <input type="text"
-												id="number">
-										</div>
-										<div class="form-group">
-											<label for="address">Address:</label> <input type="text"
-												id="address">
-										</div>
-										<div class="delete-account">
-											<div>
-												<a href="DeleteUserAccountServlet" id="delete"><i id="delete" class="fas fa-trash-alt"></i>
-													Delete my account</a>
+										<form action="EditBuyerServlet?userId=<%=user.getUserId()%>"
+											method="post">
+											<%
+											String error = request.getParameter("errorMessage");
+											if (error != null) {
+												out.println("<error>" + error + "</error>");
+											%>
+											<script> 
+				                      const form1 = document.querySelector('.form');
+		                         		form1.style.display="block";
+		                     		</script>
+											<%
+											}
+											%>
+											<h5 class="user-name">
+												<i class="fa-regular fa-pen-to-square"></i> Edit your
+												account
+											</h5>
+											<div class="form-group">
+												<label for="username">Profile:</label> <input type="text"
+													name="image" value=<%=user.getProfileUrl()%> id="username">
 											</div>
-											<div class="save-btn">
-												<button class="save">
-													<i class="fa-regular fa-floppy-disk"></i> Save
-												</button>
+											<div class="form-group">
+												<label for="username">Username:</label> <input type="text"
+													name="name" value=<%=user.getUsername()%> id="username">
 											</div>
-										</div>
+											<div class="form-group">
+												<label for="email">Email:</label> <input type="text"
+													readonly value=<%=user.getEmail()%> name="email" id="email">
+											</div>
+											<div class="form-group">
+												<label for="number">Number:</label> <input type="text"
+													value=<%=user.getNumber()%> name="number" id="number">
+											</div>
+
+											<div class="delete-account">
+												<div>
+													<a href="DeleteUserAccountServlet" id="delete"><i
+														id="delete" class="fas fa-trash-alt"></i> Delete my
+														account</a>
+												</div>
+												<div class="save-btn">
+													<button class="save">
+														<i class="fa-regular fa-floppy-disk"></i> Save
+													</button>
+												</div>
+											</div>
+										</form>
 									</div>
-
-
 								</div>
 							</div>
 						</div>
@@ -176,8 +203,12 @@
 		} else {
 		%>
 		<div class="no-order">
-			<h3>You haven't ordered yet</h3>
+			<img
+				src="https://cdni.iconscout.com/illustration/premium/thumb/man-finding-nothing-in-order-4006350-3309936.png">
 			<button>Purchase now!</button>
+			<div>
+				<h2>no order</h2>
+			</div>
 		</div>
 
 		<%

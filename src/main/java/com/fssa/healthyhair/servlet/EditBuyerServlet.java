@@ -51,17 +51,16 @@ public class EditBuyerServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String number = request.getParameter("number");
-		String profile = request.getParameter("profile");
-		String address = request.getParameter("address");
+		String profile = request.getParameter("image");
 		RequestDispatcher patcher = null;
-		int id = Integer.parseInt(request.getParameter("userId"));
-		User user2 = new User(email, name, number, id, address, profile);
+		User user = (User) session.getAttribute("User");
+		int id = user.getUserId();
+		User user2 = new User(email, name, number, id, profile);
 		PrintWriter out = response.getWriter();
 
 		try {
-			out.println("success");
+
 			UserService.updateBuyer(user2);
-			out.println(" after success");
 			User update = UserService.findingUserByEmail(email);
 			session.setAttribute("User", update);
 			patcher = request.getRequestDispatcher("account.jsp");

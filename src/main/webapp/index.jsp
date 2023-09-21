@@ -14,33 +14,37 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 <title>Home</title>
 <style>
-error{
-	color:red;
-	margin-left:30%;
-	margin-top:-50%;
-}</style>
+error {
+	color: red;
+	margin-left: 30%;
+	margin-top: -50%;
+}
+</style>
 </head>
 <body class="container">
 	<jsp:include page="navbar.jsp"></jsp:include>
 	<!-- sign up -->
-       	<div class="signup-pop" id="popup">
+	<div class="signup-pop" id="popup">
 		<div class="top">
 			<h4 class="title">Sign Up</h4>
 		</div>
 		<div class="exit">
-			<img id="closeSign" src="./assets/images/exits image.png" width="35" height="35" />
+			<i id="closeSign" class="fas fa-times"
+				style="color: red; font-size: 26px;"></i>
 		</div>
 		<div class="form" id="pop_up">
-		   <%
-				String error = request.getParameter("registerError");   
-				if (error != null){
-					out.println("<error>" + error + "</error>");
-				%>
-				<script> 
+			<%
+			String error = request.getParameter("registerError");
+			if (error != null) {
+				out.println("<error>" + error + "</error>");
+			%>
+			<script>
 				const divElement = document.querySelector('.signup-pop');
 				divElement.classList.add('sign-block');
-				</script>
-				<% }%>
+			</script>
+			<%
+			}
+			%>
 			<form id="signUp" action="RegistrationServlet" method="post">
 				<div class="form-input">
 					<input type="text" name="name" id="username" autocomplete="off"
@@ -48,23 +52,23 @@ error{
 						placeholder="Username" value="${username}" required />
 				</div>
 				<div class="form-input">
-					<input type="email" id="email" name="email" placeholder="Email" value="${email}"
-						 required />
+					<input type="email" id="email" name="email" placeholder="Email"
+						value="${email}" required />
 				</div>
 				<div class="form-input">
 					<input type="text" id="phone-no" name="number" value="${number}"
 						placeholder="Phone No" pattern="[0-9]{1,10}" required />
 				</div>
 				<div class="form-input">
-					<input type="password" value="${password}" id="password" placeholder="Password"
-						required />
+					<input type="password" value="${password}" id="password"
+						placeholder="Password" required />
 				</div>
 				<div class="form-input">
 					<input type="password" name="password" id="confirm-password"
-					value="${password}"
-						placeholder="Confirm Password" required />
+						value="${password}" placeholder="Confirm Password" required />
 				</div>
-				<select class="form-input" value="${type}"name="type" id="input_type">
+				<select class="form-input" value="${type}" name="type"
+					id="input_type">
 					<option value="">CHOOSE</option>
 					<option value="buyer">Buyer</option>
 					<option value="seller">Seller</option>
@@ -80,9 +84,10 @@ error{
 	<div class="overall" id="pop">
 
 		<div class="form">
-			<div>
-				<img id="close" src="./assets/images/exits image.png" width="40"
-					height="40" />
+			<div class="close">
+
+				<i id="close" class="fas fa-times"
+					style="color: red; font-size: 24px;"></i>
 			</div>
 
 			<div class="circle">
@@ -90,25 +95,27 @@ error{
 					height="100" />
 			</div>
 			<h4 class="title">Login to Your Account</h4>
-				<%
-				String error1 = request.getParameter("loginError");
-				if (error1 != null){
-					out.println("<error>" + error1 + "</error>");
-				%>
-				<script> 
+			<%
+			String error1 = request.getParameter("loginError");
+			if (error1 != null) {
+				out.println("<error>" + error1 + "</error>");
+			%>
+			<script>
 				const signElement = document.querySelector('.overall');
 				signElement.classList.add('open-popup');
-				</script>
-				<%} %>
+			</script>
+			<%
+			}
+			%>
 			<form id="login_form" action="LoginServlet" method="post">
-			
+
 				<div class="form-input">
 					<input type="email" name="email" id="loginEmail" value="${email}"
 						placeholder="Email" required />
 				</div>
 				<div class="form-input">
-					<input type="password" id="loginPassword" name="password" value="${password}"
-						placeholder="Password" required />
+					<input type="password" id="loginPassword" name="password"
+						value="${password}" placeholder="Password" required />
 				</div>
 				<div class="form-input">
 					<button type="submit" onclick="login()">Login</button>

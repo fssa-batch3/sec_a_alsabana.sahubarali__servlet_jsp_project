@@ -25,17 +25,20 @@
 }
 
 .continue_shopping button {
-	background-color: black;
-	color: white;
+	background-color: #62cbab;
+	color: black;
 	height: 50px;
 	border: none;
 	border-radius: 10px;
 }
-
+.continue_shopping button:hover{
+     background-color:black;
+     color:white;
+}
 .card-stepper {
 	z-index: 0;
 	background-color: #f3fefc;
-}
+	 box-shadow: 0px 0px 15px  #62cbab;}
 </style>
 <body>
 
@@ -73,23 +76,35 @@
 						</div>
 						<div class="text-center">
 							<h1>Thank You !</h1>
-							<p>Your details has been successfully submitted.Thanks!</p>
+							<p>Your Order has been successfully placed!</p>
 						</div>
 						<div class="card-header p-4">
 
 							<div class="d-flex justify-content-between align-items-center">
 
 								<div>
-									<p class="text-muted mb-2">
-										Order ID : <span class="fw-bold text-body">6543</span>
-									</p>
+									<div>
+										<h4 class="bold">Order Details</h4>
+										<p class="text-muted mb-2">
+											Order ID : <span class="fw-bold text-body">6543</span>
+										</p>
+
+									</div>
 									<p class="text-muted mb-0">
 										Place On : <span class="fw-bold text-body"><%=formattedDate%></span>
 									</p>
+
 								</div>
-								<div class="text-muted mb-0">
-									<p>
-										Delivered by : <span class="fw-bold text-body"><%=after7%></span>
+								<div>
+									<p class="text-muted mb-0">
+										Name :<span class="fw-bold text-body">alsabana</span>
+									</p>
+									<p class="text-muted mb-0">
+										Mobile no: <span class="fw-bold text-body"><%=order.getNumber()%></span>
+									</p>
+									<p class="text-muted mb-0">
+										Address:<span class="fw-bold text-body"><%=order.getAddress()%>,<br>
+											<%=order.getPincode()%>.</span>
 									</p>
 								</div>
 							</div>
@@ -97,30 +112,18 @@
 						<div class="card-body p-4">
 							<div class="d-flex flex-row mb-4 pb-2">
 								<div class="flex-fill">
-									<h5 class="bold"><%=orderProduct.getProductName()%></h5>
+									<h6 class="bold">
+										<span class="text-muted">Product Name : </span><%=orderProduct.getProductName()%></h6>
 									<p class="text-muted">
 										Quantity&nbsp;:&nbsp;<%=order.getQuantity()%>&nbsp;item
 									</p>
-									<h4 class="mb-3">
-										Rs.<%=orderProduct.getCost()*order.getQuantity()%>
-									</h4>
-									<div>
-										<h4 class="bold">Order Details</h4>
-										<p class="text-muted mb-0">
-											Name :<span class="fw-bold text-body">alsabana</span>
-										</p>
-										<p class="text-muted mb-0">
-											Mobile no: <span class="fw-bold text-body"><%=order.getNumber()%></span>
-										</p>
-										<p class="text-muted mb-0">
-											Address:<span class="fw-bold text-body"><%=order.getAddress()%>,<%=order.getCity()%>,<br>
-												<%=order.getPincode()%>.</span>
-										</p>
-									</div>
+									<p class="mb-3">
+										<span class="text-muted">Cost : </span>Rs.<%=orderProduct.getCost() * order.getQuantity()%>
+									</p>
 								</div>
 								<div>
 									<img class="align-self-center img-fluid"
-										src=<%=orderProduct.getProductImg()%> width="250" />
+										src=<%=orderProduct.getProductImg()%> width="150" height="150" />
 								</div>
 							</div>
 							<div class="continue_shopping">
