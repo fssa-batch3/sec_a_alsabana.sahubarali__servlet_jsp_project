@@ -40,22 +40,23 @@
 										<img src="https://bootdey.com/img/Content/avatar/avatar7.png"
 											alt="Maxwell Admin">
 									</div>
-									<h5 class="user-name">Yuki Hayashi</h5>
+									<h5 class="user-name">
+										Hello!<%=user.getUsername()%></h5>
 
 								</div>
 								<div class="about">
 
 									<h6 class="user-email">
-										<span>Username : </span>Alsabana
+										<span>Username : </span><%=user.getUsername()%>
 									</h6>
 									<h6 class="user-email">
-										<span>email : </span>sabana@gmail.com
+										<span>email : </span><%=user.getEmail()%>
 									</h6>
 									<h6 class="user-email">
-										<span>Number : </span>6789789078
+										<span>Number : </span><%=user.getNumber()%>
 									</h6>
 									<h6 class="user-email">
-										<span>Address : </span>s12/8palliba
+										<span>Address : </span><%=user.getAddress()%>
 									</h6>
 
 									<div class="edit-btns">
@@ -65,9 +66,11 @@
 											</button>
 										</div>
 										<div>
-											<button>
-												<i class="fa-solid fa-sign-out-alt"></i> Logout
-											</button>
+											<a href="LogOutServlet">
+												<button>
+													<i class="fa-solid fa-sign-out-alt"></i> Logout
+												</button>
+											</a>
 										</div>
 
 									</div>
@@ -99,7 +102,7 @@
 										</div>
 										<div class="delete-account">
 											<div>
-												<a id="delete"><i id="delete" class="fas fa-trash-alt"></i>
+												<a href="DeleteUserAccountServlet" id="delete"><i id="delete" class="fas fa-trash-alt"></i>
 													Delete my account</a>
 											</div>
 											<div class="save-btn">
@@ -229,6 +232,11 @@
     editBtns.style.display = "none";
     form.style.display = "block";
   });
+  save.addEventListener("click", function(e) {
+	    editBtns.style.display = "block";
+	    form.style.display = "none";
+	    location.reload();
+	  });
 
 	</script>
 </body>

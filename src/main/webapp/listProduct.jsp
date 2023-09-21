@@ -17,7 +17,7 @@
 	font-family: arial;
 	font-size: 18px;
 	width: 350px;
-	height: 420px;
+	height: 450px;
 }
 
 .parent_div img {
@@ -50,11 +50,13 @@
 	text-align: center;
 	cursor: pointer;
 	height: 50px;
+	width:350px;
+	
 }
 
 .product_list {
 	text-align: center;
-	margin-top: 10%;
+	margin-top: 3%;
 }
 </style>
 <body>

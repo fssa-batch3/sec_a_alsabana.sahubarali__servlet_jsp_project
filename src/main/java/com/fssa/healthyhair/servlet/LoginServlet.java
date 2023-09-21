@@ -54,18 +54,18 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("User", user);
 
 			if (user.getType().equals("buyer")) {
-				response.sendRedirect("account.jsp");
+				response.sendRedirect("index.jsp");
 			} else {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("sellerAccount.jsp");
 				dispatcher.forward(request, response);
 			}
 
-		} catch ( ServiceException e) {
+		} catch (ServiceException e) {
 			String[] strArr = e.getMessage().split(":");
 			String msg = strArr[strArr.length - 1];
 			request.setAttribute("email", email);
-			request.setAttribute("password",password);
-			RequestDispatcher patcher = request.getRequestDispatcher("index.jsp?loginError="+msg);
+			request.setAttribute("password", password);
+			RequestDispatcher patcher = request.getRequestDispatcher("index.jsp?loginError=" + msg);
 			patcher.forward(request, response);
 		}
 
