@@ -23,10 +23,20 @@ public class EditUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doPost(req, resp);
+	}
+
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
 
+		HttpSession session = request.getSession(false);
+
+		User user = (User) session.getAttribute("User");
+
+		RequestDispatcher patcher = null;
 		int id = Integer.parseInt(request.getParameter("userId"));
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
@@ -35,15 +45,13 @@ public class EditUserServlet extends HttpServlet {
 		String licenseImage = request.getParameter("licenseImage");
 		String companyAddress = request.getParameter("companyAddress");
 		User user1 = new User(email, name, number, companyName, companyAddress, licenseImage, id);
-		RequestDispatcher patcher = null;
 
 		try {
-
 			UserService.updateUser(user1);
 			User updatedUser = UserService.findingUserByEmail(email);
-			HttpSession session = request.getSession(false);
+			session = request.getSession(false);
 			session.setAttribute("User", updatedUser);
-			patcher = request.getRequestDispatcher("sellerAccount.jsp"); 
+			patcher = request.getRequestDispatcher("sellerAccount.jsp");
 			patcher.forward(request, response);
 		} catch (ServiceException e) {
 			String[] strArr = e.getMessage().split(":");
@@ -52,7 +60,5 @@ public class EditUserServlet extends HttpServlet {
 			patcher.forward(request, response);
 
 		}
-
 	}
-
 }

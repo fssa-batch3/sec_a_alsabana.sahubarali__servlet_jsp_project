@@ -16,7 +16,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 <script src="https://kit.fontawesome.com/bba3432f3f.js"
 	crossorigin="anonymous"></script>
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
@@ -29,133 +29,160 @@
 	%>
 
 	<div class="whole">
-		<div class="personal-info">
-			<div class="fst-container">
-				<div>
-					<div class="profile">
-						<img src="./assets/images/account profile.jpg" alt="user_image"
-							id="user_img">
+		<div class="container">
+			<div class="row gutters">
+				<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+					<div class="card h-100">
+						<div class="card-body">
+							<div class="account-settings">
+								<div class="user-profile">
+									<div class="user-avatar">
+										<img src="https://bootdey.com/img/Content/avatar/avatar7.png"
+											alt="Maxwell Admin">
+									</div>
+									<h5 class="user-name">Yuki Hayashi</h5>
+
+								</div>
+								<div class="about">
+
+									<h6 class="user-email">
+										<span>Username : </span>Alsabana
+									</h6>
+									<h6 class="user-email">
+										<span>email : </span>sabana@gmail.com
+									</h6>
+									<h6 class="user-email">
+										<span>Number : </span>6789789078
+									</h6>
+									<h6 class="user-email">
+										<span>Address : </span>s12/8palliba
+									</h6>
+
+									<div class="edit-btns">
+										<div>
+											<button id="edit">
+												<i class="fa-solid fa-pen"></i> Edit profile
+											</button>
+										</div>
+										<div>
+											<button>
+												<i class="fa-solid fa-sign-out-alt"></i> Logout
+											</button>
+										</div>
+
+									</div>
+									<br>
+
+									<div class="form">
+										<h5 class="user-name">
+											<i class="fa-regular fa-pen-to-square"></i> Edit your account
+										</h5>
+										<div class="form-group">
+											<label for="username">Profile:</label> <input type="text"
+												id="username">
+										</div>
+										<div class="form-group">
+											<label for="username">Username:</label> <input type="text"
+												id="username">
+										</div>
+										<div class="form-group">
+											<label for="email">Email:</label> <input type="text"
+												id="email">
+										</div>
+										<div class="form-group">
+											<label for="number">Number:</label> <input type="text"
+												id="number">
+										</div>
+										<div class="form-group">
+											<label for="address">Address:</label> <input type="text"
+												id="address">
+										</div>
+										<div class="delete-account">
+											<div>
+												<a id="delete"><i id="delete" class="fas fa-trash-alt"></i>
+													Delete my account</a>
+											</div>
+											<div class="save-btn">
+												<button class="save">
+													<i class="fa-regular fa-floppy-disk"></i> Save
+												</button>
+											</div>
+										</div>
+									</div>
+
+
+								</div>
+							</div>
+						</div>
 					</div>
-					<p>
-						Hello,
-						<%=user.getUsername()%></p>
-					<h3 id="user_name"></h3>
 				</div>
 			</div>
-			<!-- personal info -->
-			<div class="first-container">
-				<div class="personal-container">
-					<h3>Personal information:</h3>
-					<form class="form edit" id="proform">
-						<label>Image Url: <input class="url" id="image"
-							type="text" placeholder="upload image" />
-						</label> <label>Name :<input type="text" id="username"
-							value=<%=user.getUsername()%> placeholder="your name">
-						</label> <label>Email: <input type="email"
-							value=<%=user.getEmail()%> id="email"
-							placeholder="alsabana@gmail.com">
-						</label> <label>Number: <input type="text"
-							value=<%=user.getNumber()%> id="phNo" placeholder="8090177736">
-						</label> <label> Address: <textarea type="text" id="country"><%=user.getAddress()%></textarea>
-						</label>
-						<button type="submit">SAVE</button>
-						<button id="delete">Account delete</button>
 
-					</form>
-					<div class="customer_details">
-						<h4>
-							Name : <span id="detail_name"><%=user.getUsername()%></span>
-						</h4>
-						<h4>
-							Number : <span id="detail_no"><%=user.getNumber()%></span>
-						</h4>
-						<h4>
-							Email : <span id="detail_email"><%=user.getEmail()%></span>
-						</h4>
-						<h4>
-							Address : <span id="detail_address"><%=user.getAddress()%></span>
-						</h4>
-						<button onclick="change()" id="click_edit">Edit</button>
-						<div>
-							<h3 id="logOut">
-								<i class="fa-solid fa-sign-out-alt"></i><a href="LogOutServlet">Log
-									out</a>
-							</h3>
-						</div>
-					</div>
-				</div>
-
-
-
-
-				<%
-				if (order != null) {
-				%>
-
-				<div class="scnd-container">
-					<div>
-						<h3>
-							<i class="fa fa-list"></i> Your Order Details
-						</h3>
-					</div>
-
-					<%
-					for (Order i : order) {
-					%>
-					<div class="order-card">
-						<img src=<%=i.getOrderedProduct().getProductImg()%>
-							alt="Product Image" class="product-image" height=200px; />
-						<div class="order-details">
-							<h2 class="product-name"><%=i.getOrderedProduct().getProductName()%></h2>
-							<p>
-								Rs.<%=i.getOrderedProduct().getCost()%></p>
-							<p>
-								Qty :
-								<%=i.getQuantity()%></p>
-							<p class="order-date">
-								Order Date :
-								<%=i.getDate()%></p>
-
-						</div>
-						<div class="details">
-							<p>
-								Expected delivery :
-								<%=i.getDeliveryDate()%></p>
-							<p><%=i.getAddress()%>,<%=i.getCity()%>
-							</p>
-							<p><%=i.getNumber()%></p>
-							<p class="order-total">
-								Total: Rs.
-								<%=i.getOrderedProduct().getCost() * i.getQuantity()%></p>
-							<a id="cancelLink" href="CancelOrderServlet?orderId=<%=i.getOrderId()%><% session.setAttribute("orderId", i.getOrderId());%>"><button
-									id="cancel" class="cancel-button">Cancel Order</button></a>
-						</div>
-					</div>
-					<%
-					}
-					%>
-
-				</div>
-				<%
-				} else {
-				%>
-				<div class="no-order">
-					<h3>You haven't ordered yet</h3>
-					<button>Purchase now!</button>
-				</div>
-
-				<%
-				}
-				%>
-			</div>
 		</div>
+
+		<%
+		if (order != null) {
+		%>
+
+		<div class="scnd-container">
+			<div>
+				<h3>
+					<i class="fa fa-list"></i> Your Order Details
+				</h3>
+			</div>
+
+			<%
+			for (Order i : order) {
+			%>
+			<div class="order-card">
+				<img src=<%=i.getOrderedProduct().getProductImg()%>
+					alt="Product Image" class="product-image" height=200px; />
+				<div class="order-details">
+					<h2 class="product-name"><%=i.getOrderedProduct().getProductName()%></h2>
+					<p>
+						Rs.<%=i.getOrderedProduct().getCost()%></p>
+					<p>
+						Qty :
+						<%=i.getQuantity()%></p>
+					<p class="order-date">
+						Order Date :
+						<%=i.getDate()%></p>
+
+				</div>
+				<div class="details">
+					<p>
+						Expected delivery :
+						<%=i.getDeliveryDate()%></p>
+					<p><%=i.getAddress()%>,<%=i.getCity()%>
+					</p>
+					<p><%=i.getNumber()%></p>
+					<p class="order-total">
+						Total: Rs.
+						<%=i.getOrderedProduct().getCost() * i.getQuantity()%></p>
+					<a id="cancelLink"
+						href="CancelOrderServlet?orderId=<%=i.getOrderId()%><%session.setAttribute("orderId", i.getOrderId());%>"><button
+							id="cancel" class="cancel-button">Cancel Order</button></a>
+				</div>
+			</div>
+			<%
+			}
+			%>
+
+		</div>
+		<%
+		} else {
+		%>
+		<div class="no-order">
+			<h3>You haven't ordered yet</h3>
+			<button>Purchase now!</button>
+		</div>
+
+		<%
+		}
+		%>
 	</div>
+
 	<script>
-	// your-script.js
-
-	// your-script.js
-
-
   const cancelLink = document.getElementById("cancelLink");
 
   cancelLink.addEventListener("click", function (event) {
@@ -193,8 +220,17 @@
     });
   });
 
-	</script>
+  
+  const edit = document.getElementById("edit");
+  const editBtns = document.querySelector(".edit-btns");
+  const form = document.querySelector(".form");
+  const save = document.querySelector(".save");
+  edit.addEventListener("click", function(e) {
+    editBtns.style.display = "none";
+    form.style.display = "block";
+  });
 
+	</script>
 </body>
 
 <script src="assets/js/payment.js"></script>

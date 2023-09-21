@@ -21,9 +21,9 @@
         </a>
         <ul class="nav-links">
           <li >
-            <a href="#">
+            <a href="sales.jsp">
               <i class="fa-solid fa-house-user"></i>
-              <p>Dashboard</p>
+              <p>Sales</p>
             </a>
           </li>
           <li>

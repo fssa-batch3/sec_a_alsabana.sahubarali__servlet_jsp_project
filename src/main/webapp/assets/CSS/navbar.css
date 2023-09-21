@@ -1,0 +1,114 @@
+@charset "ISO-8859-1";
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100&family=Poppins:ital@1&family=Space+Mono:wght@700&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+  user-select: none;
+}
+nav {
+  position: relative;
+  margin-right: 0px;
+}
+
+
+.navbar {
+  width: 100%;
+  padding: 20px;
+  background-color: white;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  color: #000;
+
+  z-index: 10;
+}
+.box {
+  font-size: 25px;
+}
+nav li {
+  padding-right: 50px;
+  font-size: 50px;
+  cursor: pointer;
+  color: black;
+}
+.navbar .navbar-header {
+  color: rgb(9, 9, 9);
+  font-size: 26px;
+  text-decoration: none;
+}
+.image-1 {
+  margin-top: -12px;
+  border-radius: 50%;
+}
+.image-2 {
+  border-radius: 50%;
+}
+
+
+@media (min-width: 600px) {
+  .navbar .navbar-item {
+    position: absolute;
+    right: 0;
+    top: 5px;
+  }
+  .navbar .navbar-item ul li {
+    display: inline;
+    margin-right: 15px;
+  }
+  .navbar .navbar-item ul li a {
+    color: rgb(17, 17, 17);
+    text-decoration: none;
+    font-size: 25px;
+  }
+  .navbar .navbar-item ul li a:hover {
+    color: rgb(20, 20, 20);
+  }
+  .navbar-btn {
+    display: none;
+  }
+  .image-2 {
+    margin-top: 10px;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .navbar .navbar-item ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .navbar .navbar-item ul li {
+    margin-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(79, 77, 77, 0.2);
+  }
+  .navbar .navbar-item ul li a {
+    color: rgb(18, 18, 18);
+    text-decoration: none;
+    font-size: 16px;
+  }
+  .navbar-btn {
+    border: none;
+    background: none;
+    padding: 5px;
+    position: absolute;
+    right: 0;
+    top: 25px;
+    left: 89%;
+    cursor: pointer;
+  }
+  .navbar-btn span {
+    display: block;
+    width: 30px;
+    height: 2px;
+    border-top: 1px solid rgb(16, 15, 15);
+    background-color: #000;
+  }
+  .navbar-btn span:not(:last-child) {
+    margin-bottom: 5px;
+  }
+}

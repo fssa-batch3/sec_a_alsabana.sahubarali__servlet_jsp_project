@@ -16,7 +16,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 <script src="https://kit.fontawesome.com/bba3432f3f.js"
 	crossorigin="anonymous"></script>
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
@@ -42,21 +42,23 @@
 					<h3 id="user_name"></h3>
 				</div>
 			</div>
+
 			<!-- personal info -->
 			<div class="first-container">
 				<div class="personal-container">
 					<h3>Personal information:</h3>
-					<form class="form edit" id="proform">
+					<form class="form edit"
+						action="EditBuyerServlet?userId=<%=user.getUserId()%>" method="post"
+						id="proform">
 						<label>Image Url: <input class="url" id="image"
 							type="text" placeholder="upload image" />
-						</label> <label>Name :<input type="text" id="username"
+						</label> <label>Name :<input type="text" id="username" name="name"
 							value=<%=user.getUsername()%> placeholder="your name">
-						</label> <label>Email: <input type="email"
+						</label> <label>Email: <input name="email" type="email"
 							value=<%=user.getEmail()%> id="email"
 							placeholder="alsabana@gmail.com">
-						</label> <label>Number: <input type="text"
+						</label> <label>Number: <input type="text" name="number"
 							value=<%=user.getNumber()%> id="phNo" placeholder="8090177736">
-						</label> <label> Address: <textarea type="text" id="country"><%=user.getAddress()%></textarea>
 						</label>
 						<button type="submit">SAVE</button>
 						<button id="delete">Account delete</button>
@@ -72,10 +74,9 @@
 						<h4>
 							Email : <span id="detail_email"><%=user.getEmail()%></span>
 						</h4>
-						<h4>
-							Address : <span id="detail_address"><%=user.getAddress()%></span>
-						</h4>
+
 						<button onclick="change()" id="click_edit">Edit</button>
+
 						<div>
 							<h3 id="logOut">
 								<i class="fa-solid fa-sign-out-alt"></i><a href="LogOutServlet">Log
@@ -127,7 +128,8 @@
 							<p class="order-total">
 								Total: Rs.
 								<%=i.getOrderedProduct().getCost() * i.getQuantity()%></p>
-							<a id="cancelLink" href="CancelOrderServlet?orderId=<%=i.getOrderId()%><% session.setAttribute("orderId", i.getOrderId());%>"><button
+							<a id="cancelLink"
+								href="CancelOrderServlet?orderId=<%=i.getOrderId()%><%session.setAttribute("orderId", i.getOrderId());%>"><button
 									id="cancel" class="cancel-button">Cancel Order</button></a>
 						</div>
 					</div>
