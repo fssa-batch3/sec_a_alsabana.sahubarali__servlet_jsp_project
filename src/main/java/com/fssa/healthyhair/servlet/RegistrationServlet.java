@@ -68,8 +68,11 @@ public class RegistrationServlet extends HttpServlet {
 
 			User user = UserService.findingUserByEmail(email);
 			session.setAttribute("User", user);
-
+           if(user.getType().equalsIgnoreCase("buyer")) {
 			response.sendRedirect("ListProductServlet");
+           }else {
+        	   response.sendRedirect("createProduct.jsp");
+           }
 		} catch (ServiceException e) {
 			String[] strArr = e.getMessage().split(":");
 			String msg = strArr[strArr.length - 1];

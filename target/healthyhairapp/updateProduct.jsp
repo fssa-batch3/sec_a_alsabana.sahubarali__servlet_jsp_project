@@ -72,8 +72,12 @@ error {
 	color: red;
 	font-size: 16px;
 	margin-top: 10px;
+	margin-left:10%;
 }
-</style>
+.required{
+color:red;
+}
+]</style>
 <body>
 	<jsp:include page="sellerNav.jsp"></jsp:include>
 	<%
@@ -83,10 +87,7 @@ error {
 
 	<div class="container">
 
-		<div class="exit">
-			<img id="closeSign" src="./assets/images/exits image.png" width="35"
-				height="35" />
-		</div>
+		
 		<div class="form-heading">Update Product</div>
 		<%
 		if (errorMessage != null) {
@@ -103,27 +104,27 @@ error {
 					value=<%=product.getProductId()%> name="productId" />
 			</div>
 			<div class="form-group">
-				<label for="pName">Product name:</label>
+				<label for="pName">Product name<span class="required">*</span>:</label>
 				<textarea id="pName" name="productName" required
 					placeholder="Enter product name"><%=product.getProductName()%></textarea>
 			</div>
 			<div class="form-group">
-				<label for="pPrice">Product price:</label> <input type="number"
+				<label for="pPrice">Product price<span class="required">*</span>:</label> <input type="number"
 					min="1" id="pPrice" name="productCost" value=<%=product.getCost()%>
 					required placeholder="Enter price of the product" />
 			</div>
 			<div class="form-group">
-				<label for="pImage">Image URL:</label> <input type="text"
+				<label for="pImage">Image URL<span class="required">*</span>:</label> <input type="text"
 					id="pImage" name="productURL" value=<%=product.getProductImg()%>
 					required placeholder="Paste your product URL" />
 			</div>
 			<div class="form-group">
-				<label for="product_detail">Product Details:</label>
+				<label for="product_detail">Product Details<span class="required">*</span>:</label>
 				<textarea id="product_detail" name="productDetail" required
 					placeholder="Enter more details about the product"><%=product.getProductDetail()%></textarea>
 			</div>
 			<div class="form-group">
-				<label for="product_type">Category:</label> <select
+				<label for="product_type">Category<span class="required">*</span>:</label> <select
 					id="product_type" name="category">
 					<option value="Ayurvedic Range">Ayurvedic Range</option>
 					<option value="Caffeine Range">Caffeine Range</option>

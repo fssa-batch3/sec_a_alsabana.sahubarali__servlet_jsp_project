@@ -29,17 +29,16 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
-	margin-left:20%;
+	margin-left: 20%;
 }
 
 .price {
 	color: grey;
 	font-size: 22px;
-	padding:10px;
+	padding: 10px;
 }
 
 .card button {
-	
 	outline: 0;
 	padding: 10px;
 	color: white;
@@ -51,15 +50,14 @@
 	background-color: #000;
 	text-align: center;
 	cursor: pointer;
-	width:90px;
-	margin-left:10px;
-	border-radius:20px;
+	width: 90px;
+	margin-left: 10px;
+	border-radius: 20px;
 }
 
 .product_list {
 	text-align: center;
-	margin-top:20px;
-	
+	margin-top: 20px;
 }
 
 .card button:hover {
@@ -70,11 +68,21 @@
 	<jsp:include page="sellerNav.jsp"></jsp:include>
 	<%
 	@SuppressWarnings("unchecked")
-	 List<Product> productList = (List<Product>) request.getAttribute("matchedProduct");
-
+	List<Product> productList = (List<Product>) request.getAttribute("matchedProduct");
 	%>
 	<div class="product_list">
 		<h1>Product List</h1>
+
+		<%
+		if (productList == null || productList.isEmpty()) {
+		%>
+		<div class="error">
+		<img src="https://cdni.iconscout.com/illustration/premium/thumb/product-is-empty-8044872-6430781.png?f=webp">
+		<h2>Your list is empty please add products</h2>
+		</div>
+		<%
+		}
+		%>
 	</div>
 
 	<div class="parent_div">
@@ -94,13 +102,16 @@
 				<%=product.getCost()%></p>
 			<p>
 				<a href="EditProductServlet?productId=<%=product.getProductId()%>"><button>Edit</button></a>
-				<a
-					href="DeleteProductServlet?productId=<%=product.getProductId()%>">
+				<a href="DeleteProductServlet?productId=<%=product.getProductId()%>">
 					<button>Delete</button>
 				</a>
 			</p>
 		</div>
-		<%} %>
+		<%
+		}
+		%>
+
+
 	</div>
 </body>
 </html>

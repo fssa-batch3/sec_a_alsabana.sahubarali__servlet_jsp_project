@@ -30,6 +30,10 @@ error {
 	<%
 	User user = (User) session.getAttribute("User");
 	List<Order> order = (List<Order>) session.getAttribute("order");
+
+	if (order == null) {
+
+	}
 	%>
 
 	<div class="whole">
@@ -150,15 +154,27 @@ error {
 
 		</div>
 
+
 		<%
 		if (order != null) {
 		%>
-
 		<div class="scnd-container">
 			<div>
 				<h3>
 					<i class="fa fa-list"></i> Your Order Details
 				</h3>
+				<%
+				if (order == null || order.isEmpty()) {
+				%>
+				<div class="error">
+					<img
+						src="https://cdni.iconscout.com/illustration/premium/thumb/product-is-empty-8044872-6430781.png?f=webp">
+					<h2>Your Order list is empty please purchase now!</h2>
+					
+				</div>
+				<%
+				}
+				%>
 			</div>
 
 			<%
@@ -200,9 +216,9 @@ error {
 
 		</div>
 		<%
-		} else  {
+		} else {
 		%>
-		<div>
+		<div class="scnd-container">
 			<div class="no-order">
 				<button>Purchase now!</button>
 				<div>
