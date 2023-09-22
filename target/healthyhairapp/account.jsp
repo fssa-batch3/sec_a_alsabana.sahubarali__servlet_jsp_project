@@ -20,28 +20,43 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-
+<style>
+error {
+	color: red;
+}
+</style>
 <body>
 	<jsp:include page="navbar.jsp"></jsp:include>
 	<%
 	User user = (User) session.getAttribute("User");
 	List<Order> order = (List<Order>) session.getAttribute("order");
-	String error = request.getParameter("errorMessage");
 	%>
 
 	<div class="whole">
 		<div class="container">
-		<%= error %>
+			<h3>My Account</h3>
 			<div class="row gutters">
 				<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
 					<div class="card h-100">
 						<div class="card-body">
 							<div class="account-settings">
 								<div class="user-profile">
+									<%
+									if (user.getProfileUrl() == null) {
+									%>
 									<div class="user-avatar">
 										<img src="https://bootdey.com/img/Content/avatar/avatar7.png"
 											alt="Maxwell Admin">
 									</div>
+									<%
+									} else {
+									%>
+									<div class="user-avatar">
+										<img src=<%=user.getProfileUrl()%> alt="Maxwell Admin">
+									</div>
+									<%
+									}
+									%>
 									<h5 class="user-name">
 										Hello!<%=user.getUsername()%></h5>
 
@@ -77,42 +92,55 @@
 									<br>
 
 									<div class="form">
-									<form action="EditBuyerServlet?userId=<%=user.getUserId() %>" method="post">
-										<h5 class="user-name">
-											<i class="fa-regular fa-pen-to-square"></i> Edit your account
-										</h5>
-										<div class="form-group">
-											<label for="username">Profile:</label> <input type="text"
-												value=<%= user.getProfileUrl() %> id="username">
-										</div>
-										<div class="form-group">
-											<label for="username">Username:</label> <input type="text"
-												name="name" value=<%=user.getUsername()%> id="username">
-										</div>
-										<div class="form-group">
-											<label for="email">Email:</label> <input type="text"
-												value=<%=user.getEmail()%> name="email" id="email">
-										</div>
-										<div class="form-group">
-											<label for="number">Number:</label> <input type="text"
-												value=<%=user.getNumber()%> name="number" id="number">
-										</div>
+										<form action="EditBuyerServlet?userId=<%=user.getUserId()%>"
+											method="post">
+											<%
+											String error = request.getParameter("errorMessage");
+											if (error != null) {
+												out.println("<error>" + error + "</error>");
+											%>
+											<script> 
+				                      const form1 = document.querySelector('.form');
+		                         		form1.style.display="block";
+		                     		</script>
+											<%
+											}
+											%>
+											<h5 class="user-name">
+												<i class="fa-regular fa-pen-to-square"></i> Edit your
+												account
+											</h5>
+											<div class="form-group">
+												<label for="username">Profile:</label> <input type="text"
+													name="image" value=<%=user.getProfileUrl()%> id="username">
+											</div>
+											<div class="form-group">
+												<label for="username">Username:</label> <input type="text"
+													name="name" value=<%=user.getUsername()%> id="username">
+											</div>
+											<div class="form-group">
+												<label for="email">Email:</label> <input type="text"
+													readonly value=<%=user.getEmail()%> name="email" id="email">
+											</div>
+											<div class="form-group">
+												<label for="number">Number:</label> <input type="text"
+													value=<%=user.getNumber()%> name="number" id="number">
+											</div>
 
-										<div class="delete-account">
-											<div>
-												<a href="DeleteUserAccountServlet" id="delete"><i
-													id="delete" class="fas fa-trash-alt"></i> Delete my account</a>
+											<div class="delete-account">
+												<div>
+													<a href="DeleteUserAccountServlet" id="delete"><i
+														id="delete" class="fas fa-trash-alt"></i> Delete my
+														account</a>
+												</div>
+												<div class="save-btn">
+													<button class="save">
+														<i class="fa-regular fa-floppy-disk"></i> Save
+													</button>
+												</div>
 											</div>
-											<div class="save-btn">
-												<button class="save">
-													<i class="fa-regular fa-floppy-disk"></i> Save
-												</button>
-											</div>
-										</div>
 										</form>
 									</div>
-
-
 								</div>
 							</div>
 						</div>
@@ -172,19 +200,36 @@
 
 		</div>
 		<%
-		} else {
+		} else  {
 		%>
-		<div class="no-order">
-			<h3>You haven't ordered yet</h3>
-			<button>Purchase now!</button>
+		<div>
+			<div class="no-order">
+				<button>Purchase now!</button>
+				<div>
+					<h2>no order</h2>
+				</div>
+			</div>
 		</div>
-
 		<%
 		}
 		%>
 	</div>
 
 	<script>
+	const editBtns = document.querySelector(".edit-btns");
+	  const form = document.querySelector(".form");
+	  const save = document.querySelector(".save");
+	  const edit = document.querySelector("#edit");
+		 edit.addEventListener("click", function(e) {
+			 console.log("click");
+			    editBtns.style.display = "none";
+			    form.style.display = "block";
+			  });
+	  save.addEventListener("click", function(e) {
+		    editBtns.style.display = "block";
+		    form.style.display = "none";
+		    location.reload();
+		  });
   const cancelLink = document.getElementById("cancelLink");
 
   cancelLink.addEventListener("click", function (event) {
@@ -223,25 +268,12 @@
   });
 
   
-  const edit = document.getElementById("edit");
-  const editBtns = document.querySelector(".edit-btns");
-  const form = document.querySelector(".form");
-  const save = document.querySelector(".save");
-  edit.addEventListener("click", function(e) {
-    editBtns.style.display = "none";
-    form.style.display = "block";
-  });
-  save.addEventListener("click", function(e) {
-	    editBtns.style.display = "block";
-	    form.style.display = "none";
-	    location.reload();
-	  });
+ 
+  
 
 	</script>
 </body>
 
-<script src="assets/js/payment.js"></script>
-<script src="assets/js/acc.js"></script>
-<script src="assets/js/cart.js"></script>
+
 </body>
 </html>

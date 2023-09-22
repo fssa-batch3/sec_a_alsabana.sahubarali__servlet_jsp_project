@@ -42,10 +42,18 @@ public class CreateProductServlet extends HttpServlet {
 
 		try {
 			productservice.createProduct(product1);
-			response.sendRedirect("ListProductServlet");
+			response.sendRedirect("SellerProductList");
 		} catch (ServiceException e) {
+			
 			String[] strArr = e.getMessage().split(":");
 			String msg = strArr[strArr.length - 1];
+			
+			request.setAttribute("productName",productName);
+			request.setAttribute("productCost",productCost);
+			request.setAttribute("productImage",productImage);
+			request.setAttribute("productDetail",productDetail);
+			
+			
 			RequestDispatcher patcher = request.getRequestDispatcher("createProduct.jsp?errorMessage=" + msg);
 			patcher.forward(request, response);
 		}

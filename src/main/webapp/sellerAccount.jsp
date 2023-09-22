@@ -140,10 +140,11 @@ button:hover {
 .name_div h2 {
 	margin-right: -150%;
 }
-.error{
+error{
 color:red;
 text-align:center;
 font-size:23px;
+margin-left:32%;
 }
 </style>
 </head>
@@ -196,7 +197,7 @@ font-size:23px;
 				%>
 
 			</div>
-			<button id="edit">Edit</button>
+			<button id="edit"><i class="fa-solid fa-pen"></i> Edit</button>
 
 			<a href="DeleteUserAccountServlet?userId=<%=user.getUserId()%>"><button>Delete
 					Account</button></a>

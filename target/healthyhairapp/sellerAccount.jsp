@@ -140,10 +140,11 @@ button:hover {
 .name_div h2 {
 	margin-right: -150%;
 }
-.error{
+error{
 color:red;
 text-align:center;
 font-size:23px;
+margin-left:32%;
 }
 </style>
 </head>

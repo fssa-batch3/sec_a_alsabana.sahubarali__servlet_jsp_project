@@ -200,23 +200,36 @@ error {
 
 		</div>
 		<%
-		} else {
+		} else  {
 		%>
-		<div class="no-order">
-			<img
-				src="https://cdni.iconscout.com/illustration/premium/thumb/man-finding-nothing-in-order-4006350-3309936.png">
-			<button>Purchase now!</button>
-			<div>
-				<h2>no order</h2>
+		<div>
+			<div class="no-order">
+				<button>Purchase now!</button>
+				<div>
+					<h2>no order</h2>
+				</div>
 			</div>
 		</div>
-
 		<%
 		}
 		%>
 	</div>
 
 	<script>
+	const editBtns = document.querySelector(".edit-btns");
+	  const form = document.querySelector(".form");
+	  const save = document.querySelector(".save");
+	  const edit = document.querySelector("#edit");
+		 edit.addEventListener("click", function(e) {
+			 console.log("click");
+			    editBtns.style.display = "none";
+			    form.style.display = "block";
+			  });
+	  save.addEventListener("click", function(e) {
+		    editBtns.style.display = "block";
+		    form.style.display = "none";
+		    location.reload();
+		  });
   const cancelLink = document.getElementById("cancelLink");
 
   cancelLink.addEventListener("click", function (event) {
@@ -255,25 +268,12 @@ error {
   });
 
   
-  const edit = document.getElementById("edit");
-  const editBtns = document.querySelector(".edit-btns");
-  const form = document.querySelector(".form");
-  const save = document.querySelector(".save");
-  edit.addEventListener("click", function(e) {
-    editBtns.style.display = "none";
-    form.style.display = "block";
-  });
-  save.addEventListener("click", function(e) {
-	    editBtns.style.display = "block";
-	    form.style.display = "none";
-	    location.reload();
-	  });
+ 
+  
 
 	</script>
 </body>
 
-<script src="assets/js/payment.js"></script>
-<script src="assets/js/acc.js"></script>
-<script src="assets/js/cart.js"></script>
+
 </body>
 </html>

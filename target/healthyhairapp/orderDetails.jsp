@@ -26,10 +26,12 @@ body {
 	display: flex;
 	justify-content: center;
 	font-family: "Arimo";
-	background-color: #9a9594;
+	background-color: #b5b2b1;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+		rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px
+		-2px 6px 0px inset;
 	-webkit-box-shadow: 9px 13px 25px 0px rgba(0, 0, 0, 0.18);
 	-moz-box-shadow: 9px 13px 25px 0px rgba(0, 0, 0, 0.18);
-	box-shadow: 9px 13px 25px 0px rgba(0, 0, 0, 0.18);
 	animation: slideUp 2000ms ease;
 }
 
@@ -47,9 +49,8 @@ form input {
 	min-height: 35px;
 	border: 0;
 	font-size: 1rem;
-	letter-spacing: 0.15rem;
-	font-family: "Arimo";
 	margin-top: 5px;
+	margin-bottom: 5px;
 	border-radius: 4px; label { text-transform : uppercase;
 	font-size: 12px;
 	letter-spacing: 2px;
@@ -86,6 +87,11 @@ form input {
 	cursor: pointer;
 }
 
+label {
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
 .radio-group label {
 	display: flex;
 	align-items: center;
@@ -100,7 +106,7 @@ form input {
 }
 
 .radio-group input[type="radio"] {
-	width: 30px;
+	width: 20px;
 }
 
 #card_detail {
@@ -127,9 +133,9 @@ form input {
 	<div class="wrapper">
 		<div class="container">
 			<form action="createOrderServlet" method="POST">
-				<h1>
+				<h2>
 					<i class="fas fa-shipping-fast"></i> Shipping Details
-				</h1>
+				</h2>
 				<div class="form-group" style="display: none">
 					<label for="id">id:</label> <input type="number"
 						value="${sessionScope.product.productId}" min="1" name="productId"
@@ -137,8 +143,7 @@ form input {
 				</div>
 				<div class="form-group" style="display: none">
 					<label for="id">id:</label> <input type="number"
-						value="<%= sellerId %>" min="1" name="sellerId"
-						required />
+						value="<%=sellerId%>" min="1" name="sellerId" required />
 				</div>
 				<%
 				if (error != null) {
@@ -151,7 +156,7 @@ form input {
 				%>
 
 				<div class="name">
-					
+
 					<div>
 						<label for="f-name">Name:</label> <input type="text" name="name"
 							placeholder="Enter your name" value="${name}" required />
@@ -186,13 +191,13 @@ form input {
 				</div>
 				<!-- Payment Method -->
 				<div class="payment-method">
-					<h1>
+					<h2>
 						<i class="far fa-credit-card"></i> Payment Method
-					</h1>
+					</h2>
 					<div class="radio-group">
 						<label id="cash_on_delivery" for="cash-on-delivery"> <input
-							type="radio" id="cash-on-delivery" value="cash" /> <i
-							class="fas fa-money-bill"></i> Cash on Delivery
+							type="radio" id="cash-on-delivery" name="payment" value="false" />
+							<i class="fas fa-money-bill"></i> Cash on Delivery
 						</label> <label id="click_payment" for="online-payment"> <input
 							type="radio" name="payment" id="online-payment" value="true" />
 							<i class="fas fa-credit-card"></i> Online Payment
@@ -200,9 +205,9 @@ form input {
 					</div>
 				</div>
 				<div id="card_detail">
-					<h1>
+					<h2>
 						<i class="far fa-credit-card"></i> Payment Information
-					</h1>
+					</h2>
 					<div class="cc-num">
 						<label for="card-num">Card Number:</label> <input
 							placeholder="Enter your Credit\Debit card number" type="text"

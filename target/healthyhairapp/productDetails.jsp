@@ -75,6 +75,10 @@
 	background-color: rgb(255, 136, 0);
 	cursor: pointer;
 }
+.stars{
+color:yellow;
+}
+
 </style>
 <body>
 	<%
@@ -89,9 +93,7 @@
 			<h3 id="range">${sessionScope.product.category}product</h3>
 			<h1 id="pro_name">${sessionScope.product.productName}</h1>
 			<h1 id="pro_cost">Rs.${sessionScope.product.cost}</h1>
-			<i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i
-				class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i
-				class="fa-solid fa-star-half-stroke"></i>
+			<h3 class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</h3>
 			<h3>Product Description :</h3>
 			<p id="description">${sessionScope.product.productDetail}</p>
 

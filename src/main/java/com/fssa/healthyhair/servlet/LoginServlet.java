@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 
 			User user = UserService.findingUserByEmail(email);
 			session.setAttribute("User", user);
-
+        
 			if (user.getType().equals("buyer")) {
 				response.sendRedirect("index.jsp");
 			} else {
