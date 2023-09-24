@@ -50,13 +50,19 @@
 	text-align: center;
 	cursor: pointer;
 	height: 50px;
-	width:350px;
-	
+	width: 350px;
 }
 
 .product_list {
 	text-align: center;
-	margin-top: 10%;
+}
+
+.long {
+	margin-top: 73px;
+}
+
+.head-4 {
+	margin-top: 6%;
 }
 </style>
 <body>
@@ -68,10 +74,55 @@
 	List<Product> productList = (List<Product>) request.getAttribute("products");
 
 	User user = (User) request.getSession().getAttribute("User");
+	String category = (String) request.getAttribute("category");
 	%>
-	<div class="product_list">
-		<h1>Product Lists</h1>
+	<%
+	if (category.equalsIgnoreCase("ayurvedic")) {
+	%>
+	<div style="margin-top:50px;" class="long">
+		<img src="./assets/images/3 gif.webp" width=1500 
+			alt="image" class="long-img" />
 	</div>
+	<div class="product_list">
+		<h2>Ayurvedic Range</h2>
+	</div>
+	<%
+	} else if (category.equalsIgnoreCase("avocado")) {
+	%>
+	<div class="head-4">
+		<img src="./assets/images/long3.webp" width="1500px" height="350px"
+			alt="image" class="lng-img" />
+	</div>
+	<div class="product_list">
+		<h2>Macadamia Nut, Avocado, Biotin Range</h2>
+	</div>
+	<%
+	} else if (category.equalsIgnoreCase("all")) {
+	%>
+
+	<div class=head-4>
+		<img src="./assets/images/big images1.jpg" width="1500px" alt="image"
+			class="lng-img" />
+	</div>
+	<div class="product_list">
+		<h2>List of all our products</h2>
+	</div>
+
+	<%
+	} else if (category.equalsIgnoreCase("sample")) {
+	%>
+
+	<div class=head-4>
+		<img
+			src="./assets/images/Brown Aesthetic Skincare Product Instagram Post.jpg"
+			width="1500px" height="750px" alt="image" class="lng-img" />
+	</div>
+	<div class="product_list">
+		<h2>List of all our products</h2>
+	</div>
+	<%
+	}
+	%>
 
 	<div class="parent_div">
 		<%

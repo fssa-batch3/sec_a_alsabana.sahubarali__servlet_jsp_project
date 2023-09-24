@@ -210,16 +210,16 @@ label {
 					</h2>
 					<div class="cc-num">
 						<label for="card-num">Card Number:</label> <input
-							placeholder="Enter your Credit\Debit card number" type="text"
+							placeholder="Enter your Credit\Debit card number" maxlength=12 type="text" maxlength="3"
 							name="card-num" />
 					</div>
 					<div class="cc-info">
 						<div>
-							<label for="card-num">Expired Date :</label> <input type="text"
+							<label for="card-num">Expired Date :</label> <input type="text" 
 								placeholder="MM/YY" name="expire" />
 						</div>
 						<div>
-							<label for="card-num">CVV :</label> <input type="password"
+							<label for="card-num">CVV :</label> <input type="password" maxlength="3"
 								placeholder="Enter your cvv" name="security" />
 						</div>
 					</div>

@@ -37,12 +37,14 @@ public class DeleteUserAccountServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int userId = Integer.parseInt(request.getParameter("userId"));
-
+	
+		HttpSession session = request.getSession(false);
+		User user =(User) session.getAttribute("User");
+		int id = user.getUserId();
 		try {
 			UserService userService = new UserService();
-			userService.deleteUser(userId);
-			HttpSession session = request.getSession(false);
+			userService.deleteUser(id);
+			
 			session.invalidate();
 			response.sendRedirect("index.jsp");
 		} catch (ServiceException e) {
