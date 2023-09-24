@@ -5,6 +5,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="./assets/CSS/navbar.css" />
+<link rel="stylesheet" href="./assets/CSS/loginsignup.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 <link rel="stylesheet"
@@ -124,6 +125,59 @@
 			</ul>
 		</div>
 	</div>
+
+
+
+
+	<!-- login page -->
+	<div class="overall" id="pop">
+
+		<div class="form">
+			<div class="close">
+
+				<i id="close" class="fas fa-times"
+					style="color: red; font-size: 24px;"></i>
+			</div>
+
+			<div class="circle">
+				<img class="image" src="./assets/images/new logo.png " width="100"
+					height="100" />
+			</div>
+			<h4 class="title">Login to Your Account</h4>
+			<%
+			String error1 = request.getParameter("loginError");
+			if (error1 != null) {
+				out.println("<error>" + error1 + "</error>");
+			%>
+			<script>
+				const signElement = document.querySelector('.overall');
+				signElement.classList.add('open-popup');
+			</script>
+			<%
+			}
+			%>
+			<form id="login_form" action="LoginServlet" method="post">
+
+				<div class="form-input">
+					<input type="email" name="email" id="loginEmail" value="${email}"
+						placeholder="Email" required />
+				</div>
+				<div class="form-input">
+					<input type="password" id="loginPassword" name="password"
+						value="${password}" placeholder="Password" required />
+				</div>
+				<div class="form-input">
+					<button type="submit" onclick="login()">Login</button>
+				</div>
+			</form>
+			<div class="signup">
+				Don't have an account? <a id="signupOp">Sign up</a>
+			</div>
+		</div>
+	</div>
+
+
+
 	<script src="https://smtpjs.com/v3/smtp.js"></script>
 	<script src="assets/js/loginPop.js"></script>
 
