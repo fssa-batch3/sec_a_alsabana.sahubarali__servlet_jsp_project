@@ -69,7 +69,7 @@ public class RegistrationServlet extends HttpServlet {
 			User user = UserService.findingUserByEmail(email);
 			session.setAttribute("User", user);
            if(user.getType().equalsIgnoreCase("buyer")) {
-			response.sendRedirect("ListProductServlet");
+			response.sendRedirect("ListProductServlet?category=all");
            }else {
         	   response.sendRedirect("createProduct.jsp");
            }

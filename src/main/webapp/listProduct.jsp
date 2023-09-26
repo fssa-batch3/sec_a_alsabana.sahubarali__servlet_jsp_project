@@ -67,7 +67,8 @@
 </style>
 <body>
 	<jsp:include page="navbar.jsp"></jsp:include>
-
+<br>
+<br>
 	<%
 	@SuppressWarnings("unchecked")
 
@@ -79,7 +80,7 @@
 	<%
 	if (category.equalsIgnoreCase("ayurvedic")) {
 	%>
-	<div style="margin-top:50px;" class="long">
+	<div style="margin-top:70px;" class="long">
 		<img src="./assets/images/3 gif.webp" width=1500 
 			alt="image" class="long-img" />
 	</div>
@@ -112,13 +113,13 @@
 	} else if (category.equalsIgnoreCase("sample")) {
 	%>
 
-	<div class=head-4>
+	<div class=head-4> 
 		<img
-			src="./assets/images/Brown Aesthetic Skincare Product Instagram Post.jpg"
-			width="1500px" height="750px" alt="image" class="lng-img" />
+			src="./assets/images/Beige and Brown Aesthetic Minimalist Batik Skincare Products Presentations.jpg"
+			width="1500px" height="600px" alt="image" class="lng-img" />
 	</div>
 	<div class="product_list">
-		<h2>List of all our products</h2>
+		<h2> our sample products</h2>
 	</div>
 	<%
 	}

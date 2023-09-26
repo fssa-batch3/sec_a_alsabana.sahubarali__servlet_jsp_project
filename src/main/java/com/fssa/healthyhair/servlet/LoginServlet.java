@@ -16,6 +16,7 @@ import com.fssa.healthyhair.dao.exception.DAOException;
 import com.fssa.healthyhair.model.User;
 import com.fssa.healthyhair.service.UserService;
 import com.fssa.healthyhair.service.exception.ServiceException;
+import com.fssa.healthyhair.validation.exception.InvalidUserException;
 
 /**
  * Servlet implementation class LoginServlet
@@ -41,8 +42,9 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String errorPassword = "password";
 		UserService userService = new UserService();
-		PrintWriter out = response.getWriter();
+
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
@@ -52,9 +54,11 @@ public class LoginServlet extends HttpServlet {
 
 			User user = UserService.findingUserByEmail(email);
 			session.setAttribute("User", user);
-        
-			if (user.getType().equals("buyer")) {
+			if (user.getType() == null) {
+				request.setAttribute(errorPassword, "User not yet registered");
 				response.sendRedirect("index.jsp");
+			} else if ("buyer".equals(user.getType())) {
+				response.sendRedirect("ListProductServlet?category=all");
 			} else {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("sellerAccount.jsp");
 				dispatcher.forward(request, response);
@@ -64,10 +68,9 @@ public class LoginServlet extends HttpServlet {
 			String[] strArr = e.getMessage().split(":");
 			String msg = strArr[strArr.length - 1];
 			request.setAttribute("email", email);
-			request.setAttribute("password", password);
-			RequestDispatcher patcher = request.getRequestDispatcher("index.jsp?loginError=" + msg);
-			patcher.forward(request, response);
+			request.setAttribute(errorPassword, password);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp?loginError=" + msg);
+			dispatcher.forward(request, response);
 		}
-
 	}
 }

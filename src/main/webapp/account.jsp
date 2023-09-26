@@ -30,7 +30,7 @@ error {
 	<%
 	User user = (User) session.getAttribute("User");
 	List<Order> order = (List<Order>) session.getAttribute("order");
-
+    String button = request.getParameter("button");
 	if (order == null) {
 
 	}
@@ -205,9 +205,15 @@ error {
 					<p class="order-total">
 						Total: Rs.
 						<%=i.getOrderedProduct().getCost() * i.getQuantity()%></p>
+					<% if(button==null){ %>
 					<a id="cancelLink"
 						href="CancelOrderServlet?orderId=<%=i.getOrderId()%><%session.setAttribute("orderId", i.getOrderId());%>"><button
 							id="cancel" class="cancel-button">Cancel Order</button></a>
+							<%} else{ %>
+							<a 
+						href="#"><button
+							id="cancel" class="cancel-button">Cancelled</button></a>
+							<%} %>
 				</div>
 			</div>
 			<%
@@ -216,19 +222,9 @@ error {
 
 		</div>
 		<%
-		} else {
+		} 
 		%>
-		<div class="scnd-container">
-			<div class="no-order">
-				<button>Purchase now!</button>
-				<div>
-					<h2>no order</h2>
-				</div>
-			</div>
-		</div>
-		<%
-		}
-		%>
+	
 	</div>
 
 	<script>

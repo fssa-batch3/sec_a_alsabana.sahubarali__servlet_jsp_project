@@ -9,7 +9,8 @@
 <link rel="stylesheet" href="./assets/CSS/style.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 <title>Home</title>
@@ -18,6 +19,9 @@ error {
 	color: red;
 	margin-left: 30%;
 	margin-top: -50%;
+}
+#password {
+	margin-bottom: -21px;
 }
 </style>
 </head>
@@ -29,8 +33,8 @@ error {
 			<h4 class="title">Sign Up</h4>
 		</div>
 		<div class="exit">
-			<i id="closeSign" class="fas fa-times"
-				style="color: red; font-size: 26px;"></i>
+			<img id="closeSign" src="./assets/images/exits image.png" width="35"
+				height="35" alt="exit" />
 		</div>
 		<div class="form" id="pop_up">
 			<%
@@ -49,24 +53,29 @@ error {
 				<div class="form-input">
 					<input type="text" name="name" id="username" autocomplete="off"
 						pattern="[A-Za-z]{4,30}" title="Username cannot contains spaces"
-						placeholder="Username" value="${username}" required />
+						placeholder="Enter your name" value="${username}" required />
 				</div>
 				<div class="form-input">
-					<input type="email" id="email" name="email" placeholder="Email"
-						value="${email}" required />
+					<input type="email" id="email" name="email"
+						placeholder="Enter your email"
+						title="Enter your valid email address" value="${email}" required />
 				</div>
 				<div class="form-input">
-					<input type="text" id="phone-no" name="number" value="${number}"
-						placeholder="Phone No" pattern="[0-9]{1,10}" required />
+					<input type="text" id="phone-no" name="number" value="${number}" title="Mobile number contains 10 digits only"
+						placeholder="Enter your mobile number" pattern="[0-9]{1,10}"
+						required />
 				</div>
-				<div class="form-input">
-					<input type="password" value="${password}" id="password"
-						placeholder="Password" required />
+
+				<div id="password" class="form-input">
+					<input type="password" name="password" id="confirm-password" title="password contains one capital letter,one small letter,one number and symbols."
+						value="${password}" placeholder="Enter your password" required />
+					<span class="toggle-password" id="toggleConfirmPassword"> <i
+						class="fa fa-eye-slash" id="eyeIcon"></i>
+
+
+					</span>
 				</div>
-				<div class="form-input">
-					<input type="password" name="password" id="confirm-password"
-						value="${password}" placeholder="Confirm Password" required />
-				</div>
+
 				<select class="form-input" value="${type}" name="type"
 					id="input_type">
 					<option value="">CHOOSE</option>
@@ -74,13 +83,13 @@ error {
 					<option value="seller">Seller</option>
 				</select>
 				<div class="form-input">
-					<button type="submit" onclick="sign()">Sign In</button>
+					<button type="submit" onclick="sign()">Sign up</button>
 				</div>
 			</form>
 
 		</div>
 	</div>
-	<!-- login page -->
+	<!-- login page  -->
 	<div class="overall" id="pop">
 
 		<div class="form">
@@ -91,8 +100,8 @@ error {
 			</div>
 
 			<div class="circle">
-				<img class="image" src="./assets/images/new logo.png " width="100"
-					height="100" />
+				<img class="image" alt="logo " src="./assets/images/new logo.png "
+					width="100" height="100" />
 			</div>
 			<h4 class="title">Login to Your Account</h4>
 			<%
@@ -111,16 +120,19 @@ error {
 
 				<div class="form-input">
 					<input type="email" name="email" id="loginEmail" value="${email}"
-						placeholder="Email" required />
+						placeholder="Enter your email" required />
 				</div>
 				<div class="form-input">
 					<input type="password" id="loginPassword" name="password"
-						value="${password}" placeholder="Password" required />
+						value="${password}" placeholder="Enter your password" required />
+					<span class="toggle-password" id="toggleConfirmPassword"> <i
+						class="fa fa-eye-slash" id="logineyeIcon"></i></span>
 				</div>
 				<div class="form-input">
 					<button type="submit" onclick="login()">Login</button>
 				</div>
 			</form>
+
 			<div class="signup">
 				Don't have an account? <a id="signupOp">Sign up</a>
 			</div>

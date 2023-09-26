@@ -101,8 +101,8 @@ button[type="submit"]:hover {
 					placeholder="Enter product name" />
 			</div>
 			<div class="form-group">
-				<label for="pPrice">Product price<span class="required">*</span>:</label> <input type="number"
-					min="1" id="pPrice" name="productCost" required value="${productCost}"
+				<label for="pPrice">Product price<span class="required">*</span>:</label> <input type="text"
+					min="1" maxlength="4" id="pPrice" name="productCost" required value="${productCost}"
 					placeholder="Enter price of the product" />
 			</div>
 			<div class="form-group">

@@ -5,7 +5,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="./assets/CSS/navbar.css" />
-<link rel="stylesheet" href="./assets/CSS/loginsignup.css" />
+
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 <link rel="stylesheet"
@@ -31,11 +31,57 @@
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
-.dropdown-container {
-	position: relative;
-	display: inline-block;
-	cursor: pointer; /* Add a pointer cursor to indicate interactivity */
+.dropdown button {
+		background-color: white;
+	border: none;
+	min-height: 40px;
+	border-radius: 2px;
+	padding: 0.5rem 1rem;
+	font-size: 25px;
+	text-align: center;
+	color: #080808;
+	width: 100%;
 }
+
+/* Show the dropdown menu on hover */
+.dropdown-container:hover .dropdown-menu {
+	display: block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	float: none;
+	color: black;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+}
+
+.dropdown-content a:hover {
+	background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+/* Style for the entire menu */
+.menu-items {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	display: flex; /* Make the menu items display horizontally */
+	justify-content: space-between;
+	/* Spread items evenly across the navbar */
+}
+
 /* Style for the list items in the dropdown menu */
 .dropdown-menu ul {
 	list-style-type: none;
@@ -55,15 +101,8 @@
 	transition: background-color 0.3s;
 }
 
-/* Hover effect for dropdown menu items */
-.dropdown-menu a:hover {
-	background-color: #ddd;
-	font-size: 19px;
-}
-
-/* Show the dropdown menu on hover */
-.dropdown-container:hover .dropdown-menu {
-	display: block;
+.dropdown dropdown-content {
+	
 }
 </style>
 <body>
@@ -80,12 +119,25 @@
 		<nav class="navbar-item hide">
 			<ul class="menu-items">
 				<li><a href="index.jsp">Home</a></li>
-				<li><a href="ListProductServlet?category=all"
-					class="dropdown-container"> Product</a></li>
+
+				<li class="dropdown">
+					<button class="dropbtn">
+						Products <i class="fa fa-caret-down"></i>
+					</button>
+					<div class="dropdown-content">
+						<span><a href="ListProductServlet?category=sample">Sample
+								Products</a></span> <span><a
+							href="ListProductServlet?category=ayurvedic">Ayurvedic Range</a></span>
+						<span><a href="#">Caffeine Range</a></span> <span><a
+							href="ListProductServlet?category=avacado">Avocado, Biotin
+								range</a></span> <span><a href="ListProductServlet?category=all"
+							class="dropdown-container">All Product</a></span>
+					</div>
+				</li>
 
 				<li><a href="#"><i class="fas fa-shopping-cart"
 						style="font-size: 20px"></i>Cart </a></li>
-				<li><a href="#"><i class="fa fa-filter"></i> Filter</a></li>
+				<!--  <li><a href="#"><i class="fa fa-filter"></i> Filter</a></li> -->
 				<li id="login_btn"><a href="#">Login </a></li>
 
 			</ul>
@@ -97,7 +149,20 @@
 		<nav class="navbar-item hide">
 			<ul class="menu-items">
 				<li><a href="index.jsp">Home</a></li>
-				<li><a href="ListProductServlet?category=all">Product</a></li>
+				<li class="dropdown">
+					<button class="dropbtn">
+						Products <i class="fa fa-caret-down"></i>
+					</button>
+					<div class="dropdown-content">
+						<span><a href="ListProductServlet?category=sample">Sample
+								Products</a></span> <span><a
+							href="ListProductServlet?category=ayurvedic">Ayurvedic Range</a></span>
+						<span><a href="#">Caffeine Range</a></span> <span><a
+							href="ListProductServlet?category=avacado">Avocado, Biotin
+								range</a></span> <span><a href="ListProductServlet?category=all"
+							class="dropdown-container">All Product</a></span>
+					</div>
+				</li>
 				<li><a href="#"><i class="fas fa-shopping-cart"
 						style="font-size: 20px;"></i>Cart </a></li>
 				<li><a href="ListOrderServlet"> <i class="fas fa-user"
@@ -111,72 +176,6 @@
 		%>
 
 	</div>
-	<div>
-		<div class="dropdown-menu">
-			<ul>
-				<li><a href="ListProductServlet?category=sample">Sample
-						Products</a></li>
-				<li><a href="ListProductServlet?category=ayurvedic">Ayurvedic
-						Range</a></li>
-
-				<li><a href="#">Caffeine Range</a></li>
-				<li><a href="ListProductServlet?category=avacado">Avocado,Biotin
-						range</a></li>
-			</ul>
-		</div>
-	</div>
-
-
-
-
-	<!-- login page -->
-	<div class="overall" id="pop">
-
-		<div class="form">
-			<div class="close">
-
-				<i id="close" class="fas fa-times"
-					style="color: red; font-size: 24px;"></i>
-			</div>
-
-			<div class="circle">
-				<img class="image" src="./assets/images/new logo.png " width="100"
-					height="100" />
-			</div>
-			<h4 class="title">Login to Your Account</h4>
-			<%
-			String error1 = request.getParameter("loginError");
-			if (error1 != null) {
-				out.println("<error>" + error1 + "</error>");
-			%>
-			<script>
-				const signElement = document.querySelector('.overall');
-				signElement.classList.add('open-popup');
-			</script>
-			<%
-			}
-			%>
-			<form id="login_form" action="LoginServlet" method="post">
-
-				<div class="form-input">
-					<input type="email" name="email" id="loginEmail" value="${email}"
-						placeholder="Email" required />
-				</div>
-				<div class="form-input">
-					<input type="password" id="loginPassword" name="password"
-						value="${password}" placeholder="Password" required />
-				</div>
-				<div class="form-input">
-					<button type="submit" onclick="login()">Login</button>
-				</div>
-			</form>
-			<div class="signup">
-				Don't have an account? <a id="signupOp">Sign up</a>
-			</div>
-		</div>
-	</div>
-
-
 
 	<script src="https://smtpjs.com/v3/smtp.js"></script>
 	<script src="assets/js/loginPop.js"></script>

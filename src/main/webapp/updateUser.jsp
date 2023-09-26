@@ -95,7 +95,7 @@ h6 {
 	User user1 = (User) session.getAttribute("User");
 	String errorMessage = (String) request.getParameter("errorMessage");
 	%>
-	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="navbar.jsp"></jsp:include>
 	<form action="EditUserServlet?userId=<%=user1.getUserId()%>"
 		method="post">
 		<div class="container">

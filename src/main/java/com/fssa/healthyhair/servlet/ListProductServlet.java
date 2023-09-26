@@ -57,21 +57,21 @@ public class ListProductServlet extends HttpServlet {
 				request.setAttribute(setCategory, "ayurvedic");
 				request.setAttribute(setname, ayurvedic);
 
-			}
-			if (category.equalsIgnoreCase("avacado")) {
+			} else if (category.equalsIgnoreCase("avacado")) {
 				request.setAttribute(setCategory, "avocado");
 				request.setAttribute(setname, avacado);
 
-			}
-			if (category.equalsIgnoreCase("all")) {
+			} else if (category.equalsIgnoreCase("all")) {
 				request.setAttribute(setCategory, "all");
 				request.setAttribute(setname, productList);
 
-			}
-			if (category.equalsIgnoreCase("sample")) {
+			} else if (category.equalsIgnoreCase("sample")) {
 				request.setAttribute(setCategory, "sample");
 				request.setAttribute(setname, samples);
 
+			} else {
+
+				request.setAttribute(setname, productList);
 			}
 
 			dispatcher = request.getRequestDispatcher("listProduct.jsp");

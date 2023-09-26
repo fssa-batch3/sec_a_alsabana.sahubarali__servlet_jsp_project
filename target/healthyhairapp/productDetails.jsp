@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ page import="com.fssa.healthyhair.model.User"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,15 +76,17 @@
 	background-color: rgb(255, 136, 0);
 	cursor: pointer;
 }
-.stars{
-color:yellow;
-}
 
+.stars {
+	color: yellow;
+}
 </style>
 <body>
 	<%
 	String sellerId = request.getParameter("sellerId");
+	User user = (User) session.getAttribute("User");
 	%>
+
 	<jsp:include page="navbar.jsp"></jsp:include>
 	<div class="card">
 		<div class="left">
@@ -98,20 +101,41 @@ color:yellow;
 			<p id="description">${sessionScope.product.productDetail}</p>
 
 			<h4>Available Offer's</h4>
-			<p>: Special PriceGet extra 11% off (price inclusive of
-				cashback/coupon)</p>
-			<p>: Partner OfferPurchase now & get a surprise cashback coupon
-				for May / June 2023</p>
+			<p>: Special PriceGet extra 11% off (price inclusive of cash
+				back/coupon)</p>
+			<p>: Partner OfferPurchase now and get a surprise cash back
+				coupon for May / June 2023</p>
 			<p>: Partner OfferSign up for healthy hair Pay Later and get
 				Healthy hair Gift Card worth up to ₹1000*</p>
-			<p>: Bank Offer5% Cashback on healthy hair Axis Bank</p>
+			<p>: Bank Offer5% Cash back on healthy hair Axis Bank</p>
+			<%
+			if (user != null) {
+			%>
 			<a
 				href="orderDetails.jsp?productId=${sessionScope.product.productId}&sellerId=<%=sellerId %>"
 				id="buy">
 				<button>Buy Now</button>
 			</a>
+			<%
+			} else {
+			%>
+			<a href="#" id="buy" class="withoutlogin">
+				<button>Buy Now</button>
+			</a>
+			
+			<%
+			}
+			%>
 
 		</div>
 	</div>
+	<script>
+	 const withoutlogin = document.querySelector(".withoutlogin");
+	 
+	 withoutlogin.addEventListener("click", function () {
+		 alert("You need to log in to make a purchase.");
+		  
+	 })
+	</script>
 </body>
 </html>

@@ -1,7 +1,6 @@
 package com.fssa.healthyhair.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -13,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fssa.healthyhair.model.Product;
+import com.fssa.healthyhair.service.OrderService;
 import com.fssa.healthyhair.service.ProductService;
 import com.fssa.healthyhair.service.exception.ServiceException;
 
@@ -31,24 +31,43 @@ public class DeleteProductServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("productId"));
+		HttpSession session = request.getSession(false);
 
-		PrintWriter out = response.getWriter();
-		out.println(id);
 		ProductService productService = new ProductService();
 		List<Product> product = null;
-
+		RequestDispatcher dispatcher = null;
 		try {
-			productService.deleteProduct(id);
-			product = ProductService.getAllProduct();
-			HttpSession session = request.getSession(false);
-			session.setAttribute("products", product);
-			response.sendRedirect("SellerProductList");
+			if (OrderService.doesOrderExistForProduct(id)) {
+				request.setAttribute("errorMessage",
+						"OOPS! You can't delete this product because our customer ordered this product");
+				dispatcher = request.getRequestDispatcher("SellerProductList");
+				dispatcher.forward(request, response);
+			} else {
+				productService.deleteProduct(id);
+				product = ProductService.getAllProduct();
+				session.setAttribute("products", product);
+				response.sendRedirect("SellerProductList");
+			}
 		} catch (ServiceException e) {
-			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("SellerProductList.jsp?errorMessage=" + e.getMessage());
+
+			dispatcher = request.getRequestDispatcher("SellerProductList.jsp?errorMessage=" + e.getMessage());
 			dispatcher.forward(request, response);
-
 		}
-	}
+		
+//	
+//		try {
+//			productService.deleteProduct(id);
+//			product = ProductService.getAllProduct();
+//			HttpSession session = request.getSession(false);
+//			session.setAttribute("products", product);
+//			response.sendRedirect("SellerProductList");
+//		} catch (ServiceException e) {
+//			RequestDispatcher dispatcher = request
+//					.getRequestDispatcher("SellerProductList.jsp?errorMessage=" + e.getMessage());
+//			dispatcher.forward(request, response);
+//
+//		}
+//	}
 
+	}
 }

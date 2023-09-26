@@ -10,7 +10,7 @@
 	href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
 	integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
 	crossorigin="anonymous" />
-<title>Document</title>
+<title>Checkout</title>
 </head>
 <style>
 @import url("https://fonts.googleapis.com/css?family=Arimo");
@@ -195,13 +195,16 @@ label {
 						<i class="far fa-credit-card"></i> Payment Method
 					</h2>
 					<div class="radio-group">
+
 						<label id="cash_on_delivery" for="cash-on-delivery"> <input
-							type="radio" id="cash-on-delivery" name="payment" value="false" />
-							<i class="fas fa-money-bill"></i> Cash on Delivery
+							type="radio" id="cash-on-delivery" name="payment" value="false" /> 
+							<i class="fas fa-money-bill"></i>  Cash on Delivery
 						</label> <label id="click_payment" for="online-payment"> <input
 							type="radio" name="payment" id="online-payment" value="true" />
-							<i class="fas fa-credit-card"></i> Online Payment
+							<i class="fas fa-credit-card"></i>  Online Payment
 						</label>
+
+
 					</div>
 				</div>
 				<div id="card_detail">
@@ -210,8 +213,8 @@ label {
 					</h2>
 					<div class="cc-num">
 						<label for="card-num">Card Number:</label> <input
-							placeholder="Enter your Credit\Debit card number" type="text"
-							name="card-num" />
+							placeholder="Enter your Credit\Debit card number" maxlength=12
+							type="text" maxlength="3" name="card-num" />
 					</div>
 					<div class="cc-info">
 						<div>
@@ -220,7 +223,7 @@ label {
 						</div>
 						<div>
 							<label for="card-num">CVV :</label> <input type="password"
-								placeholder="Enter your cvv" name="security" />
+								maxlength="3" placeholder="Enter your cvv" name="security" />
 						</div>
 					</div>
 				</div>
@@ -269,6 +272,9 @@ label {
       quantityInput.addEventListener('input', updateTotalAmount);
 
       updateTotalAmount();
+      
+      
+      
     </script>
 </body>
 </html>

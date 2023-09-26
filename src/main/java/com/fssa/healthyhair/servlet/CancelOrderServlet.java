@@ -43,12 +43,11 @@ public class CancelOrderServlet extends HttpServlet {
 		int orderid = (int) session.getAttribute("orderId");
 		OrderService orderService = new OrderService();
 		try {
-		orderService.deleteOrder(orderid);
+		OrderService.update("cancelled", orderid);
 		List<Order> orders = orderService.findOrdersByUserId(userId);
 		session.setAttribute("order", orders);
-			response.sendRedirect("account.jsp");
+			response.sendRedirect("account.jsp?button=cancelled");
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

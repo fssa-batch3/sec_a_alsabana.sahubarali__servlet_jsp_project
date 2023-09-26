@@ -63,22 +63,46 @@
 .card button:hover {
 	opacity: 0.7;
 }
+
+.error {
+	padding: 10px;
+	margin-top: 15px;
+	text-align: center;
+	background-color: #b62626;
+	color: white;
+	width: 400px;
+	margin-left: 41%;
+	background-color: #b62626;
+	border-radius: 21px;
+}
 </style>
 <body>
 	<jsp:include page="sellerNav.jsp"></jsp:include>
 	<%
 	@SuppressWarnings("unchecked")
 	List<Product> productList = (List<Product>) request.getAttribute("matchedProduct");
+	String errorMessage = (String) request.getAttribute("errorMessage");
 	%>
+
 	<div class="product_list">
 		<h1>Product List</h1>
+		<%
+		if (errorMessage != null) {
+		%>
 
+		<div class="error">
+			<h2><%=errorMessage%></h2>
+		</div>
+		<%
+		}
+		%>
 		<%
 		if (productList == null || productList.isEmpty()) {
 		%>
 		<div class="error">
-		<img src="https://cdni.iconscout.com/illustration/premium/thumb/product-is-empty-8044872-6430781.png?f=webp">
-		<h2>Your list is empty please add products</h2>
+			<img
+				src="https://cdni.iconscout.com/illustration/premium/thumb/product-is-empty-8044872-6430781.png?f=webp">
+			<h2>Your list is empty please add products</h2>
 		</div>
 		<%
 		}
@@ -86,6 +110,7 @@
 	</div>
 
 	<div class="parent_div">
+
 		<%
 		for (Product product : productList) {
 		%>

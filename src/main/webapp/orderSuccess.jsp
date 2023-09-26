@@ -31,14 +31,17 @@
 	border: none;
 	border-radius: 10px;
 }
-.continue_shopping button:hover{
-     background-color:black;
-     color:white;
+
+.continue_shopping button:hover {
+	background-color: black;
+	color: white;
 }
+
 .card-stepper {
 	z-index: 0;
 	background-color: #f3fefc;
-	 box-shadow: 0px 0px 15px  #62cbab;}
+	box-shadow: 0px 0px 15px #62cbab;
+}
 </style>
 <body>
 
@@ -127,7 +130,7 @@
 								</div>
 							</div>
 							<div class="continue_shopping">
-								<a href="ListProductServlet"><button>Continue
+								<a href="ListProductServlet?category=all"><button>Continue
 										shopping&#128525;</button></a>
 							</div>
 						</div>

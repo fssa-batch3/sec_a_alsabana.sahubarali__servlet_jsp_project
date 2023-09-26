@@ -91,7 +91,7 @@ h6 {
 }
 </style>
 </head>
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="navbar.jsp"></jsp:include>
 <body>
 
 
