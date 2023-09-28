@@ -145,7 +145,6 @@
 		<%
 		} else {
 		%>
-
 		<nav class="navbar-item hide">
 			<ul class="menu-items">
 				<li><a href="index.jsp">Home</a></li>
@@ -176,11 +175,8 @@
 		%>
 
 	</div>
-
 	<script src="https://smtpjs.com/v3/smtp.js"></script>
 	<script src="assets/js/loginPop.js"></script>
-
-
 	<script>
 		const dropdowncontainer = document.querySelector(".dropdown-container");
 

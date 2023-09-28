@@ -159,7 +159,9 @@ label {
 
 					<div>
 						<label for="f-name">Name:</label> <input type="text" name="name"
-							placeholder="Enter your name" value="${name}" required />
+							placeholder="Enter your name" pattern="[A-Za-z]{4,30}"
+							title="Username cannot contains spaces and numbers less than 4 characters maximum 30."
+							value="${name}" required />
 					</div>
 					<div>
 						<label>Quantity:</label> <input type="number" id="quantityInput"
@@ -169,25 +171,28 @@ label {
 				<div class="street">
 					<label for="name">Street :</label> <input type="text"
 						name="address" value="${address}"
+						title="Street name not be in null"
 						placeholder="Enter your delivered Street" required />
 				</div>
 				<div class="address-info">
 					<div>
 						<label for="city">City :</label> <input type="text"
-							placeholder="Enter your city" value="${city}" name="city"
-							required />
+							title="City name not be in null" placeholder="Enter your city"
+							value="${city}" name="city" required />
 					</div>
 
 					<div>
 						<label for="zip">Pincode:</label> <input type="text"
-							value="${pincode}" name="pincode"
+							title="Pincode should be in 8 digits and start with 6."
+							value="${pincode}" name="pincode" pattern="6\d{7}"
 							placeholder="Enter your pincode" required />
 					</div>
 				</div>
 				<div>
-					<label>Mobile number:</label> <input type="number"
-						value="${number}" placeholder="Enter your number" name="mobile"
-						required />
+					<label>Mobile number:</label> <input type="text" value="${number}"
+						title="Mobile number contains 10 digits only" autocomplete="off"
+						placeholder="Enter your mobile number" pattern="[0-9]{1,10}"
+						name="mobile" required />
 				</div>
 				<!-- Payment Method -->
 				<div class="payment-method">
@@ -197,11 +202,11 @@ label {
 					<div class="radio-group">
 
 						<label id="cash_on_delivery" for="cash-on-delivery"> <input
-							type="radio" id="cash-on-delivery" name="payment" value="false" /> 
-							<i class="fas fa-money-bill"></i>  Cash on Delivery
+							type="radio" id="cash-on-delivery" name="payment" value="false" />
+							<i class="fas fa-money-bill"></i> Cash on Delivery
 						</label> <label id="click_payment" for="online-payment"> <input
 							type="radio" name="payment" id="online-payment" value="true" />
-							<i class="fas fa-credit-card"></i>  Online Payment
+							<i class="fas fa-credit-card"></i> Online Payment
 						</label>
 
 

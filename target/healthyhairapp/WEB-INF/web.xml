@@ -13,4 +13,11 @@
 		<error-code>404</error-code> <!-- HTTP Error code Page Not found -->
 		<location>/page-not-found.jsp</location>
 	</error-page>
+	
+	<error-page>
+		<error-code>500</error-code> <!-- HTTP Error internal server -->
+		<location>/internal-server-error.jsp</location>
+	</error-page>
+	
+	
 </web-app>

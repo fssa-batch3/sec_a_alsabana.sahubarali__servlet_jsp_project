@@ -23,6 +23,7 @@ error {
 #password {
 	margin-bottom: -21px;
 }
+
 </style>
 </head>
 <body class="container">
@@ -52,22 +53,22 @@ error {
 			<form id="signUp" action="RegistrationServlet" method="post">
 				<div class="form-input">
 					<input type="text" name="name" id="username" autocomplete="off"
-						pattern="[A-Za-z]{4,30}" title="Username cannot contains spaces"
+						pattern="[A-Za-z]{4,30}" title="Username cannot contains spaces and numbers"
 						placeholder="Enter your name" value="${username}" required />
 				</div>
 				<div class="form-input">
-					<input type="email" id="email" name="email"
-						placeholder="Enter your email"
-						title="Enter your valid email address" value="${email}" required />
+					<input type="text" id="email" name="email" autocomplete="off"
+						placeholder="Enter your email"  pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+						title="Enter your valid email address like(example23@gmail.com)" value="${email}" required />
 				</div>
 				<div class="form-input">
-					<input type="text" id="phone-no" name="number" value="${number}" title="Mobile number contains 10 digits only"
+					<input type="text" id="phone-no" name="number" value="${number}" title="Mobile number contains 10 digits only" autocomplete="off"
 						placeholder="Enter your mobile number" pattern="[0-9]{1,10}"
 						required />
 				</div>
 
 				<div id="password" class="form-input">
-					<input type="password" name="password" id="confirm-password" title="password contains one capital letter,one small letter,one number and symbols."
+					<input type="password"  name="password" id="confirm-password" title="password contains one capital letter,one small letter,one number and symbols minimum 8 characters"
 						value="${password}" placeholder="Enter your password" required />
 					<span class="toggle-password" id="toggleConfirmPassword"> <i
 						class="fa fa-eye-slash" id="eyeIcon"></i>
@@ -78,7 +79,7 @@ error {
 
 				<select class="form-input" value="${type}" name="type"
 					id="input_type">
-					<option value="">CHOOSE</option>
+					<option value="" selected hidden>CHOOSE</option>
 					<option value="buyer">Buyer</option>
 					<option value="seller">Seller</option>
 				</select>
