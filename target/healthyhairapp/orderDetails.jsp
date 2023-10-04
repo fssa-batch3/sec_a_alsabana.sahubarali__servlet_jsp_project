@@ -200,16 +200,15 @@ label {
 						<i class="far fa-credit-card"></i> Payment Method
 					</h2>
 					<div class="radio-group">
-						<form>
-							<label id="cash_on_delivery" for="cash-on-delivery"> <input
-								required type="radio" id="cash-on-delivery" name="payment"
-								value="false" /> <i class="fas fa-money-bill"></i> Cash on
-								Delivery
-							</label> <label id="click_payment" for="online-payment"> <input
-								type="radio" name="payment" id="online-payment" value="true" />
-								<i class="fas fa-credit-card"></i> Online Payment
-							</label>
-						</form>
+
+						<label id="cash_on_delivery" for="cash-on-delivery"> <input
+							type="radio" id="cash-on-delivery" name="payment" value="false" />
+							<i class="fas fa-money-bill"></i> Cash on Delivery
+						</label> <label id="click_payment" for="online-payment"> <input
+							type="radio" name="payment" id="online-payment" value="true" />
+							<i class="fas fa-credit-card"></i> Online Payment
+						</label>
+
 
 					</div>
 				</div>

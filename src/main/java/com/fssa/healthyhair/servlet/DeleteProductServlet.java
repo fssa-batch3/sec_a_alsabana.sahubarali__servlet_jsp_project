@@ -54,20 +54,7 @@ public class DeleteProductServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 		
-//	
-//		try {
-//			productService.deleteProduct(id);
-//			product = ProductService.getAllProduct();
-//			HttpSession session = request.getSession(false);
-//			session.setAttribute("products", product);
-//			response.sendRedirect("SellerProductList");
-//		} catch (ServiceException e) {
-//			RequestDispatcher dispatcher = request
-//					.getRequestDispatcher("SellerProductList.jsp?errorMessage=" + e.getMessage());
-//			dispatcher.forward(request, response);
-//
-//		}
-//	}
+
 
 	}
 }

@@ -14,10 +14,10 @@
 		<location>/page-not-found.jsp</location>
 	</error-page>
 	
-	<error-page>
-		<error-code>500</error-code> <!-- HTTP Error internal server -->
+<!--  	<error-page>
+		<error-code>500</error-code> 
 		<location>/internal-server-error.jsp</location>
-	</error-page>
+	</error-page> -->
 	
 	
 </web-app>

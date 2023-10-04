@@ -29,7 +29,7 @@ public class ListProductServlet extends HttpServlet {
 			String setCategory = "category";
 			String category = request.getParameter("category");
 			// Call the getAllProduct method in ProductService to get a list of products
-			PrintWriter out = response.getWriter();
+		
 			List<Product> productList = ProductService.getAllProduct();
 			List<Product> ayurvedic = new ArrayList<>();
 			List<Product> avacado = new ArrayList<>();

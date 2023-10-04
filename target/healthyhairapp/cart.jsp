@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import="com.fssa.healthyhair.model.Product" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -219,6 +220,7 @@
   </style>
   <body>
   	<jsp:include page="navbar.jsp"></jsp:include>
+  
     <header>
       <h1>Your Shopping Cart</h1>
     </header>

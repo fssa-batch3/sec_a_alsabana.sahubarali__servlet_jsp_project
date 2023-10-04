@@ -67,8 +67,8 @@
 </style>
 <body>
 	<jsp:include page="navbar.jsp"></jsp:include>
-<br>
-<br>
+	<br>
+	<br>
 	<%
 	@SuppressWarnings("unchecked")
 
@@ -80,9 +80,9 @@
 	<%
 	if (category.equalsIgnoreCase("ayurvedic")) {
 	%>
-	<div style="margin-top:70px;" class="long">
-		<img src="./assets/images/3 gif.webp" width=1500 
-			alt="image" class="long-img" />
+	<div style="margin-top: 70px;" class="long">
+		<img src="./assets/images/3 gif.webp" width=1500 alt="image"
+			class="long-img" />
 	</div>
 	<div class="product_list">
 		<h2>Ayurvedic Range</h2>
@@ -113,13 +113,13 @@
 	} else if (category.equalsIgnoreCase("sample")) {
 	%>
 
-	<div class=head-4> 
+	<div class=head-4>
 		<img
 			src="./assets/images/Beige and Brown Aesthetic Minimalist Batik Skincare Products Presentations.jpg"
 			width="1500px" height="600px" alt="image" class="lng-img" />
 	</div>
 	<div class="product_list">
-		<h2> our sample products</h2>
+		<h2>our sample products</h2>
 	</div>
 	<%
 	}
@@ -141,9 +141,11 @@
 				RS.
 				<%=product.getCost()%></p>
 			<p>
-				<button>
-					<i class="fas fa-shopping-cart"></i> Add to cart
-				</button>
+				<a href="CreateCartServlet?productId=<%=product.getProductId()%>">
+					<button>
+						<i class="fas fa-shopping-cart"></i> Add to cart
+					</button>
+				</a>
 			</p>
 		</div>
 		<%

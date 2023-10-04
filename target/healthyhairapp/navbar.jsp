@@ -135,7 +135,7 @@
 					</div>
 				</li>
 
-				<li><a href="#"><i class="fas fa-shopping-cart"
+				<li><a href="cart.jsp"><i class="fas fa-shopping-cart"
 						style="font-size: 20px"></i>Cart </a></li>
 				<!--  <li><a href="#"><i class="fa fa-filter"></i> Filter</a></li> -->
 				<li id="login_btn"><a href="#">Login </a></li>
@@ -145,7 +145,6 @@
 		<%
 		} else {
 		%>
-
 		<nav class="navbar-item hide">
 			<ul class="menu-items">
 				<li><a href="index.jsp">Home</a></li>
@@ -163,7 +162,7 @@
 							class="dropdown-container">All Product</a></span>
 					</div>
 				</li>
-				<li><a href="#"><i class="fas fa-shopping-cart"
+				<li><a href="cart.jsp"><i class="fas fa-shopping-cart"
 						style="font-size: 20px;"></i>Cart </a></li>
 				<li><a href="ListOrderServlet"> <i class="fas fa-user"
 						style="font-size: 22px;"></i> Account
@@ -176,11 +175,8 @@
 		%>
 
 	</div>
-
 	<script src="https://smtpjs.com/v3/smtp.js"></script>
 	<script src="assets/js/loginPop.js"></script>
-
-
 	<script>
 		const dropdowncontainer = document.querySelector(".dropdown-container");
 

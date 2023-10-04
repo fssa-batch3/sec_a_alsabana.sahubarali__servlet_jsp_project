@@ -30,7 +30,7 @@ error {
 	<%
 	User user = (User) session.getAttribute("User");
 	List<Order> order = (List<Order>) session.getAttribute("order");
-    String button = request.getParameter("button");
+    String button =(String) session.getAttribute("button");
 	if (order == null) {
 
 	}
