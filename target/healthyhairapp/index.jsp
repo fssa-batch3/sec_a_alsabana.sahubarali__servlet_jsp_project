@@ -54,15 +54,16 @@ error {
 				<div class="form-input">
 					<input type="text" name="name" id="username" autocomplete="off"
 						pattern="[A-Za-z]{4,30}" title="Username cannot contains spaces and numbers"
+						
 						placeholder="Enter your name" value="${username}" required />
 				</div>
 				<div class="form-input">
 					<input type="text" id="email" name="email" autocomplete="off"
 						placeholder="Enter your email"  pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
-						title="Enter your valid email address like(example23@gmail.com)" value="${email}" required />
+						title="Enter your valid email address like(example23@gmail.com)" value="${email}"  required />
 				</div>
 				<div class="form-input">
-					<input type="text" id="phone-no" name="number" value="${number}" title="Mobile number contains 10 digits only" autocomplete="off"
+					<input type="text" id="phone-no" name="number" value="${number}" title="Mobile number contains 10 digits only" autocomplete="off" value="8012839374"
 						placeholder="Enter your mobile number" pattern="[0-9]{1,10}"
 						required />
 				</div>

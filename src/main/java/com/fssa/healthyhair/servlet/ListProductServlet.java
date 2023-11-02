@@ -44,7 +44,7 @@ public class ListProductServlet extends HttpServlet {
 				if (i.getCategory().equalsIgnoreCase("avocado range")) {
 					avacado.add(i);
 				}
-				if (i.getCategory().equalsIgnoreCase("our sample")) {
+				if (i.getCategory().equalsIgnoreCase("samples")) {
 					samples.add(i);
 				}
 				if (i.getCategory().equalsIgnoreCase("caffeine")) {
@@ -66,7 +66,7 @@ public class ListProductServlet extends HttpServlet {
 				request.setAttribute(setname, productList);
 
 			} else if (category.equalsIgnoreCase("sample")) {
-				request.setAttribute(setCategory, "sample");
+				request.setAttribute(setCategory, "samples");
 				request.setAttribute(setname, samples);
 
 			} else {

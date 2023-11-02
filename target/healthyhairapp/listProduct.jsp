@@ -110,7 +110,7 @@
 	</div>
 
 	<%
-	} else if (category.equalsIgnoreCase("sample")) {
+	} else if (category.equalsIgnoreCase("samples")) {
 	%>
 
 	<div class=head-4>
@@ -119,7 +119,7 @@
 			width="1500px" height="600px" alt="image" class="lng-img" />
 	</div>
 	<div class="product_list">
-		<h2>our sample products</h2>
+		<h2>Our Sample Products</h2>
 	</div>
 	<%
 	}
@@ -141,11 +141,36 @@
 				RS.
 				<%=product.getCost()%></p>
 			<p>
+				<%
+				if (user == null) {
+				%>
+
+				<script>
+					function cart() {
+						alert("Please log in to your account. Once you're logged in, you'll be able to add products to your cart.");
+						window.location.href("listProduct.jsp");
+					}
+				</script>
+
+				<button onclick="cart()">
+					<i id="cart" class="fas fa-shopping-cart"></i> Add to cart
+				</button>
+
+
+				<%
+				} else {
+				%>
 				<a href="CreateCartServlet?productId=<%=product.getProductId()%>">
-					<button>
-						<i class="fas fa-shopping-cart"></i> Add to cart
+
+
+					<button onclick="cart()">
+						<i id="cart" class="fas fa-shopping-cart"></i> Add to cart
 					</button>
 				</a>
+
+				<%
+				}
+				%>
 			</p>
 		</div>
 		<%
@@ -153,5 +178,6 @@
 		%>
 
 	</div>
+	
 </body>
 </html>

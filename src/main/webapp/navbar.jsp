@@ -135,8 +135,7 @@
 					</div>
 				</li>
 
-				<li><a href="ListCartServlet"><i class="fas fa-shopping-cart"
-						style="font-size: 20px"></i>Cart </a></li>
+				
 				<li id="login_btn"><a href="#">Login </a></li>
 
 			</ul>

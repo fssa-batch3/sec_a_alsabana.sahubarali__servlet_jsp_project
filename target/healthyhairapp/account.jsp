@@ -74,7 +74,7 @@ error {
 										<span>email : </span><%=user.getEmail()%>
 									</h6>
 									<h6 class="user-email">
-										<span>Number : </span><%=user.getNumber()%>
+										<span>Phone Number : </span><%=user.getNumber()%>
 									</h6>
 
 
@@ -127,7 +127,7 @@ error {
 													readonly value=<%=user.getEmail()%> name="email" id="email">
 											</div>
 											<div class="form-group">
-												<label for="number">Number:</label> <input type="text"
+												<label for="number">Phone Number :</label> <input type="text"
 													value=<%=user.getNumber()%> name="number" id="number">
 											</div>
 

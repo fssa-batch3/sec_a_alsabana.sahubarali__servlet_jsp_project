@@ -20,12 +20,7 @@
           <img src="./assets/images/new logo.png" class="logo-img" />
         </a>
         <ul class="nav-links">
-          <li >
-            <a href="sales.jsp">
-              <i class="fa-solid fa-house-user"></i>
-              <p>Sales</p>
-            </a>
-          </li>
+         
           <li>
             <a href="SellerProductList">
               <i class="fa-solid fa-box"></i>
@@ -44,12 +39,7 @@
               <p>Add Product</p>
             </a>
           </li>
-          <li>
-            <a href="contactUs.jsp">
-              <i class="fa-solid fa-phone-alt"></i>
-              <p>Contact us</p>
-            </a>
-          </li>
+          
           <li>
             <a href="LogOutServlet">
               <i class="fa-solid fa-sign-out-alt"></i>

@@ -183,8 +183,8 @@ label {
 
 					<div>
 						<label for="zip">Pincode:</label> <input type="text"
-							title="Pincode should be in 8 digits and start with 6."
-							value="${pincode}" name="pincode" pattern="6\d{7}"
+							title="Pincode should be in 6 digits and start with 6."
+							value="${pincode}" name="pincode" 
 							placeholder="Enter your pincode" required />
 					</div>
 				</div>
@@ -201,13 +201,11 @@ label {
 					</h2>
 					<div class="radio-group">
 
-						<label id="cash_on_delivery" for="cash-on-delivery"> <input
+						<label required id="cash_on_delivery" for="cash-on-delivery"> <input
 							type="radio" id="cash-on-delivery" name="payment" value="false" />
 							<i class="fas fa-money-bill"></i> Cash on Delivery
-						</label> <label id="click_payment" for="online-payment"> <input
-							type="radio" name="payment" id="online-payment" value="true" />
-							<i class="fas fa-credit-card"></i> Online Payment
-						</label>
+						</label> 
+						
 
 
 					</div>

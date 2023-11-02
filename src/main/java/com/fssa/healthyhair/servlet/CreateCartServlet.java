@@ -47,7 +47,7 @@ public class CreateCartServlet extends HttpServlet {
 			User user1 = new User();
 			user1.setUserId(user.getUserId());
 			cart.setAddedUser(user1);
-			CartService.createCart(cart);
+			CartService.addToCart(user.getUserId(), id);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("ListCartServlet");
 			dispatcher.forward(request, response);
 		} catch (ServiceException e) {

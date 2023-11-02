@@ -103,8 +103,6 @@ main {
 	justify-content: center;
 }
 
-
-
 .quantity-input {
 	flex: 1;
 	text-align: center;
@@ -213,10 +211,15 @@ div {
 	color: white;
 	border-radius: 10px;
 }
-.removeItem a{
-color:red;
-text-style:none;
 
+.removeItem a {
+	color: red;
+	text-style: none;
+}
+
+.emptycart {
+	display: flex;
+	justify-content: center;
 }
 </style>
 <body>
@@ -225,12 +228,25 @@ text-style:none;
 	List<Cart> cartList = (List<Cart>) session.getAttribute("cartProduct");
 	%>
 	<header>
-		<h1>Your Shopping Cart</h1>
+		<h1>Your Cart Items</h1>
 	</header>
+	<%
+	if (cartList != null) {
+	%>
 	<main>
 		<section class="cart">
 			<%
+			int count = 0;
+			int cost = 0;
+			int costQuan = 0;
+			int total = 0;
 			for (Cart cart : cartList) {
+				count++;
+
+				int cost1 = cart.getCartProduct().getCost();
+				int quantity = cart.getQuantity();
+				total = cost1 * quantity;
+				cost += total;
 			%>
 			<div class="product-card">
 				<div class="product-image">
@@ -243,40 +259,61 @@ text-style:none;
 					<a class="product-title" href="#"><%=cart.getCartProduct().getProductName()%></a>
 
 					<div class="product-price">
-						<span class="discounted-price">Rs.<%=cart.getCartProduct().getCost()%></span>
+						<span class="discounted-price">Rs. <%=total%></span>
 					</div>
 					<div class="quantity-control">
-						<input type="number" class="quantity-value" value="1" />
+						<input type="text" disabled class="quantity-value"
+							value=<%=cart.getQuantity()%> />
 
 					</div>
 					<div class="removeItem">
-						<p><a href="DeleteCartItemServlet?cartId=<%=cart.getCart_id()%>">
-							Remove</a></p>
+						<p>
+							<a href="DeleteCartItemServlet?cartId=<%=cart.getCartId()%>">
+								Remove</a>
+						</p>
 					</div>
 				</div>
 			</div>
 			<%
 			}
 			%>
-			<div class="placeOrder">
-				<button>Place order</button>
-			</div>
 		</section>
 		<section class="subtotal">
 			<div class="price-details">
 				<span class="title">Price details</span>
 				<div class="item">
-					<div class="label">Price (2 items)</div>
-					<div class="value">Rs.6,390</div>
+					<div class="label">
+						Price (<%=count%>
+						items)
+					</div>
+					<div class="value">
+						Rs.<%=total%></div>
 				</div>
 
 				<div class="total">
 					<div class="label">Total Amount</div>
-					<div class="value">Rs.2,031</div>
+					<div class="value">
+						Rs.<%=total%></div>
 				</div>
+
 				<button class="checkout-button">Proceed to Checkout</button>
+
 			</div>
 		</section>
 	</main>
+	<%
+	}
+	%>
+	<%
+	if (cartList == null) {
+	%>
+	<div class="emptycart">
+		<img
+			src="https://www.99fashionbrands.com/wp-content/uploads/2020/12/empty_cart.png "
+			width="650" height="600">
+	</div>
+	<%
+	}
+	%>
 </body>
 </html>
