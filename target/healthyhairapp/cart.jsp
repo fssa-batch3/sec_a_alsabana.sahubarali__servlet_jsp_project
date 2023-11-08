@@ -268,7 +268,7 @@ div {
 					</div>
 					<div class="removeItem">
 						<p>
-							<a href="DeleteCartItemServlet?cartId=<%=cart.getCart_id()%>">
+							<a href="DeleteCartItemServlet?cartId=<%=cart.getCartId()%>">
 								Remove</a>
 						</p>
 					</div>

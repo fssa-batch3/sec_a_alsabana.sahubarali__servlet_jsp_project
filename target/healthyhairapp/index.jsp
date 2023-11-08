@@ -161,7 +161,7 @@ error {
 			<h2>Effective & Natural Remedy</h2>
 			<p>We use no mineral-oil, silicones, parabens, or sulphates in
 				our products.</p>
-			<a href="./Pages/Product.html" class="btn"><button>SHOP
+			<a href="#" class="btn"><button>SHOP
 					NOW</button></a>
 		</div>
 		<div>
